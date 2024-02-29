@@ -48,8 +48,6 @@ Maven 目标（即mvn）。
 
 Hilla 会在保存时自动重新加载对前端和后端代码的更改。IntelliJ 要求您在更改 Java 代码后手动构建项目，而 VS Code 将在保存时自动构建项目。
 
-启动后，在浏览器中打开 http://localhost:8080
-
 ##### 部署到生产环境
 
 To create a production build, call `mvnw clean package -Pproduction` (Windows),
