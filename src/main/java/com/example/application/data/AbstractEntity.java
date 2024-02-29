@@ -33,6 +33,7 @@ public abstract class AbstractEntity {
 
     @Override
     public int hashCode() {
+        //noinspection ConstantValue
         if (getId() != null) {
             return getId().hashCode();
         }
@@ -44,6 +45,7 @@ public abstract class AbstractEntity {
         if (!(obj instanceof AbstractEntity that)) {
             return false; // null or not an AbstractEntity class
         }
+        //noinspection ConstantValue
         if (getId() != null) {
             return getId().equals(that.getId());
         }

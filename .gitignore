@@ -1,4 +1,6 @@
 .flow-node-tasks.lock
+**/*.ts-timestamp-*.*s
+
 /target/
 .gradle
 build/
