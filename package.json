@@ -1,7 +1,11 @@
 {
-  "name": "jvlang-housekeeping",
+  "name": "@jvlang-housekeeping/parent",
   "license": "UNLICENSED",
   "type": "module",
+  "workspaces": [
+    "frontend",
+    "miniprogram"
+  ],
   "dependencies": {
     "@hilla/form": "2.5.6",
     "@hilla/frontend": "2.5.6",
@@ -22,12 +26,8 @@
     "@vaadin/bundles": "24.3.0",
     "@vaadin/common-frontend": "0.0.19",
     "@vaadin/router": "1.7.5",
-    "classnames": "^2.3.2",
     "construct-style-sheets-polyfill": "3.1.0",
-    "lit": "3.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.2"
+    "lit": "3.1.0"
   },
   "devDependencies": {
     "@lit-labs/react": "^1.1.0",
@@ -51,10 +51,6 @@
     "workbox-precaching": "7.0.0"
   },
   "overrides": {
-    "classnames": "$classnames",
-    "react": "$react",
-    "react-dom": "$react-dom",
-    "react-router-dom": "$react-router-dom",
     "@vaadin/bundles": "$@vaadin/bundles",
     "@hilla/react-components": "$@hilla/react-components",
     "@vaadin/common-frontend": "$@vaadin/common-frontend",
@@ -119,6 +115,6 @@
       "workbox-core": "7.0.0",
       "workbox-precaching": "7.0.0"
     },
-    "hash": "8de8864bb72925318364f29204499643ea889f38508f12c6e0462b3d4e433802"
+    "hash": "2c2fdf27b9ddaaf1550b2ae720f48cf07a042f6a8422d87e7848051f5f3fb43f"
   }
 }
