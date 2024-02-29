@@ -1,0 +1,25 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  port: 8086
+
+spring:
+  jackson:
+    #日期格式转换
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/jvlang-housekeeping?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: adminnnnnn
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+#mybatis-plus:
+#  global-config:
+#    db-config:
+#      logic-delete-value: 1
+#      logic-not-delete-value: 0
+
+#logging:
+#  level:

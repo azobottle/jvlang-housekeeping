@@ -1,3 +1,4 @@
+.flow-node-tasks.lock
 /target/
 .gradle
 build/

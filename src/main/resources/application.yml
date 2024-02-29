@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: jvlang-housekeeping
+  profiles:
+    active: dev
+  output:
+    ansi:
+      enabled: always
+  ### 请求编码
+  http:
+    encoding:
+      force: true
+      charset: utf-8
+      enabled: true
+  ### 服务器编码
+  server:
+    tomcat:
+      uri-encoding: UTF-8
+  jpa:
+    hibernate:
+      ddl-auto: update
+
