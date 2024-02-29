@@ -1,5 +1,6 @@
 .flow-node-tasks.lock
 **/*.ts-timestamp-*.*s
+project.private.config.json
 
 /target/
 .gradle
