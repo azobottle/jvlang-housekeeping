@@ -1,4 +1,4 @@
-package com.example.application;
+package com.example.application.statemachine;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.action.Action;

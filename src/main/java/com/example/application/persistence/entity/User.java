@@ -1,12 +1,14 @@
-package com.example.application.data.entity;
+package com.example.application.persistence.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
 
 import java.util.List;
 
 @Entity
 @Table(name = "t_user", indexes = @Index(columnList = "openid"))
+@Data
 public class User extends AbstractEntity {
     @NotEmpty
     private String name;

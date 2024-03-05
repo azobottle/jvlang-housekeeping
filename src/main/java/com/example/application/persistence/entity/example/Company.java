@@ -1,6 +1,6 @@
-package com.example.application.data.entity.example;
+package com.example.application.persistence.entity.example;
 
-import com.example.application.data.entity.AbstractEntity;
+import com.example.application.persistence.entity.AbstractEntity;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;

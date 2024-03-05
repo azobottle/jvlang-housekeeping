@@ -1,10 +1,12 @@
-package com.example.application.data.entity;
+package com.example.application.persistence.entity;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.Version;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.Date;
 
 @MappedSuperclass
 public abstract class AbstractEntity {
@@ -13,19 +15,15 @@ public abstract class AbstractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Version
-    private int version;
+    @NotNull
+    private Date createdTime;
 
-    public Long getId() {
-        return id;
-    }
+    @NotNull
+    private Long createdBy;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @NotNull
+    private Date updatedTime;
 
-    public int getVersion() {
-        return version;
-    }
-
+    @NotNull
+    private Long updatedBy;
 }
