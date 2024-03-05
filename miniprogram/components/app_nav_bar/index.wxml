@@ -1,0 +1,8 @@
+<!--components/appnavbar/index.wxml-->
+<view class="row app_nav_bar">
+  <slot></slot>
+  <navigator wx:for="{{list}}" wx:key="id" wx:for-item="item" class="app_nav_bar_item" target="self" open-type="switchTab" url="{{item.pagePath}}" data-item="{{item}}">
+    <mdi icon="{{item.icon}}" class="app_nav_bar_icon"></mdi>
+    <text class="app_nav_bar_text">{{item.text}}</text>
+  </navigator>
+</view>

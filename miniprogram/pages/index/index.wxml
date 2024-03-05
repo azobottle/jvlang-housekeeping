@@ -1,27 +1,26 @@
 <!--index.wxml-->
-<scroll-view class="scrollarea" scroll-y type="list">
-  <view class="container">
-    <view class="userinfo">
-      <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
-        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-          <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-        </button>
-        <view class="nickname-wrapper">
-          <text class="nickname-label">昵称</text>
-          <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
-        </view>
-      </block>
-      <block wx:elif="{{!hasUserInfo}}">
-        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-        <view wx:else> 请使用2.10.4及以上版本基础库 </view>
-      </block>
-      <block wx:else>
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      </block>
+<scroll-view style="height: 100%;" scroll-y type="list">
+  <sticky_footer>
+    <view slot="header" class="column">
     </view>
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
+    <view slot="main" style="overflow-y: scroll;" class="column">
+      <!-- 处于刘海屏上沿的插图 -->
+      <view style="background-color: palevioletred; min-height: 33vh;width: 100%;">
+        
+      </view>
+      <!-- 将最重要的首页内容占全屏的 66% -->
+      <view style="background-color: coral; min-height: 50vh;width: 100%;;">
+        <button bind:tap="inc_count">AAA {{count}}</button>
+      </view>
+      <view style="background-color: rgb(59, 206, 96); min-height: 300px;width: 100%;"></view>
+      <view style="background-color: rgb(59, 189, 206); min-height: 300px;width: 100%;"></view>
     </view>
-  </view>
+  </sticky_footer>
 </scroll-view>
+
+
+<!-- <app_page>
+  <scroll-view class="scrollarea" style="height: 100%;" scroll-y type="list">
+    
+  </scroll-view>
+</app_page> -->

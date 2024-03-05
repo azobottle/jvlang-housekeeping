@@ -1,0 +1,4 @@
+<!--custom-tab-bar/index.wxml-->
+<app_nav_bar list="{{list}}">
+  
+</app_nav_bar>
