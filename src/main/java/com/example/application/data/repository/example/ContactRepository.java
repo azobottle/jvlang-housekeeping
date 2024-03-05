@@ -1,9 +1,9 @@
-package com.example.application.data.repository;
+package com.example.application.data.repository.example;
 
 
 import java.util.List;
 
-import com.example.application.data.entity.Contact;
+import com.example.application.data.entity.example.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
