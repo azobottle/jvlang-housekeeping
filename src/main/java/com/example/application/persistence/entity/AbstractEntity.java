@@ -26,4 +26,26 @@ public abstract class AbstractEntity {
 
     @NotNull
     private Long updatedBy;
+
+    public void initHelpColumns(Long userId) {
+        Date now = new Date(System.currentTimeMillis());
+        createdBy = userId;
+        updatedBy = userId;
+        createdTime = now;
+        updatedTime = now;
+    }
+
+    public void updateHelpColumns(Long userId) {
+        Date now = new Date(System.currentTimeMillis());
+        updatedBy = userId;
+        updatedTime = now;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
