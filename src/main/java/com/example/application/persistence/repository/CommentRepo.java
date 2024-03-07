@@ -1,7 +1,8 @@
 package com.example.application.persistence.repository;
 
-import com.example.application.persistence.entity.Comment;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.application.persistence.document.Comment;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface CommentRepo extends JpaRepository<Comment,Long> {
+public interface CommentRepo extends MongoRepository<Comment, ObjectId> {
 }

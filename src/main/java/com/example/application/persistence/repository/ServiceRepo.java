@@ -1,7 +1,8 @@
 package com.example.application.persistence.repository;
 
-import com.example.application.persistence.entity.Service;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.application.persistence.document.Service;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface ServiceRepo extends JpaRepository<Service,Long> {
+public interface ServiceRepo extends MongoRepository<Service, ObjectId> {
 }

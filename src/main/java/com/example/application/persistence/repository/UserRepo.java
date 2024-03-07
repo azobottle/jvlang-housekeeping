@@ -1,7 +1,8 @@
 package com.example.application.persistence.repository;
 
-import com.example.application.persistence.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.application.persistence.document.User;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface UserRepo extends JpaRepository<User,Long> {
+public interface UserRepo extends MongoRepository<User, ObjectId> {
 }

@@ -4,6 +4,7 @@ import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 /**
  * The entry point of the Spring Boot application.
@@ -13,6 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 @SpringBootApplication
+@EnableMongoRepositories
 @Theme(value = "jvlang-housekeeping")
 public class Application implements AppShellConfigurator {
 
