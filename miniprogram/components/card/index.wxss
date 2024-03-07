@@ -4,4 +4,7 @@
   background-color: rgba(243, 241, 228);
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px;
   height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }

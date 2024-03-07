@@ -1,2 +1,83 @@
 <!--pages/index/shop/index.wxml-->
-<text>pages/index/shop/index.wxml</text>
+<view class="part_1" style="justify-content: flex-end;display: flex;flex-direction: column;">
+  <view style="width: 100%; text-align: center;"><text style="color: #777777;font-size: 0.8rem;">注：以下价格为参考价，具体价格需咨询师傅改价。</text></view>
+</view>
+<view class="part_2">
+  <view style="grid-area: g1;" class="flex_center rows">
+    <view><text style="color: #777777;font-size: 1.2rem;">专业保洁 | 专业团队</text></view>
+  </view>
+  <card style="grid-area: g2;" bind:tap="switch_vroute" data-vroute="home">
+    <view class="flex_center rows">
+      <view><text class="title">开荒保洁</text></view>
+      <view><text style="color: gray;font-size: 0.8rem;">10元/平</text></view>
+    </view>
+  </card>
+  <card style="grid-area: g3;">
+    <view class="flex_center rows">
+      <view><text class="title">日常保洁</text></view>
+      <view><text style="color: gray;font-size: 0.8rem;">160元（40/h）</text></view>
+    </view>
+  </card>
+  <card style="grid-area: g4;">
+    <view class="flex_center rows">
+      <view><text class="title">深度保洁</text></view>
+      <view><text style="color: gray;font-size: 0.8rem;">200元（50/h）</text></view>
+    </view>
+  </card>
+</view>
+<view class="part_3">
+  <view style="grid-area: g1;" class="flex_center rows">
+    <view><text style="color: #777777;font-size: 1.2rem;">家电清洗 | 清洁保养</text></view>
+  </view>
+  <card style="grid-area: g2;">
+    <view class="rows detail_card">
+      <view><text class="title">洗衣机蒸汽洗</text></view>
+      <view><text style="color: gray;font-size: 0.8rem;">滚筒洗衣机(半拆) 129元</text></view>
+      <view><text style="color: gray;font-size: 0.8rem;">波轮洗衣机(半拆) 149元</text></view>
+    </view>
+  </card>
+  <card style="grid-area: g3;">
+    <view class="rows detail_card">
+      <view><text class="title">空调蒸汽洗 (2台起)</text></view>
+      <view class="part_3_1" style="color: gray;font-size: 0.8rem;">
+        <text>2</text>
+        <text>3</text>
+        <text>4</text>
+        <text>5</text>
+        <text>台</text>
+        <text>220</text>
+        <text>280</text>
+        <text>320</text>
+        <text>360</text>
+        <text>元</text>
+      </view>
+    </view>
+  </card>
+  <card style="grid-area: g4;">
+    <view class="rows detail_card">
+      <view><text class="title">冰箱蒸汽洗</text></view>
+      <view><text style="color: gray;font-size: 0.8rem;">单/双门1台 100元</text></view>
+      <view><text style="color: gray;font-size: 0.8rem;">三门1台 80元</text></view>
+    </view>
+  </card>
+  <card style="grid-area: g5;">
+    <view class="rows detail_card">
+      <view><text class="title">厨房蒸汽洗</text></view>
+      <view><text style="color: gray;font-size: 0.8rem;">(油烟机半拆洗+厨房保洁) 250元</text></view>
+    </view>
+  </card>
+
+  <card style="grid-area: g6;">
+    <view class="rows detail_card">
+      <view><text class="title">油烟机+灶台蒸汽洗</text></view>
+      <view><text style="color: gray;font-size: 0.8rem;">200元</text></view>
+    </view>
+  </card>
+
+  <card style="grid-area: g7;">
+    <view class="rows detail_card">
+      <view><text class="title">家电清洗套餐</text></view>
+      <view><text style="color: gray;font-size: 0.8rem;">(任选四件) 350元</text></view>
+    </view>
+  </card>
+</view>

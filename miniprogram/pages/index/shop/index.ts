@@ -1,6 +1,6 @@
 // pages/index/shop/index.ts
 Component({
-
+  behaviors: [require("../../../mixin/vroute")],
   /**
    * 组件的属性列表
    */

@@ -1,1 +1,47 @@
 /* pages/index/shop/index.wxss */
+@import "../../../styles/index.wxss";
+
+.part_1 {
+  min-height: 33vh;
+}
+
+.part_2 {
+  min-height: 20vh;
+  display: grid;
+  padding: 0.5rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.5fr 1fr;
+  grid-template-areas:
+    "g1 g1 g1"
+    "g2 g3 g4";
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.part_3 {
+  min-height: 20vh;
+  display: grid;
+  padding: 0.5rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 0.5fr 1fr;
+  grid-template-areas:
+    "g1 g1 g1 g1"
+    "g2 g2 g3 g3"
+    "g4 g4 g5 g5"
+    "g6 g6 g7 g7";
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.detail_card {
+  align-items: center;
+  padding-top: 0.4rem;
+}
+
+.part_3_1 {
+  width: 80%;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
