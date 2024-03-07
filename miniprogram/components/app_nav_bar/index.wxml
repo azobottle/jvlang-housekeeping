@@ -1,8 +1,14 @@
 <!--components/appnavbar/index.wxml-->
-<view class="row app_nav_bar">
-  <slot></slot>
-  <navigator wx:for="{{list}}" wx:key="id" wx:for-item="item" class="app_nav_bar_item" target="self" open-type="switchTab" url="{{item.pagePath}}" data-item="{{item}}">
-    <mdi icon="{{item.icon}}" class="app_nav_bar_icon"></mdi>
+<wxs module="m1">
+  var start_with = function (a, b) {
+    return a.toString().indexOf(b.toString()) == 0
+  }
+
+  module.exports.start_with = start_with;
+</wxs>
+<view class="columns app_nav_bar">
+  <view wx:for="{{list}}" wx:key="id" wx:for-item="item" data-vroute="{{item.vroute}}" bind:tap="switch_vroute" class="app_nav_bar_item" >
+    <image src="{{current_vroute && m1.start_with(item.vroute,current_vroute)?item.icon_checked:item.icon}}" class="app_nav_bar_icon" />
     <text class="app_nav_bar_text">{{item.text}}</text>
-  </navigator>
+  </view>
 </view>

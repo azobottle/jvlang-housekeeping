@@ -1,8 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/shop/index"
+    "pages/logs/logs"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
@@ -16,18 +15,5 @@
   },
   "usingComponents": {
     "app_nav_bar": "./components/app_nav_bar/index"
-  },
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "主页"
-      },
-      {
-        "pagePath": "pages/shop/index",
-        "text": "分类"
-      }
-    ],
-    "custom": true
   }
 }

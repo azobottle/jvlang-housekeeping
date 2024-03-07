@@ -1,0 +1,36 @@
+<!--pages/index/home/index.wxml-->
+<view class="part_top">
+
+</view>
+<view class="part_main" style="max-width: 100%;">
+  <card class="iconed_button_card" style="grid-area: g1;" bind:tap="switch_vroute" data-vroute="shop">
+    <view class="flex_center rows">
+      <view><text style="font-weight: bold;">预约</text></view>
+      <view><text style="color: #777777;font-size: 0.8rem;">Booking</text></view>
+    </view>
+  </card>
+  <card class="iconed_button_card" style="grid-area: g2;">
+    <view class="flex_center rows">
+      <view><text style="font-weight: bold;">订单</text></view>
+      <view><text style="color: #777777;font-size: 0.8rem;">My Order</text></view>
+    </view>
+  </card>
+  <card class="iconed_button_card" style="grid-area: g3;">
+    <!-- <image src="./../../assets/entrepreneurs-outline.svg" mode="aspectFit"></image> -->
+    <view class="flex_center rows">
+      <view><text style="font-weight: bold;">展示</text></view>
+    </view>
+  </card>
+  <card class="iconed_button_card" style="grid-area: g4;">
+    <!-- <image src="./../../assets/entrepreneurs-outline.svg" mode="aspectFit"></image> -->
+    <view class="flex_center rows">
+      <view><text style="font-weight: bold;">展示</text></view>
+    </view>
+  </card>
+  <card style="grid-area: g5;">
+    <view style="padding: 1.2rem 1.8rem;">
+      <view style="margin-bottom: 0.6rem;"><text style="font-weight: bold;">VIP</text></view>
+      <view><text>橘浪家政</text></view>
+    </view>
+  </card>
+</view>

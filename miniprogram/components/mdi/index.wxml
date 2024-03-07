@@ -1,2 +1,0 @@
-<!--components/mdi/index.wxml-->
-<span class="material-symbols-outlined">{{icon}}</span>

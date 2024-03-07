@@ -1,7 +1,8 @@
 {
   "usingComponents": {
-    "mdi": "../../components/mdi",
     "app_nav_bar": "../../components/app_nav_bar",
-    "sticky_footer": "../../components/sticky_footer"
+    "sticky_footer": "../../components/sticky_footer",
+    "home": "./home",
+    "shop": "./shop"
   }
 }

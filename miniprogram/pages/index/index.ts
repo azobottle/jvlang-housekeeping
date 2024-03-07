@@ -1,17 +1,25 @@
 // index.ts
+
+import { AppOption } from "../../app"
+import { IEventTrigged } from "../../utils/event"
+
 // 获取应用实例
-const app = getApp<IAppOption>()
-const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
+const app = getApp<AppOption>()
 
 Component({
   data: {
-    count: 1
+    current_vroute: '123',
+  },
+  observers: {
+    current_vroute(current_vroute: string) {
+      console.debug('current_vroute changed : ', current_vroute)
+    }
   },
   methods: {
-    inc_count() {
+    on_switch_vroute: async function (e: IEventTrigged<'switch_vroute', { vroute: string }>) {
       this.setData({
-        count: this.data.count + 1
+        current_vroute: e.detail.vroute
       })
-    }
+    },
   },
 })

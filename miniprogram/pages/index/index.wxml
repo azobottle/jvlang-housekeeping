@@ -1,26 +1,43 @@
 <!--index.wxml-->
-<scroll-view style="height: 100%;" scroll-y type="list">
+<wxs module="m1">
+  var is_show = function (vroute, current_vroute) {
+    var _voute = vroute.split('/');
+    var _current_vroute = current_vroute.split('/')
+    if (_voute.length > _current_vroute.length) {
+      return false;
+    }
+    for (var i = 0; i < _voute.length; i++) {
+      if (_voute[i] != _current_vroute[i]) {
+        return false
+      }
+    }
+    return true
+  }
+
+  var style_is_show = function (vroute, current_vroute) {
+    if (is_show(vroute, current_vroute)) {
+      return ''
+    }
+    return 'display: none;'
+  }
+
+  module.exports = {
+    is_show: is_show,
+    style_is_show: style_is_show
+  };
+</wxs>
+<page-meta>
+</page-meta>
+<scroll-view style="height: 100%;" scroll-y type="list" bind:switch_vroute="on_switch_vroute">
   <sticky_footer>
-    <view slot="header" class="column">
+    <view slot="header" class="rows">
     </view>
-    <view slot="main" style="overflow-y: scroll;" class="column">
-      <!-- 处于刘海屏上沿的插图 -->
-      <view style="background-color: palevioletred; min-height: 33vh;width: 100%;">
-        
-      </view>
-      <!-- 将最重要的首页内容占全屏的 66% -->
-      <view style="background-color: coral; min-height: 50vh;width: 100%;;">
-        <button bind:tap="inc_count">AAA {{count}}</button>
-      </view>
-      <view style="background-color: rgb(59, 206, 96); min-height: 300px;width: 100%;"></view>
-      <view style="background-color: rgb(59, 189, 206); min-height: 300px;width: 100%;"></view>
+    <view slot="main" style="overflow-y: scroll;" class="rows">
+      <!-- 吐了，抽象节点传不了参数，真你妈抽象 -->
+      <home style="{{m1.style_is_show('home',current_vroute)}}" />
+      <shop style="{{m1.style_is_show('shop',current_vroute)}}" />
     </view>
+    <app_nav_bar slot="footer" current_vroute="{{current_vroute}}">
+    </app_nav_bar>
   </sticky_footer>
 </scroll-view>
-
-
-<!-- <app_page>
-  <scroll-view class="scrollarea" style="height: 100%;" scroll-y type="list">
-    
-  </scroll-view>
-</app_page> -->
