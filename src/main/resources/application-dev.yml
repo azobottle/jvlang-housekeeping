@@ -8,11 +8,10 @@ spring:
     #日期格式转换
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: Asia/Shanghai
-  datasource:
-    url: jdbc:mysql://127.0.0.1:3306/jvlang-housekeeping?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT%2B8
-    username: ${DEV_MYSQL_USERNAME}
-    password: ${DEV_MYSQL_PASSWORD}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    mongodb:
+      uri: mongodb://localhost/jvlang-housekeeping
+      database: jvlang-housekeeping
 
 
 #mybatis-plus:

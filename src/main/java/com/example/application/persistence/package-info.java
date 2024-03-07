@@ -1,4 +1,4 @@
 @NonNullApi
-package com.example.application.data;
+package com.example.application.persistence;
 
 import org.springframework.lang.NonNullApi;
