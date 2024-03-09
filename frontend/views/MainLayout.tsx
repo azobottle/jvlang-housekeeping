@@ -10,7 +10,7 @@ const navLinkClasses = ({ isActive }: any) => {
 };
 
 export default function MainLayout() {
-  const currentTitle = useRouteMetadata()?.title ?? 'My App';
+  const currentTitle = useRouteMetadata()?.title ?? '橘浪家政系统管理端';
   useEffect(() => {
     document.title = currentTitle;
   }, [currentTitle]);
@@ -21,9 +21,12 @@ export default function MainLayout() {
         <header className="flex flex-col gap-m">
           <h1 className="text-l m-0">My App</h1>
           <nav>
-            <NavLink className={navLinkClasses} to="/">
-              Contacts
+            <NavLink className={navLinkClasses} to="/role">
+              角色
             </NavLink>
+              <NavLink className={navLinkClasses} to="/user">
+                  用户
+              </NavLink>
             <NavLink className={navLinkClasses} to="/about">
               About
             </NavLink>
