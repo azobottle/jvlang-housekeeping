@@ -1,4 +1,4 @@
-package com.example.application.applicationRunner;
+package com.example.application.applicationrunner;
 
 import com.example.application.persistence.document.Comment;
 import com.example.application.persistence.document.RelationShifuService;
@@ -13,13 +13,14 @@ import org.springframework.data.mongodb.core.index.Index;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MongoDBCheckRunner implements ApplicationRunner {
+public class MongoDBEnsureRunner implements ApplicationRunner {
     @Autowired
     private MongoOperations mongoOperations;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
         mongoOperations.indexOps(User.class).ensureIndex(new Index().on("openid", Sort.Direction.ASC));
+        mongoOperations.indexOps(User.class).ensureIndex(new Index().on("name", Sort.Direction.ASC).unique());
         mongoOperations.indexOps(User.class).ensureIndex(new Index().on("shifuSchedules.date", Sort.Direction.ASC));
         mongoOperations.indexOps(RelationUserRole.class).ensureIndex(new Index().on("userId", Sort.Direction.ASC));
         mongoOperations.indexOps(RelationUserRole.class).ensureIndex(new Index().on("roleId", Sort.Direction.ASC));
