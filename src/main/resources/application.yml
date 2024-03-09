@@ -16,6 +16,7 @@ spring:
   server:
     tomcat:
       uri-encoding: UTF-8
+    port: 8088
   jpa:
     hibernate:
       ddl-auto: update

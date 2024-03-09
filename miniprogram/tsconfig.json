@@ -28,7 +28,8 @@
   },
   "include": [
     "./**/*.ts",
-    "./app.json"
+    "./app.json",
+    "../frontend/generated/**/*"
   ],
   "exclude": [
     "node_modules"

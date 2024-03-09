@@ -2,11 +2,13 @@
 <view class="part_top">
 
 </view>
-<view class="part_main" style="max-width: 100%;">
+<view class="card_grid_common part_main" style="max-width: 100%;">
   <card style="grid-area: g1;" bind:tap="switch_vroute" data-vroute="shop">
-    <view class="flex_center rows">
-      <view><text class="title">预约</text></view>
-      <view><text style="color: #777777;font-size: 0.8rem;">Booking</text></view>
+    <view>
+      <view class="flex_center rows">
+        <view><text class="title">预约</text></view>
+        <view><text style="color: #777777;font-size: 0.8rem;">Booking</text></view>
+      </view>
     </view>
   </card>
   <card style="grid-area: g2;">
@@ -28,7 +30,7 @@
     </view>
   </card>
   <card style="grid-area: g5;">
-    <view style="padding: 1.1rem 1.4rem;">
+    <view>
       <view style="margin-bottom: 0.6rem;"><text class="title">VIP</text></view>
       <view><text>橘浪家政</text></view>
     </view>

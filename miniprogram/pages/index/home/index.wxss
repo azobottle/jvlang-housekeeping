@@ -1,5 +1,6 @@
 /* pages/index/home/index.wxss */
 @import "../../../styles/index.wxss";
+@import "../../../styles/card_grid_common.wxss";
 
 .part_top {
   /* background-color: palevioletred; */
@@ -10,15 +11,15 @@
 .part_main {
   /* background-color: coral; */
   min-height: calc((100vh - 70px) * 0.55);
-  max-width: 100%;
-  display: grid;
-  padding: 0.5rem;
-  grid-template-columns: 1fr 1fr 1fr;
+  /* max-width: 100%; */
+  /* display: grid; */
+  /* padding: 0.5rem; */
+  /* grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); */
   grid-template-rows: 0.5fr 0.5fr 1fr;
   grid-template-areas:
     "g1 g2 g3"
     "g1 g2 g4"
     "g5 g5 g5";
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
+  /* grid-column-gap: 10px; */
+  /* grid-row-gap: 10px; */
 }

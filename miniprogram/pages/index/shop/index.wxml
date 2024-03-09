@@ -1,8 +1,9 @@
 <!--pages/index/shop/index.wxml-->
+
 <view class="part_1" style="justify-content: flex-end;display: flex;flex-direction: column;">
   <view style="width: 100%; text-align: center;"><text style="color: #777777;font-size: 0.8rem;">注：以下价格为参考价，具体价格需咨询师傅改价。</text></view>
 </view>
-<view class="part_2">
+<view class="card_grid_common part_2">
   <view style="grid-area: g1;" class="flex_center rows">
     <view><text style="color: #777777;font-size: 1.2rem;">专业保洁 | 专业团队</text></view>
   </view>
@@ -25,7 +26,7 @@
     </view>
   </card>
 </view>
-<view class="part_3">
+<view class="card_grid_common part_3">
   <view style="grid-area: g1;" class="flex_center rows">
     <view><text style="color: #777777;font-size: 1.2rem;">家电清洗 | 清洁保养</text></view>
   </view>
