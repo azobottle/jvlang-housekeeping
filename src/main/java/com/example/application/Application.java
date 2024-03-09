@@ -21,8 +21,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @Theme(value = "jvlang-housekeeping")
 @Slf4j
 public class Application implements AppShellConfigurator {
-
-
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
