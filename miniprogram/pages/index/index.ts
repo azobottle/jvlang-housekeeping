@@ -1,53 +1,46 @@
 // index.ts
-// 获取应用实例
-const app = getApp<IAppOption>()
-const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
+import { IEventTrigged } from "../../utils/event"
+
+const current_vroute_storage_key = 'jvlang_housekeeping:page:index:current_vroute' as const
+
+type CurrentVrouteStroage = {
+  current_vroute: string
+}
 
 Component({
   data: {
-    motto: 'Hello World',
-    userInfo: {
-      avatarUrl: defaultAvatarUrl,
-      nickName: '',
-    },
-    hasUserInfo: false,
-    canIUseGetUserProfile: wx.canIUse('getUserProfile'),
-    canIUseNicknameComp: wx.canIUse('input.type.nickname'),
+    current_vroute: 'home',
+  },
+  observers: {
+    current_vroute(current_vroute: string) {
+      wx.setStorage<CurrentVrouteStroage>({
+        key: current_vroute_storage_key,
+        data: {
+          current_vroute
+        }
+      })
+        .then(() => console.debug('Storage current_vroute : ', current_vroute))
+        .catch(err => console.error('Failed set storage for current_vroute : ' + current_vroute, err))
+    }
+  },
+  lifetimes: {
+    ready() {
+      wx.getStorage<CurrentVrouteStroage>({ key: current_vroute_storage_key })
+        .then((value) => {
+          const current_vroute = value?.data?.current_vroute
+          if (current_vroute) {
+            this.setData({
+              current_vroute
+            })
+          }
+        })
+        .catch(err => console.debug("Failed on load current_vroute , maybe first launch or clear storage ...", err))
+    }
   },
   methods: {
-    // 事件处理函数
-    bindViewTap() {
-      wx.navigateTo({
-        url: '../logs/logs',
-      })
-    },
-    onChooseAvatar(e: any) {
-      const { avatarUrl } = e.detail
-      const { nickName } = this.data.userInfo
+    async on_switch_vroute(e: IEventTrigged<'switch_vroute', { vroute: string }>) {
       this.setData({
-        "userInfo.avatarUrl": avatarUrl,
-        hasUserInfo: nickName && avatarUrl && avatarUrl !== defaultAvatarUrl,
-      })
-    },
-    onInputChange(e: any) {
-      const nickName = e.detail.value
-      const { avatarUrl } = this.data.userInfo
-      this.setData({
-        "userInfo.nickName": nickName,
-        hasUserInfo: nickName && avatarUrl && avatarUrl !== defaultAvatarUrl,
-      })
-    },
-    getUserProfile() {
-      // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-      wx.getUserProfile({
-        desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-        success: (res) => {
-          console.log(res)
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
+        current_vroute: e.detail.vroute
       })
     },
   },

@@ -1,0 +1,6 @@
+<!--components/sticky_footer/index.wxml-->
+<view class="wrapper">
+  <slot name="header"></slot>
+  <slot name="main"></slot>
+  <slot name="footer"></slot>
+</view>

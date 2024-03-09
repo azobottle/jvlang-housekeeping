@@ -1,14 +1,14 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/good/index"
   ],
   "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarBackgroundColor": "#ffffff"
+    "navigationStyle": "custom",
+    "homeButton": true,
+    "backgroundColor": "#eeeeee"
   },
   "style": "v2",
-  "componentFramework": "glass-easel",
   "lazyCodeLoading": "requiredComponents"
 }

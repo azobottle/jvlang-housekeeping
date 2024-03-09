@@ -1,0 +1,35 @@
+/* components/appnavbar/index.wxss */
+@import "../../styles/index.wxss";
+
+.app_nav_bar {
+  background-color: rgba(255, 255, 255, 0.8);
+  /* 在 app.wxss 中将 page 的下间距设置为导航栏相同。 */
+  min-height: 70px;
+  max-height: 70px;
+  box-shadow: rgba(0, 0, 0, 0.1) 12px 4px 0px;
+  transition: all 3s;
+}
+
+.app_nav_bar_item {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  text-align: center;
+  flex-grow: 1;
+  flex-basis: auto;
+  padding: 0.25rem 0.5rem 0.5rem 0rem;
+}
+
+.app_nav_bar_icon {
+  height: 24px;
+  width: 24px;
+  align-self: center;
+  flex-grow: 1;
+  flex-basis: auto;
+}
+
+.app_nav_bar_text {
+  text-align: center;
+  font-size: 0.68rem;
+  flex-grow: 0.5;
+}

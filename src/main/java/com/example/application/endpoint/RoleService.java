@@ -1,37 +1,73 @@
 package com.example.application.endpoint;
+
+
 import com.example.application.persistence.document.Role;
-import com.example.application.persistence.repository.RoleRepo;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import dev.hilla.BrowserCallable;
 import dev.hilla.Nonnull;
 import dev.hilla.Nullable;
-import dev.hilla.crud.CrudService;
+
 import dev.hilla.crud.filter.Filter;
-import org.bson.types.ObjectId;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.validation.SmartValidator;
+
 
 import java.util.List;
 
 @BrowserCallable
 @AnonymousAllowed
-public class RoleService implements CrudService<Role, ObjectId> {
+
+@Slf4j
+public class RoleService extends CrudEndpoint<Role> {
     @Autowired
-    private RoleRepo roleRepo;
+    MongoTemplate mongo;
+
+    @Autowired
+    ObjectMapper objectMapper;
+
+    @Autowired
+    SmartValidator smartValidator;
+
     @Override
-    public @Nullable Role save(Role value) {
-        return roleRepo.save(value);
+    protected MongoTemplate _mongo() {
+        return mongo;
     }
 
     @Override
-    public void delete(ObjectId objectId) {
-        roleRepo.deleteById(objectId);
+    protected ObjectMapper _objectMapper() {
+        return objectMapper;
     }
 
     @Override
-    public @Nonnull List<@Nonnull Role> list(Pageable pageable, @Nullable Filter filter) {
-        Page<Role> all = roleRepo.findAll(pageable);
-        return all.stream().toList();
+    protected Class<Role> _clz() {
+        return Role.class;
+    }
+
+    @Override
+    protected SmartValidator _config_smartValidator() {
+        return smartValidator;
+    }
+
+    @Override
+    public @Nullable Role save(@Nonnull Role value) {
+        return super.save(value);
+    }
+
+    @Override
+    public void delete(String s) {
+        super.delete(s);
+    }
+
+    @Override
+    public @Nonnull List<@Nonnull Role> list(Pageable pageable,
+                                             @org.springframework.lang.Nullable
+                                             @Nullable Filter filter) {
+        return super.list(pageable, filter);
+
     }
 }

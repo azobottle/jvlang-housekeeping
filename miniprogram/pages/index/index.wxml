@@ -1,27 +1,43 @@
 <!--index.wxml-->
-<scroll-view class="scrollarea" scroll-y type="list">
-  <view class="container">
-    <view class="userinfo">
-      <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
-        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-          <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-        </button>
-        <view class="nickname-wrapper">
-          <text class="nickname-label">昵称</text>
-          <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
-        </view>
-      </block>
-      <block wx:elif="{{!hasUserInfo}}">
-        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-        <view wx:else> 请使用2.10.4及以上版本基础库 </view>
-      </block>
-      <block wx:else>
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      </block>
+<wxs module="m1">
+  var is_show = function (vroute, current_vroute) {
+    var _voute = vroute.split('/');
+    var _current_vroute = current_vroute.split('/')
+    if (_voute.length > _current_vroute.length) {
+      return false;
+    }
+    for (var i = 0; i < _voute.length; i++) {
+      if (_voute[i] != _current_vroute[i]) {
+        return false
+      }
+    }
+    return true
+  }
+
+  var style_is_show = function (vroute, current_vroute) {
+    if (is_show(vroute, current_vroute)) {
+      return ''
+    }
+    return 'display: none;'
+  }
+
+  module.exports = {
+    is_show: is_show,
+    style_is_show: style_is_show
+  };
+</wxs>
+<page-meta>
+</page-meta>
+<scroll-view style="height: 100%;" scroll-y type="list" bind:switch_vroute="on_switch_vroute">
+  <sticky_footer>
+    <view slot="header" class="rows">
     </view>
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
+    <view slot="main" style="overflow-y: scroll;" class="rows">
+      <!-- 吐了，抽象节点传不了参数，真你妈抽象 -->
+      <home style="{{m1.style_is_show('home',current_vroute)}}" />
+      <shop style="{{m1.style_is_show('shop',current_vroute)}}" />
     </view>
-  </view>
+    <app_nav_bar slot="footer" current_vroute="{{current_vroute}}">
+    </app_nav_bar>
+  </sticky_footer>
 </scroll-view>

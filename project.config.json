@@ -1,6 +1,5 @@
 {
   "description": "项目配置文件",
-  "projectname": "JvLang-HouseKeeping",
   "miniprogramRoot": "miniprogram/",
   "compileType": "miniprogram",
   "setting": {
@@ -17,10 +16,10 @@
     "minified": false,
     "enhance": false,
     "showShadowRootInWxmlPanel": false,
-    "packNpmRelationList": [],
     "ignoreUploadUnusedFiles": true,
     "compileHotReLoad": false,
-    "skylineRenderEnable": true
+    "skylineRenderEnable": true,
+    "packNpmRelationList": []
   },
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
@@ -35,5 +34,6 @@
     "ignore": [],
     "include": []
   },
-  "appid": "wxff50f2e72d532518"
+  "appid": "wxff50f2e72d532518",
+  "projectname": "JvLang-HouseKeeping"
 }

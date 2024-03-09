@@ -1,4 +1,7 @@
 {
+  "paths": {
+    "tdesign-miniprogram/*": ["../node_modules/tdesign-miniprogram/miniprogram_dist/*"]
+  },
   "compilerOptions": {
     "strictNullChecks": true,
     "noImplicitAny": true,
@@ -21,10 +24,12 @@
     ],
     "typeRoots": [
       "./typings"
-    ]
+    ],
   },
   "include": [
-    "./**/*.ts"
+    "./**/*.ts",
+    "./app.json",
+    "../frontend/generated/**/*"
   ],
   "exclude": [
     "node_modules"
