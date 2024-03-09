@@ -13,6 +13,7 @@ import lombok.SneakyThrows;
 import org.bson.conversions.Bson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -29,6 +30,32 @@ import static com.mongodb.client.model.Filters.*;
 import static com.mongodb.client.model.Sorts.*;
 
 public abstract class CrudEndpoint<T> implements CrudService<T, String> {
+    public static abstract class Rejecting<T> extends CrudEndpoint<T> {
+        @Autowired
+        protected MongoTemplate mongo;
+
+        @Autowired
+        protected ObjectMapper objectMapper;
+
+        @Autowired
+        protected SmartValidator smartValidator;
+
+        @Override
+        protected MongoTemplate _mongo() {
+            return mongo;
+        }
+
+        @Override
+        protected ObjectMapper _objectMapper() {
+            return objectMapper;
+        }
+
+        @Override
+        protected SmartValidator _config_smartValidator() {
+            return smartValidator;
+        }
+    }
+
     private static final Logger log = LoggerFactory.getLogger(CrudEndpoint.class);
 
     protected abstract MongoTemplate _mongo();
@@ -59,7 +86,6 @@ public abstract class CrudEndpoint<T> implements CrudService<T, String> {
 
     @Override
     public void delete(@Nullable String s) {
-
         _mongo().remove(query(Criteria.where("_id").is(s)), _clz());
     }
 

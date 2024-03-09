@@ -23,34 +23,10 @@ import java.util.List;
 @AnonymousAllowed
 
 @Slf4j
-public class RoleService extends CrudEndpoint<Role> {
-    @Autowired
-    MongoTemplate mongo;
-
-    @Autowired
-    ObjectMapper objectMapper;
-
-    @Autowired
-    SmartValidator smartValidator;
-
-    @Override
-    protected MongoTemplate _mongo() {
-        return mongo;
-    }
-
-    @Override
-    protected ObjectMapper _objectMapper() {
-        return objectMapper;
-    }
-
+public class RoleService extends CrudEndpoint.Rejecting<Role> {
     @Override
     protected Class<Role> _clz() {
         return Role.class;
-    }
-
-    @Override
-    protected SmartValidator _config_smartValidator() {
-        return smartValidator;
     }
 
     @Override
