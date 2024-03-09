@@ -20,6 +20,7 @@ public class MongoDBEnsureRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         mongoOperations.indexOps(User.class).ensureIndex(new Index().on("openid", Sort.Direction.ASC));
+        mongoOperations.indexOps(User.class).ensureIndex(new Index().on("name", Sort.Direction.ASC).unique());
         mongoOperations.indexOps(User.class).ensureIndex(new Index().on("shifuSchedules.date", Sort.Direction.ASC));
         mongoOperations.indexOps(RelationUserRole.class).ensureIndex(new Index().on("userId", Sort.Direction.ASC));
         mongoOperations.indexOps(RelationUserRole.class).ensureIndex(new Index().on("roleId", Sort.Direction.ASC));
