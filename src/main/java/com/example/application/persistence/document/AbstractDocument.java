@@ -45,6 +45,10 @@ public abstract class AbstractDocument extends HelpColumns {
         _id = id == null ? null : new ObjectId(id);
     }
 
+    public ObjectId getObjectId(){
+        return _id;
+    }
+
     @MongoId
     @Nullable
     protected ObjectId _id;

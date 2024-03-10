@@ -32,9 +32,9 @@ export default function MainLayout() {
              <NavLink className={navLinkClasses} to="/user">
               用户
             </NavLink>
-              {/*<NavLink className={navLinkClasses} to="/relation-user-role">
+              <NavLink className={navLinkClasses} to="/relation-user-role">
               用户角色关系
-            </NavLink> */}
+            </NavLink>
             <NavLink className={navLinkClasses} to="/about">
               About
             </NavLink>
