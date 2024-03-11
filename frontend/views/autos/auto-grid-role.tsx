@@ -1,7 +1,7 @@
 import { AutoCrud } from "@hilla/react-crud";
-import { RoleService } from "Frontend/generated/endpoints";
-import RoleModel from "Frontend/generated/com/example/application/persistence/document/RoleModel";
+import { RoleEndpoint } from "Frontend/generated/endpoints";
+import RoleModel from "Frontend/generated/com/jvlang/housekeeping/pojo/entity/RoleModel";
 
 export default function RoleCrud() {
-  return <AutoCrud service={RoleService} model={RoleModel} />;
+  return <AutoCrud service={RoleEndpoint} model={RoleModel} />;
 }

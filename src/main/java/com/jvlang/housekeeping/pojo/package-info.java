@@ -1,4 +1,4 @@
 @NonNullApi
-package com.example.application.persistence;
+package com.jvlang.housekeeping.pojo;
 
 import org.springframework.lang.NonNullApi;

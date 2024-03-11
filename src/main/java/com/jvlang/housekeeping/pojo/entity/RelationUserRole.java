@@ -1,8 +1,9 @@
-package com.example.application.persistence.document;
+package com.jvlang.housekeeping.pojo.entity;
 
+import com.jvlang.housekeeping.pojo.AbstractEntity;
+import jakarta.persistence.Entity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @Data
@@ -11,10 +12,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @ToString(callSuper = true)
 @RequiredArgsConstructor
 @AllArgsConstructor
-@Document
-public class RelationUserRole extends AbstractDocument {
-    protected String userId;
-    protected String roleId;
+@Entity
+public class RelationUserRole extends AbstractEntity {
+    protected Long userId;
+    protected Long roleId;
 
     @Data
     @SuperBuilder(toBuilder = true)

@@ -1,12 +1,7 @@
 import { AutoGrid } from "@hilla/react-crud";
-import { UserService } from "Frontend/generated/endpoints";
-import UserModel from "Frontend/generated/com/example/application/persistence/document/UserModel";
+import { UserEndpoint } from "Frontend/generated/endpoints";
+import UserModel from "Frontend/generated/com/jvlang/housekeeping/pojo/entity/UserModel";
 
 export default function UserGrid() {
-  return (
-    <AutoGrid
-      service={UserService}
-      model={UserModel}
-    />
-  );
+  return <AutoGrid service={UserEndpoint} model={UserModel} />;
 }

@@ -13,6 +13,7 @@ spring:
       charset: utf-8
       enabled: true
   jpa:
+    #    show-sql: true
     hibernate:
       ddl-auto: update
 

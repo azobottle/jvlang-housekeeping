@@ -1,4 +1,4 @@
-package com.example.application.persistence.exceptions;
+package com.jvlang.housekeeping.pojo;
 
 public final class TODO extends Error {
     public TODO() {
