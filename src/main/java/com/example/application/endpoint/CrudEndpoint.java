@@ -11,6 +11,7 @@ import dev.hilla.crud.filter.PropertyStringFilter;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -170,6 +171,14 @@ public abstract class CrudEndpoint<T> implements CrudService<T, String> {
                 var oid = obj.getObjectId("_id");
                 if (oid != null) {
                     obj.put("_id", oid.toHexString());
+                }
+                ObjectId userId = obj.getObjectId("userId");
+                if(userId!=null){
+                    obj.put("userId",userId.toHexString());
+                }
+                ObjectId roleId = obj.getObjectId("roleId");
+                if(roleId!=null){
+                    obj.put("roleId",roleId.toHexString());
                 }
                 var item = obj.toJson();
                 log.debug("[crudEndpoint] item result : {}", item);
