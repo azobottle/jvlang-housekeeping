@@ -14,11 +14,10 @@ import java.util.List;
 
 @BrowserCallable
 @AnonymousAllowed
-
 @Slf4j
-public class UserService extends CrudEndpoint.Rejecting<User>{
+public class UserService extends CrudEndpoint.Rejecting.Simple<User> {
     @Override
-    protected Class<User> _clz() {
+    protected Class<User> _clz_p() {
         return User.class;
     }
 
@@ -27,6 +26,5 @@ public class UserService extends CrudEndpoint.Rejecting<User>{
                                              @org.springframework.lang.Nullable
                                              @Nullable Filter filter) {
         return super.list(pageable, filter);
-
     }
 }

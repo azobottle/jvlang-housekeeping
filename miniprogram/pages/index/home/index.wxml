@@ -3,8 +3,8 @@
 
 </view>
 <view class="card_grid_common part_main" style="max-width: 100%;">
-  <card style="grid-area: g1;" bind:tap="switch_vroute" data-vroute="shop">
-    <view>
+  <card class="card_grid_maxheight" style="grid-area: g1;background-color: blue;flex-grow: 1;" bind:tap="switch_vroute" data-vroute="shop">
+    <view style="background-color: aquamarine;">
       <view class="flex_center rows">
         <view><text class="title">预约</text></view>
         <view><text style="color: #777777;font-size: 0.8rem;">Booking</text></view>

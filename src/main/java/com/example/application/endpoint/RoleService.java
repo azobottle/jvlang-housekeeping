@@ -21,11 +21,10 @@ import java.util.List;
 
 @BrowserCallable
 @AnonymousAllowed
-
 @Slf4j
-public class RoleService extends CrudEndpoint.Rejecting<Role> {
+public class RoleService extends CrudEndpoint.Rejecting.Simple<Role> {
     @Override
-    protected Class<Role> _clz() {
+    protected Class<Role> _clz_p() {
         return Role.class;
     }
 
@@ -44,6 +43,5 @@ public class RoleService extends CrudEndpoint.Rejecting<Role> {
                                              @org.springframework.lang.Nullable
                                              @Nullable Filter filter) {
         return super.list(pageable, filter);
-
     }
 }

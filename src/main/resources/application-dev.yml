@@ -18,3 +18,4 @@ spring:
 logging:
   level:
     com.example.application: debug
+    com.example.application.persistence.document.AbstractDocument: info

@@ -6,7 +6,7 @@ import java.util.Date;
 
 
 @Data
-public class ShifuSchedule extends HelpColumns {
+public class ShifuSchedule {
     private Date date;
 
     private Boolean availableMor;
