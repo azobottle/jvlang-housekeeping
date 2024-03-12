@@ -11,7 +11,6 @@ import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.time.LocalDateTime;
 
 @Data
 @SuperBuilder(toBuilder = true)
@@ -22,7 +21,7 @@ import java.time.LocalDateTime;
 @Entity
 public class User extends AbstractEntity {
     @Nullable
-    String nickname;
+    String nickName;
 
     @Nullable
     String phoneNumber;

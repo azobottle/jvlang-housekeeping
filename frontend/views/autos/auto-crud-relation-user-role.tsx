@@ -9,13 +9,13 @@ export default function RelationUserRoleCrud() {
       service={RelationUserRoleEndpoint}
       model={RelationUserRoleModel}
       gridProps={{
-        visibleColumns: ["id", "userId", "roleId", "userName", "roleName"],
+        visibleColumns: ["userId", "roleId", "userName", "roleName"],
         customColumns: [
           <GridColumn<RelationUserRoleModel>
             key="userName"
             renderer={(obj) => {
               return (
-                <span>{String(obj.item.user?.nickname ?? "用户不存在")}</span>
+                <span>{String(obj.item.user?.nickName ?? "用户不存在")}</span>
               );
             }}
             header="用户名"

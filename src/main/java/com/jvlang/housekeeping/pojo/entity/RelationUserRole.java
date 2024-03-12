@@ -4,6 +4,7 @@ import com.jvlang.housekeeping.pojo.AbstractEntity;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Transient;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -16,7 +17,9 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @Entity
 public class RelationUserRole extends AbstractEntity {
+    @NotNull
     protected Long userId;
+    @NotNull
     protected Long roleId;
 
     @Transient
