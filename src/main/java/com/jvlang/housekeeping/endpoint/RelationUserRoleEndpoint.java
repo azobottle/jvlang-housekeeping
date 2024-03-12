@@ -1,6 +1,9 @@
 package com.jvlang.housekeeping.endpoint;
 
 import com.jvlang.housekeeping.pojo.entity.*;
+import com.jvlang.housekeeping.pojo.entity.repo.RelationUserRoleRepository;
+import com.jvlang.housekeeping.pojo.entity.repo.RoleRepository;
+import com.jvlang.housekeeping.pojo.entity.repo.UserRepository;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import dev.hilla.Endpoint;
 import dev.hilla.Nullable;

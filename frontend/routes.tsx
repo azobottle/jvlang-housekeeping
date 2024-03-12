@@ -19,8 +19,6 @@ export const routes = [
         element: <RelationUserRoleCrud />,
         handle: { title: "用户角色关系" },
       },
-      // { path: '/', element: [<RoleGrid />,<UserGrid />] },
-
       { path: "/about", element: <AboutView />, handle: { title: "About" } },
     ],
   },

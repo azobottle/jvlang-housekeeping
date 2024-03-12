@@ -1,5 +1,6 @@
-package com.jvlang.housekeeping.pojo.entity;
+package com.jvlang.housekeeping.pojo.entity.repo;
 
+import com.jvlang.housekeeping.pojo.entity.RelationUserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

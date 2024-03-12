@@ -1,4 +1,4 @@
-package com.example.application.persistence;
+package com.jvlang.housekeeping.persistence;
 
 
 import org.springframework.boot.test.context.SpringBootTest;

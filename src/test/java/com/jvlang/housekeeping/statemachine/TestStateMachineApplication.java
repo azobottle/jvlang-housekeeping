@@ -1,4 +1,4 @@
-package com.example.application.statemachine;
+package com.jvlang.housekeeping.statemachine;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

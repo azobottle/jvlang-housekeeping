@@ -1,4 +1,4 @@
-package com.example.application.statemachine;
+package com.jvlang.housekeeping.statemachine;
 
 public enum TurnstileEvents {
     COIN, PUSH
