@@ -17,4 +17,9 @@ public final class Utils {
             return objectMapper.readValue(objectMapper.writeValueAsString(src), clz);
         }
     }
+
+    public static class Sync {
+        private Sync() {
+        }
+    }
 }

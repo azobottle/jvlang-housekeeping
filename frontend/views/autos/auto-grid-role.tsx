@@ -3,5 +3,13 @@ import { RoleEndpoint } from "Frontend/generated/endpoints";
 import RoleModel from "Frontend/generated/com/jvlang/housekeeping/pojo/entity/RoleModel";
 
 export default function RoleCrud() {
-  return <AutoCrud service={RoleEndpoint} model={RoleModel} />;
+  return (
+    <AutoCrud
+      service={RoleEndpoint}
+      model={RoleModel}
+      gridProps={{
+        visibleColumns: ["id", "name", "description"],
+      }}
+    />
+  );
 }

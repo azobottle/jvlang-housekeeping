@@ -14,18 +14,4 @@ import java.util.List;
 @Endpoint
 @AnonymousAllowed
 public class UserEndpoint extends CrudRepositoryService<User, Long, UserRepository> {
-    @Override
-    public @Nullable User save(User value) {
-        return super.save(value);
-    }
-
-    @Override
-    public void delete(Long aLong) {
-        super.delete(aLong);
-    }
-
-    @Override
-    public List<User> list(Pageable pageable, @Nullable Filter filter) {
-        return super.list(pageable, filter);
-    }
 }

@@ -14,18 +14,4 @@ import java.util.List;
 @Endpoint
 @AnonymousAllowed
 public class RoleEndpoint extends CrudRepositoryService<Role, Long, RoleRepository> {
-    @Override
-    public @Nullable Role save(Role value) {
-        return super.save(value);
-    }
-
-    @Override
-    public void delete(Long aLong) {
-        super.delete(aLong);
-    }
-
-    @Override
-    public List<Role> list(Pageable pageable, @Nullable Filter filter) {
-        return super.list(pageable, filter);
-    }
 }
