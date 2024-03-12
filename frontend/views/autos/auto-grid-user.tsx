@@ -17,6 +17,14 @@ export default function UserCrud() {
           "wxOpenid",
         ],
       }}
+      formProps={{
+          visibleFields:[
+          "nickName",
+          "description",
+          "birthday",
+          "otherNames",
+          ]
+      }}
     />
   );
 }

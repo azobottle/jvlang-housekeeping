@@ -31,6 +31,9 @@ export default function RelationUserRoleCrud() {
           />,
         ],
       }}
+      formProps={{
+          visibleFields:["userId", "roleId"]
+      }}
     />
   );
 }
