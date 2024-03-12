@@ -7,11 +7,12 @@ import dev.hilla.Endpoint;
 import dev.hilla.Nullable;
 import dev.hilla.crud.CrudRepositoryService;
 import dev.hilla.crud.filter.Filter;
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 @Endpoint
-@AnonymousAllowed
+@RolesAllowed("ADMIN")
 public class RoleEndpoint extends CrudRepositoryService<Role, Long, RoleRepository> {
 }
