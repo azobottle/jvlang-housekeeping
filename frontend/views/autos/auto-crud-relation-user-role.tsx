@@ -7,11 +7,8 @@ export default function RelationUserRoleCrud() {
         <AutoCrud
             service={RelaUserRoleViewEndPoint}
             model={View1Model}
-            // gridProps={{
-            //     visibleColumns: ['userName', 'phoneNumber','roleName'],
-            // }}
             formProps={{
-                visibleFields: ['userName', 'roleName']
+                visibleFields: ['userNickName', 'roleName']
             }}
         />
     );

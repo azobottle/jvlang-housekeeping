@@ -24,7 +24,7 @@ public class RelationUserRole extends AbstractEntity {
     @RequiredArgsConstructor
     @AllArgsConstructor
     public static class View1 extends RelationUserRole {
-        protected String userName;
+        protected String userNickName;
         protected String roleName;
         protected String phoneNumber;
 

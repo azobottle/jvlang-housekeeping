@@ -30,7 +30,7 @@ public class RelaUserRoleViewEndPoint implements CrudService<RelationUserRole.Vi
 
     @Override
     public RelationUserRole.View1 save(RelationUserRole.View1 value) {
-        User user = userRepository.findByName(value.getUserName());
+        User user = userRepository.findByNickName(value.getUserNickName());
         Role role = roleRepository.findByName(value.getRoleName());
         RelationUserRole rela = new RelationUserRole();
         rela.setId(value.getId());
@@ -40,7 +40,7 @@ public class RelaUserRoleViewEndPoint implements CrudService<RelationUserRole.Vi
         RelationUserRole save = relationUserRoleRepository.save(rela);
         RelationUserRole.View1 build = new RelationUserRole.View1(save)
                 .toBuilder()
-                .userName(value.getUserName())
+                .userNickName(value.getUserNickName())
                 .roleName(value.getRoleName())
                 .phoneNumber(user.getPhoneNumber())
                 .build();
@@ -59,7 +59,7 @@ public class RelaUserRoleViewEndPoint implements CrudService<RelationUserRole.Vi
             User user = userRepository.findById(rela.getUserId()).orElse(null);
             return new RelationUserRole.View1(rela)
                     .toBuilder()
-                    .userName(user.getName())
+                    .userNickName(user.getNickname())
                     .phoneNumber(user.getPhoneNumber())
                     .roleName(roleRepository.findById(rela.getRoleId()).orElse(null).getName())
                     .build();

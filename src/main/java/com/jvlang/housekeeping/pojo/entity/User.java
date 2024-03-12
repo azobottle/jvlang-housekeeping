@@ -25,6 +25,9 @@ public class User extends AbstractEntity {
     String nickname;
 
     @Nullable
+    String phoneNumber;
+
+    @Nullable
     String wxOpenid;
 
     @Nullable
