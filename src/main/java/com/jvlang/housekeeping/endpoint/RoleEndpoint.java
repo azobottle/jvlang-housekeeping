@@ -1,7 +1,7 @@
 package com.jvlang.housekeeping.endpoint;
 
 import com.jvlang.housekeeping.pojo.entity.Role;
-import com.jvlang.housekeeping.pojo.entity.RoleRepository;
+import com.jvlang.housekeeping.pojo.entity.repo.RoleRepository;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import dev.hilla.Endpoint;
 import dev.hilla.crud.CrudRepositoryService;

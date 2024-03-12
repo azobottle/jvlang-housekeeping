@@ -15,7 +15,13 @@ import lombok.experimental.SuperBuilder;
 public class User extends AbstractEntity {
     String name;
 
-    String description;
+    String openid;
+
+    String phoneNumber;
+
+    String password;
+
+    String salt;
 
 //    @JdbcTypeCode(SqlTypes.JSON)
 //    Picture avatarUrl;
