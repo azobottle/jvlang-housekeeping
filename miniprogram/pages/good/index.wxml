@@ -1,2 +1,17 @@
 <!--pages/good/index.wxml-->
-<text>pages/good/index.wxml</text>
+<page-meta>
+  <navigation-bar>
+  </navigation-bar>
+</page-meta>
+
+<sticky_footer>
+  <app_page_nav_bar slot="header" title="{{page_title}}">
+
+  </app_page_nav_bar>
+  <view slot="main">
+    <text>pages/good/index.wxml</text>
+  </view>
+  <view slot="footer">
+
+  </view>
+</sticky_footer>

@@ -1,6 +1,6 @@
 {
+  "component": true,
   "usingComponents": {
-    "app_page_nav_bar": "../../components/app_page_nav_bar",
     "sticky_footer": "../../components/sticky_footer"
   }
 }

@@ -15,6 +15,14 @@ App<AppOption>({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
+    // wx.loadFontFace({
+    //   family: "HanZiZhiMeiFangSongGBK",
+    //   source: "/miniprogram/font/HanZiZhiMeiFangSongGBK-MianFei(God-FangSongGBK-free)-2.ttf",
+    //   global: true
+    // })
+    //   .then(() => console.debug("Success load font ."))
+    //   .catch(err => console.error("Error on load font !", err))
+
     // // 登录
     // wx.login({
     //   success: res => {

@@ -2,4 +2,5 @@
 page {
   height: 100vh;
   background-color: #d8d3c0;
+  color: #373538;
 }

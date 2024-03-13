@@ -27,7 +27,7 @@ Component({
     ready() {
       wx.getStorage<CurrentVrouteStroage>({ key: current_vroute_storage_key })
         .then((value) => {
-          const current_vroute = value?.data?.current_vroute
+          const { current_vroute } = value.data
           if (current_vroute) {
             this.setData({
               current_vroute

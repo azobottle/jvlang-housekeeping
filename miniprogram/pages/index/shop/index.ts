@@ -1,3 +1,5 @@
+import { IEvent, IEventTrigged } from "../../../utils/event"
+
 // pages/index/shop/index.ts
 Component({
   behaviors: [require("../../../mixin/vroute")],
@@ -19,6 +21,12 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    async to_good_page(e: IEvent<{ goodid: string }>) {
+      const { goodid } = e.currentTarget.dataset;
+      console.debug('to good page', goodid)
+      await wx.navigateTo({
+        url: '/pages/good/index'
+      })
+    },
   }
 })

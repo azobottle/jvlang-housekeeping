@@ -1,6 +1,11 @@
 /* pages/index/home/index.wxss */
 @import "../../../styles/index.wxss";
-@import "../../../styles/card_grid_common.wxss";
+@import "../../../styles/card_grid.wxss";
+
+.small_text {
+  color: #777777;
+  font-size: 0.8rem;
+}
 
 .part_top {
   /* background-color: palevioletred; */

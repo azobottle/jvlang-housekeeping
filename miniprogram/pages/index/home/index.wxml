@@ -1,38 +1,28 @@
 <!--pages/index/home/index.wxml-->
-<view class="part_top">
+<view class="root">
+  <view class="part_top">
 
-</view>
-<view class="card_grid_common part_main" style="max-width: 100%;">
-  <card class="card_grid_maxheight" style="grid-area: g1;background-color: blue;flex-grow: 1;" bind:tap="switch_vroute" data-vroute="shop">
-    <view style="background-color: aquamarine;">
-      <view class="flex_center rows">
-        <view><text class="title">预约</text></view>
-        <view><text style="color: #777777;font-size: 0.8rem;">Booking</text></view>
-      </view>
-    </view>
-  </card>
-  <card style="grid-area: g2;">
-    <view class="flex_center rows">
+  </view>
+  <view class="card_grid part_main" style="max-width: 100%;">
+    <card max_height style="grid-area: g1;" bind:tap="switch_vroute" data-vroute="shop">
+      <view><text class="title">预约</text></view>
+      <view><text class="small_text">Booking</text></view>
+    </card>
+    <card max_height style="grid-area: g2;" bind:tap="switch_vroute" data-vroute="order">
       <view><text class="title">订单</text></view>
-      <view><text style="color: #777777;font-size: 0.8rem;">My Order</text></view>
-    </view>
-  </card>
-  <card style="grid-area: g3;">
-    <!-- <image src="./../../assets/entrepreneurs-outline.svg" mode="aspectFit"></image> -->
-    <view class="flex_center rows">
+      <view><text class="small_text">My Order</text></view>
+    </card>
+    <card max_height style="grid-area: g3;">
       <view><text class="title">展示</text></view>
-    </view>
-  </card>
-  <card style="grid-area: g4;">
-    <!-- <image src="./../../assets/entrepreneurs-outline.svg" mode="aspectFit"></image> -->
-    <view class="flex_center rows">
-      <view><text class="title">展示</text></view>
-    </view>
-  </card>
-  <card style="grid-area: g5;">
-    <view>
-      <view style="margin-bottom: 0.6rem;"><text class="title">VIP</text></view>
-      <view><text>橘浪家政</text></view>
-    </view>
-  </card>
+    </card>
+    <card max_height style="grid-area: g4;">
+      <view><text class="title">展示2</text></view>
+    </card>
+    <card style="grid-area: g5;">
+      <view>
+        <view style="margin-bottom: 0.6rem;"><text class="title">VIP</text></view>
+        <view><text>橘浪家政</text></view>
+      </view>
+    </card>
+  </view>
 </view>

@@ -1,0 +1,18 @@
+<!--components/app_page_nav_bar/index.wxml-->
+<view class="app_page_nav_bar rows" style="{{'height: '+height}}">
+  <sticky_footer>
+    <view slot="header"></view>
+    <view slot="main"></view>
+    <!-- Don't remove slot main and header ( because it layout by gird ) -->
+    <view slot="footer" class="bar">
+      <view class="overlapping_container">
+        <view class="buttons">
+          <view bind:tap="page_back">
+            <image wx:if="{{show_back}}" class="btn_icon" src="/assets/mdi/arrow_back_ios_black_24dp.svg" />
+          </view>
+        </view>
+        <view class="flex_center title">{{title}}</view>
+      </view>
+    </view>
+  </sticky_footer>
+</view>

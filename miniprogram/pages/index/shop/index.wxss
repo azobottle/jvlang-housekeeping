@@ -1,6 +1,6 @@
 /* pages/index/shop/index.wxss */
 @import "../../../styles/index.wxss";
-@import "../../../styles/card_grid_common.wxss";
+@import "../../../styles/card_grid.wxss";
 
 .part_1 {
   min-height: 33vh;
