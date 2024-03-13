@@ -4,6 +4,8 @@ import com.jvlang.housekeeping.pojo.AbstractEntity;
 import com.jvlang.housekeeping.pojo.Picture;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Index;
+import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -24,6 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(indexes = @Index(columnList = "wxOpenid"))
 public class User extends AbstractEntity implements UserDetails {
     @Nullable
     String nickName;
