@@ -1,8 +1,8 @@
-package com.jvlang.housekeeping.config;
+package com.jvlang.housekeeping.services;
 
 import com.jvlang.housekeeping.pojo.entity.User;
-import com.jvlang.housekeeping.pojo.entity.repo.RelationUserRoleRepository;
-import com.jvlang.housekeeping.pojo.entity.repo.UserRepository;
+import com.jvlang.housekeeping.repo.RelationUserRoleRepository;
+import com.jvlang.housekeeping.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.userdetails.UserDetails;

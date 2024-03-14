@@ -16,9 +16,28 @@ public enum OrderEventEnum {
     FAIT_TO_BE_PRESENT("未到场"),
     ACCIDENT_HAPPENED_DURING_THE_JOB("服务中发生意外"),
     CUSTOMER_ACCEPT_THE_JOB("客户验收");
-    private final String name;
+    public Integer id;
+    public final String description;
 
-    OrderEventEnum(String name) {
-        this.name = name;
+    OrderEventEnum(String description) {
+        this.description = description;
+    }
+
+    public static OrderEventEnum getEnumById(Integer id) {
+        for (OrderEventEnum value : OrderEventEnum.values()) {
+            if (id.equals(value.id)) {
+                return value;
+            }
+        }
+        return null;
+    }
+
+    public static OrderEventEnum getEnumByDescription(String description) {
+        for (OrderEventEnum value : OrderEventEnum.values()) {
+            if (description.equals(value.description)) {
+                return value;
+            }
+        }
+        return null;
     }
 }

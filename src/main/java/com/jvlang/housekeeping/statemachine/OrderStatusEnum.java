@@ -9,11 +9,29 @@ public enum OrderStatusEnum {
     SERVING(6, "服务中"),
     OVER(7, "结束");
 
-    private final Integer num;
-    private final String name;
+    public final Integer id;
+    public final String description;
 
-    OrderStatusEnum(Integer num, String name) {
-        this.num = num;
-        this.name = name;
+    OrderStatusEnum(Integer id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
+    public static OrderStatusEnum getEnumById(Integer id) {
+        for (OrderStatusEnum value : OrderStatusEnum.values()) {
+            if (id.equals(value.id)) {
+                return value;
+            }
+        }
+        return null;
+    }
+
+    public static OrderStatusEnum getEnumByDescription(String description) {
+        for (OrderStatusEnum value : OrderStatusEnum.values()) {
+            if (description.equals(value.description)) {
+                return value;
+            }
+        }
+        return null;
     }
 }

@@ -1,4 +1,4 @@
-package com.jvlang.housekeeping.pojo.entity.repo;
+package com.jvlang.housekeeping.repo;
 
 import com.jvlang.housekeeping.pojo.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;

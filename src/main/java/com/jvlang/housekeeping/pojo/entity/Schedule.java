@@ -1,9 +1,11 @@
 package com.jvlang.housekeeping.pojo.entity;
 
 import com.jvlang.housekeeping.pojo.AbstractEntity;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -22,4 +24,8 @@ public class Schedule extends AbstractEntity {
     private LocalDate date;
     private Boolean availableMor;
     private Boolean availableAft;
+    @Transient
+    @Setter(value = AccessLevel.NONE)
+    @Nullable
+    protected User shifu;
 }

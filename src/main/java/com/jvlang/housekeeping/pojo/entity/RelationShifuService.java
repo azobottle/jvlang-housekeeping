@@ -1,9 +1,11 @@
 package com.jvlang.housekeeping.pojo.entity;
 
 import com.jvlang.housekeeping.pojo.AbstractEntity;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -18,4 +20,13 @@ import lombok.experimental.SuperBuilder;
 public class RelationShifuService extends AbstractEntity {
     private Long shifuId;
     private Long serviceId;
+    @Transient
+    @Setter(value = AccessLevel.NONE)
+    @Nullable
+    protected User shifu;
+
+    @Transient
+    @Setter(value = AccessLevel.NONE)
+    @Nullable
+    protected Service service;
 }
