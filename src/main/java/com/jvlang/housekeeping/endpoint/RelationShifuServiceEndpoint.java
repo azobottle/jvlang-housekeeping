@@ -1,12 +1,14 @@
 package com.jvlang.housekeeping.endpoint;
 
+import com.jvlang.housekeeping.aop.AllowRole;
+import com.jvlang.housekeeping.pojo.Role0;
 import com.jvlang.housekeeping.pojo.entity.RelationShifuService;
 import com.jvlang.housekeeping.repo.*;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import dev.hilla.Endpoint;
 import dev.hilla.Nullable;
 import dev.hilla.crud.CrudRepositoryService;
 import dev.hilla.crud.filter.Filter;
-import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 
@@ -14,7 +16,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Endpoint
-@RolesAllowed("ADMIN")
+@AnonymousAllowed
+@AllowRole(value = {Role0.Shifu, Role0.Manager, Role0.SuperAdmin})
 public class RelationShifuServiceEndpoint extends CrudRepositoryService<RelationShifuService, Long, RelationShifuServiceRepository> {
     @Autowired
     UserRepository userRepository;

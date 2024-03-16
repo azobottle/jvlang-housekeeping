@@ -4,6 +4,7 @@ import com.jvlang.housekeeping.pojo.entity.*;
 import com.jvlang.housekeeping.repo.RelationUserRoleRepository;
 import com.jvlang.housekeeping.repo.RoleRepository;
 import com.jvlang.housekeeping.repo.UserRepository;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import dev.hilla.Endpoint;
 import dev.hilla.Nullable;
 import dev.hilla.crud.CrudRepositoryService;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Endpoint
-@RolesAllowed("ADMIN")
+@AnonymousAllowed
 public class RelationUserRoleEndpoint extends CrudRepositoryService<RelationUserRole, Long, RelationUserRoleRepository> {
     @Autowired
     UserRepository userRepository;
