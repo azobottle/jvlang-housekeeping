@@ -7,7 +7,7 @@ const list = [
   },
   {
     vroute: "shop",
-    text: "介绍",
+    text: "价目",
     icon: '/assets/mdi/space_dashboard_outlined.svg',
     icon_checked: '/assets/mdi/space_dashboard_two_tone.svg'
   },

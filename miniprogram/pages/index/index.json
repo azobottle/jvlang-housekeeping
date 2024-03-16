@@ -1,8 +1,10 @@
 {
   "usingComponents": {
     "app_nav_bar": "../../components/app_nav_bar",
+    "app_page_nav_bar": "../../components/app_page_nav_bar",
     "sticky_footer": "../../components/sticky_footer",
     "home": "./home",
-    "shop": "./shop"
+    "shop": "./shop",
+    "why_choose_us": "./why_choose_us"
   }
 }

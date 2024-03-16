@@ -1,9 +1,7 @@
 <!--components/card/index.wxml-->
-<view class="card" style="{{max_height?'height: 100%':'padding: 1.5rem;'}}">
-  <view wx:if="max_height" class="flex_center rows">
-    <slot></slot>
-    <!-- <view><text class="title">预约</text></view>
-    <view><text class="small_text">Booking</text></view> -->
+<view class="card rows {{class1}}" style="{{style1}}">
+  <view wx:if="{{tag_top}}" class="tag_top" style="{{style2}}">{{tag_top}}</view>
+  <view style="padding: 1rem;">
+    <slot> </slot>
   </view>
-  <slot wx:else=""></slot>
 </view>

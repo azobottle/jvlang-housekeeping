@@ -2,13 +2,27 @@
 @import "../../styles/index.wxss";
 
 .card {
-  border-radius: 1.3rem;
-  background-color: rgba(243, 241, 228);
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px;
-  min-width: 0;
-  min-height: 0;
-  display: block;
-  font-family: 'HanZiZhiMeiFangSongGBK';
-  /* display: flex; */
-  /* flex-direction: column; */
+  border-radius: 18px;
+  background-color: white;
+  min-height: 49px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.has_border {
+  border-style: solid;
+  border-width: 4px;
+}
+
+.tag_top {
+  position: relative;
+  top: -2px;
+  background-clip: border-box;
+  font-size: 1rem;
+  border-radius: 10px 10px 0px 0px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 2px;
+  line-height: 1.5rem;
+  padding: 6px 12.25px 10px;
+  /* width: 100%; */
 }

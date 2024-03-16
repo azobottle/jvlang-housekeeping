@@ -10,9 +10,29 @@ type CurrentVrouteStroage = {
 Component({
   data: {
     current_vroute: 'home',
+    lazy_loading_not_home: false,
+    show_header: false,
   },
   observers: {
     current_vroute(current_vroute: string) {
+      switch (current_vroute) {
+        case "shop":
+          this.setData({
+            show_header: true
+          })
+          break
+        default:
+          this.setData({
+            show_header: false
+          })
+      }
+      if (!current_vroute.startsWith('home') && !this.data.lazy_loading_not_home) {
+        this.setData({
+          lazy_loading_not_home: true
+        }, () => {
+          console.debug('lazy_loading_not_home on change current_vroute')
+        })
+      }
       wx.setStorage<CurrentVrouteStroage>({
         key: current_vroute_storage_key,
         data: {
@@ -35,6 +55,16 @@ Component({
           }
         })
         .catch(err => console.debug("Failed on load current_vroute , maybe first launch or clear storage ...", err))
+      // lazy loading
+      setTimeout(() => {
+        if (!this.data.lazy_loading_not_home) {
+          this.setData({
+            lazy_loading_not_home: true
+          }, () => {
+            console.debug('lazy_loading_not_home after timeout')
+          })
+        }
+      }, 1000)
     }
   },
   methods: {

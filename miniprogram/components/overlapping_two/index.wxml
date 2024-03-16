@@ -1,0 +1,15 @@
+<!--components/overlapping_two/index.wxml-->
+<!--
+Copy from :
+https://stackoverflow.com/questions/72163040/how-to-have-2-overlapping-elements-fill-their-parent
+-->
+<view class="container_outter">
+  <view class="container">
+    <view class="a">
+      <slot name="a"></slot>
+    </view>
+    <view class="b">
+      <slot name="b"></slot>
+    </view>
+  </view>
+</view>

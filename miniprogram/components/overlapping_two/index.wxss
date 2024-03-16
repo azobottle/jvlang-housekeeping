@@ -1,0 +1,28 @@
+/* components/overlapping_two/index.wxss */
+.container_outter {
+  margin: 0;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  flex: 1;
+  /* border: 5px solid green; */
+  display: flex;
+  position: relative;
+}
+
+.a {
+  /* border: 1px solid aqua; */
+  flex: 1;
+}
+
+.b {
+  position: absolute;
+  /* border: 1px dashed blue; */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

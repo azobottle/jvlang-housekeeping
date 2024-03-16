@@ -1,28 +1,17 @@
 <!--pages/index/home/index.wxml-->
-<view class="root">
-  <view class="part_top">
-
+<view style="margin-top: 40px;">
+  <view>
+    <image style="width: 100%;" mode="aspectFit" src="/assets/opendoodles/levitate.svg"></image>
   </view>
-  <view class="card_grid part_main" style="max-width: 100%;">
-    <card max_height style="grid-area: g1;" bind:tap="switch_vroute" data-vroute="shop">
-      <view><text class="title">预约</text></view>
-      <view><text class="small_text">Booking</text></view>
-    </card>
-    <card max_height style="grid-area: g2;" bind:tap="switch_vroute" data-vroute="order">
-      <view><text class="title">订单</text></view>
-      <view><text class="small_text">My Order</text></view>
-    </card>
-    <card max_height style="grid-area: g3;">
-      <view><text class="title">展示</text></view>
-    </card>
-    <card max_height style="grid-area: g4;">
-      <view><text class="title">展示2</text></view>
-    </card>
-    <card style="grid-area: g5;">
-      <view>
-        <view style="margin-bottom: 0.6rem;"><text class="title">VIP</text></view>
-        <view><text>橘浪家政</text></view>
+  <view>
+    <introduce_p>
+      <view slot="title">橘浪家政</view>
+      <view slot="text_content">干净、品质、温暖</view>
+      <view slot="after" class="rows" style="gap: 20px;">
+        <btn class="bg_color_2" bind:tap="switch_vroute" data-vroute="why_choose_us">为什么选择橘浪</btn>
+        <btn class="bg_color_1" bind:tap="switch_vroute" data-vroute="shop">挑选清洁服务</btn>
+        <!-- <button style="margin-top: 20px;background-color: #e2e2e2;">加入橘浪家政</button> -->
       </view>
-    </card>
+    </introduce_p>
   </view>
 </view>

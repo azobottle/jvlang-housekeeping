@@ -11,7 +11,7 @@
             <image wx:if="{{show_back}}" class="btn_icon" src="/assets/mdi/arrow_back_ios_black_24dp.svg" />
           </view>
         </view>
-        <view class="flex_center title">{{title}}</view>
+        <view wx:if="{{title}}" class="flex_center title">{{title}}</view>
       </view>
     </view>
   </sticky_footer>
