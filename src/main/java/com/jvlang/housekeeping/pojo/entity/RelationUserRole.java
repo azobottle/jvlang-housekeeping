@@ -1,5 +1,6 @@
 package com.jvlang.housekeeping.pojo.entity;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.jvlang.housekeeping.pojo.AbstractEntity;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
@@ -17,8 +18,10 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @Entity
 public class RelationUserRole extends AbstractEntity {
+    @ExcelProperty("用户id")
     @NotNull
     protected Long userId;
+    @ExcelProperty("角色id")
     @NotNull
     protected Long roleId;
 

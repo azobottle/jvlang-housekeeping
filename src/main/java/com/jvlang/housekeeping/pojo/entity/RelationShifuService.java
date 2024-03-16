@@ -1,5 +1,6 @@
 package com.jvlang.housekeeping.pojo.entity;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.jvlang.housekeeping.pojo.AbstractEntity;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
@@ -18,7 +19,9 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @Table(indexes = {@Index(columnList = "shifuId"), @Index(columnList = "serviceId")})
 public class RelationShifuService extends AbstractEntity {
+    @ExcelProperty("师傅id")
     private Long shifuId;
+    @ExcelProperty("服务id")
     private Long serviceId;
     @Transient
     @Setter(value = AccessLevel.NONE)

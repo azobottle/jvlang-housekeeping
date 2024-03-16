@@ -1,5 +1,6 @@
 package com.jvlang.housekeeping.pojo.entity;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.jvlang.housekeeping.pojo.AbstractEntity;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
@@ -20,9 +21,13 @@ import java.time.LocalDate;
 @Entity
 @Table(indexes = @Index(columnList = "date"))
 public class Schedule extends AbstractEntity {
+    @ExcelProperty("师傅id")
     private Long shifuId;
+    @ExcelProperty("日期")
     private LocalDate date;
+    @ExcelProperty("上午是否排班")
     private Boolean availableMor;
+    @ExcelProperty("下午是否排班")
     private Boolean availableAft;
     @Transient
     @Setter(value = AccessLevel.NONE)
