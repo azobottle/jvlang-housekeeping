@@ -1,8 +1,8 @@
 package com.jvlang.housekeeping.endpoint;
 
-import com.jvlang.housekeeping.pojo.entity.*;
-import com.jvlang.housekeeping.repo.RelationUserRoleRepository;
-import com.jvlang.housekeeping.repo.RoleRepository;
+import com.jvlang.housekeeping.pojo.entity.Schedule;
+import com.jvlang.housekeeping.repo.ScheduleRepository;
+import com.jvlang.housekeeping.repo.ServiceRepository;
 import com.jvlang.housekeeping.repo.UserRepository;
 import dev.hilla.Endpoint;
 import dev.hilla.Nullable;
@@ -17,27 +17,26 @@ import java.util.Optional;
 
 @Endpoint
 @RolesAllowed("ADMIN")
-public class RelationUserRoleEndpoint extends CrudRepositoryService<RelationUserRole, Long, RelationUserRoleRepository> {
+public class ScheduleEndpoint extends CrudRepositoryService<Schedule, Long, ScheduleRepository> {
     @Autowired
     UserRepository userRepository;
 
     @Autowired
-    RoleRepository roleRepository;
+    ServiceRepository serviceRepository;
 
     @Override
-    public List<RelationUserRole> list(Pageable pageable, @Nullable Filter filter) {
+    public List<Schedule> list(Pageable pageable, @Nullable Filter filter) {
         return super.list(pageable, filter).stream().map(this::toVo).toList();
     }
 
     @Override
-    public Optional<RelationUserRole> get(Long aLong) {
+    public Optional<Schedule> get(Long aLong) {
         return super.get(aLong).map(this::toVo);
     }
 
-    private RelationUserRole toVo(RelationUserRole dao) {
+    private Schedule toVo(Schedule dao) {
         return dao.toBuilder()
-                .user(userRepository.findById(dao.getUserId()).orElse(null))
-                .role(roleRepository.findById(dao.getRoleId()).orElse(null))
+                .shifu(userRepository.findById(dao.getShifuId()).orElse(null))
                 .build();
     }
 }

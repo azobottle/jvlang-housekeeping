@@ -4,11 +4,13 @@ import com.alibaba.excel.annotation.ExcelProperty;
 import com.jvlang.housekeeping.pojo.AbstractEntity;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Index;
+import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDate;
 
 @Data
 @SuperBuilder(toBuilder = true)
@@ -17,21 +19,18 @@ import lombok.experimental.SuperBuilder;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Entity
-public class RelationUserRole extends AbstractEntity {
-    @ExcelProperty("用户id")
-    @NotNull
-    protected Long userId;
-    @ExcelProperty("角色id")
-    @NotNull
-    protected Long roleId;
-
+@Table(indexes = @Index(columnList = "date"))
+public class Schedule extends AbstractEntity {
+    @ExcelProperty("师傅id")
+    private Long shifuId;
+    @ExcelProperty("日期")
+    private LocalDate date;
+    @ExcelProperty("上午是否排班")
+    private Boolean availableMor;
+    @ExcelProperty("下午是否排班")
+    private Boolean availableAft;
     @Transient
     @Setter(value = AccessLevel.NONE)
     @Nullable
-    protected User user;
-
-    @Transient
-    @Setter(value = AccessLevel.NONE)
-    @Nullable
-    protected Role role;
+    protected User shifu;
 }
