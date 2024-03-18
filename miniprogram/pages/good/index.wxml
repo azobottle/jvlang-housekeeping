@@ -11,7 +11,5 @@
   <view slot="main">
     <text>pages/good/index.wxml</text>
   </view>
-  <view slot="footer">
-
-  </view>
+  <good_nav_bar slot="footer" />
 </sticky_footer>

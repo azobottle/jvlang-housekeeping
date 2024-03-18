@@ -22,10 +22,10 @@
   justify-content: center;
 }
 
-.bg_color_1 {
+/* .bg_color_1 {
   background-color: #FFb638;
 }
 
 .bg_color_2 {
   background-color: rgb(158, 222, 241);
-}
+} */

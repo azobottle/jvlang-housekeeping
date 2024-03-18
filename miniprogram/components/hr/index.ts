@@ -1,11 +1,14 @@
-// components/btn/index.ts
+// components/hr/index.ts
 Component({
 
   /**
    * 组件的属性列表
    */
   properties: {
-    style: String
+    sloted: {
+      type: Boolean,
+      value: false
+    }
   },
 
   /**

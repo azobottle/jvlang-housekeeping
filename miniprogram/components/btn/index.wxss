@@ -1,7 +1,10 @@
 /* components/btn/index.wxss */
 .btn {
-  border: rgb(24, 49, 83) solid 1.90476px;
-  border-radius: 7.65625px;
+  /* display: block; */
+  overflow: hidden;
+  /* display: inline; */
+  border: rgb(24, 49, 83) solid 2px;
+  border-radius: 10px;
   box-shadow: rgb(24, 49, 83) 0px 5.74219px 0px 0px;
   font-weight: 600;
   font-size: 15.3125px;
@@ -9,4 +12,5 @@
   text-align: center;
   position: relative;
   vertical-align: middle;
+  cursor: pointer;
 }

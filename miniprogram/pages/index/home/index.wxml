@@ -1,17 +1,27 @@
 <!--pages/index/home/index.wxml-->
-<view style="margin-top: 40px;">
-  <view>
-    <image style="width: 100%;" mode="aspectFit" src="/assets/opendoodles/levitate.svg"></image>
-  </view>
-  <view>
-    <introduce_p>
-      <view slot="title">橘浪家政</view>
-      <view slot="text_content">干净、品质、温暖</view>
-      <view slot="after" class="rows" style="gap: 20px;">
-        <btn class="bg_color_2" bind:tap="switch_vroute" data-vroute="why_choose_us">为什么选择橘浪</btn>
-        <btn class="bg_color_1" bind:tap="switch_vroute" data-vroute="shop">挑选清洁服务</btn>
-        <!-- <button style="margin-top: 20px;background-color: #e2e2e2;">加入橘浪家政</button> -->
-      </view>
-    </introduce_p>
+<view class="flex_center">
+  <view style="display: flex;flex-direction: column;width: 100%;padding-top: 50px;">
+    <view style="display: flex;flex-basis: 0;align-items: flex-end;position: relative;top: 50px;z-index: -500;">
+      <image style="width: 100%;" mode="aspectFit" src="/assets/opendoodles/levitate.svg"></image>
+    </view>
+    <view style="flex-basis: auto;flex-grow: 1;">
+      <introduce_p>
+        <view slot="title" style="font-size: 2.2rem;text-align: center;">橘浪家政</view>
+        <view slot="text_content" style="text-align: center;">干净、品质、温暖</view>
+        <view slot="after" class="rows" style="gap: 20px;">
+          <btn style="background-color: #FFb638;" bind:tap="switch_vroute" data-vroute="shop">挑选清洁服务</btn>
+          <view class="columns" style="gap: 10px;">
+            <btn style="flex-grow: 1;">日常保洁</btn>
+            <btn style="flex-grow: 1;">家电清洗</btn>
+            <btn style="flex-grow: 1;">厨卫保洁</btn>
+          </view>
+        </view>
+      </introduce_p>
+    </view>
+    <view style="flex-basis: 0;flex-grow: auto; text-align: center;gap: 10px;color: gray;font-size: 0.85rem;" class="rows">
+      <hr sloted>o o o</hr>
+      <view>加入橘浪家政</view>
+      <view>为什么选择橘浪</view>
+    </view>
   </view>
 </view>

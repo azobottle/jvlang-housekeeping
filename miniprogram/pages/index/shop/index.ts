@@ -25,7 +25,7 @@ Component({
       const { goodid } = e.currentTarget.dataset;
       console.debug('to good page', goodid)
       await wx.navigateTo({
-        url: '/pages/good/index'
+        url: `/pages/good/index?goodid=${goodid}`
       })
     },
   }

@@ -33,8 +33,8 @@
     <view slot="header">
       <app_page_nav_bar wx:if="{{show_header}}" title="价目表" />
     </view>
-    <view slot="main" style="overflow-y: scroll;" class="rows">
-      <!-- 吐了，抽象节点传不了render，真你妈抽象 -->
+    <view slot="main" style="overflow-y: scroll;">
+      <!-- 抽象节点传不了render，真你妈抽象 -->
       <home style="{{m1.style_is_show('home',current_vroute)}}" />
       <view wx:if="{{lazy_loading_not_home}}">
         <shop style="{{m1.style_is_show('shop',current_vroute)}}" />

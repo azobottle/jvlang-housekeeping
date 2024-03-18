@@ -1,0 +1,8 @@
+<!--components/hr/index.wxml-->
+<view class="columns box">
+  <view class="line" />
+  <view wx:if="{{sloted}}" class="slot_container">
+    <slot></slot>
+  </view>
+  <view class="line" />
+</view>

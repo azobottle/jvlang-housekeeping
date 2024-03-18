@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "introduce_p": "../../../components/introduce_p",
-    "btn": "../../../components/btn"
+    "btn": "../../../components/btn",
+    "hr": "../../../components/hr"
   }
 }

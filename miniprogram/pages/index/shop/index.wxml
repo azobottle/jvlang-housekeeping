@@ -1,8 +1,31 @@
 <!--pages/index/shop/index.wxml-->
 
 <view class="rows" style="gap: 40px;padding: 20px;">
-  <card border_color="#66f2d5" tag_top="专业保洁">
-    <view class="rows" style="gap: 20px;">
+  <card border_color="#ffd43b" tag_top="专业保洁">
+    <!-- <view class="two_column_grid">
+      <introduce_p>
+        <view slot="title">开荒保洁</view>
+        <view slot="text_content">
+          10元/1平
+        </view>
+      </introduce_p>
+      <introduce_p>
+        <view slot="title">日常保洁</view>
+        <view slot="text_content">
+          160元(40元/小时)
+        </view>
+      </introduce_p>
+      <introduce_p>
+        <view slot="title">深度保洁</view>
+        <view slot="text_content">
+          200元(50元/小时)
+        </view>
+      </introduce_p>
+    </view>
+    <view class="columns" style="gap: 20px;">
+      <btn style="background-color: #ffd43b;flex-grow: 1;">了解更多</btn>
+    </view> -->
+    <view class="two_column_grid">
       <btn>开荒保洁</btn>
       <btn>日常保洁4h</btn>
       <btn>深度保洁4h</btn>
@@ -10,15 +33,15 @@
     </view>
   </card>
   <card border_color="#ffd43b" tag_top="家电清洗">
-    <view class="rows" style="gap: 20px;">
+    <view class="two_column_grid">
       <btn>空调蒸汽洗</btn>
-      <btn>洗衣机蒸汽洗</btn>
+      <btn bind:tap="to_good_page">洗衣机蒸汽洗</btn>
       <btn>冰箱蒸汽洗</btn>
       <btn>家电清洗套餐（任选四件）</btn>
     </view>
   </card>
-  <card border_color="#dcbaff" tag_top="专业去污">
-    <view class="rows" style="gap: 20px;">
+  <card border_color="#ffd43b" tag_top="专业去污">
+    <view class="two_column_grid">
       <btn>厨房蒸汽洗（油烟机半拆洗+厨房保洁）</btn>
       <btn>油烟机+灶台蒸汽洗</btn>
       <btn>卫生间蒸汽洗</btn>
