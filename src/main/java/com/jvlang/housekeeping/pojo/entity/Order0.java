@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Data
@@ -25,7 +25,7 @@ public class Order0 extends AbstractEntity {
     private Long addressId;
     private Long shifuId;
     private Long serviceId;
-    private LocalDateTime startTime;
+    private Timestamp startTime;
     private Integer orderStatusId;
     private Integer overEventId;
     @JdbcTypeCode(SqlTypes.JSON)
