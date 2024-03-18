@@ -2,6 +2,7 @@ package com.jvlang.housekeeping.aop;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.jvlang.housekeeping.pojo.Role0;
 import com.jvlang.housekeeping.pojo.TODO;
 import dev.hilla.EndpointInvoker;
 import dev.hilla.exception.EndpointException;
@@ -21,9 +22,7 @@ import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Stream;
 
 @Aspect
@@ -104,20 +103,20 @@ public class EndPointAspect {
         var annoList = Stream.concat(
                 Arrays.stream(clz.getAnnotations()),
                 method != null ? Arrays.stream(method.getAnnotations()) : Stream.empty()
-        ).filter(it -> it instanceof AllowRole).toList();
+        ).toList();
 
-        if (annoList.isEmpty()) {
-            log.warn("[{} {}] 未对此接口设置权限！", endpointName, methodName);
-        }
-
+        var allowRoles = new HashSet<Role0>();
         for (Annotation anno : annoList) {
             if (anno instanceof AllowRole a) {
-                log.debug("[{} {}] check permission for roles {}",
-                        endpointName, methodName, anno);
-                // TODO
-                log.warn("这里的鉴权代码还没写！");
+                allowRoles.addAll(Arrays.stream(a.value()).toList());
             }
         }
+        if (allowRoles.isEmpty()) {
+            log.warn("[{} {}] 未对此接口设置权限！", endpointName, methodName);
+            return null;
+        }
+        log.debug("[{} {}] check permission for roles {}",
+                endpointName, methodName, allowRoles);
         return null;
     }
 }
