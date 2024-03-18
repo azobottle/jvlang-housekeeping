@@ -4,6 +4,7 @@ import com.jvlang.housekeeping.pojo.entity.Schedule;
 import com.jvlang.housekeeping.repo.ScheduleRepository;
 import com.jvlang.housekeeping.repo.ServiceRepository;
 import com.jvlang.housekeeping.repo.UserRepository;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import dev.hilla.Endpoint;
 import dev.hilla.Nullable;
 import dev.hilla.crud.CrudRepositoryService;
@@ -16,7 +17,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Endpoint
-@RolesAllowed("ADMIN")
+@AnonymousAllowed
+//@RolesAllowed("ADMIN")
 public class ScheduleEndpoint extends CrudRepositoryService<Schedule, Long, ScheduleRepository> {
     @Autowired
     UserRepository userRepository;

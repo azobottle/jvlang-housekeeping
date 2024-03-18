@@ -19,7 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Order_ extends AbstractEntity {
+public class Order0 extends AbstractEntity {
     private Long customerId;
     private Long shifuId;
     private Long serviceId;
@@ -27,6 +27,7 @@ public class Order_ extends AbstractEntity {
     private Integer overEventId;
     @JdbcTypeCode(SqlTypes.JSON)
     private List<Picture> pictures;
+
     @Transient
     @Setter(value = AccessLevel.NONE)
     @Nullable

@@ -8,6 +8,7 @@ import com.jvlang.housekeeping.pojo.entity.Schedule;
 import com.jvlang.housekeeping.repo.RelationShifuServiceRepository;
 import com.jvlang.housekeeping.repo.RelationUserRoleRepository;
 import com.jvlang.housekeeping.repo.ScheduleRepository;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import dev.hilla.BrowserCallable;
 import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @BrowserCallable
-@RolesAllowed("ADMIN")
+@AnonymousAllowed
+//@RolesAllowed("ADMIN")
 public class UploadExcelEndPoint {
     private final String SCHEDULE = "schedule";
     private final String RELA_USER_ROLE = "rela_user_role";

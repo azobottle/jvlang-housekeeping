@@ -8,7 +8,7 @@ export default function RoleCrud() {
       service={RoleEndpoint}
       model={RoleModel}
       gridProps={{
-        visibleColumns: ["id", "name", "description"],
+        visibleColumns: ["id", "name", "nickName", "description"],
       }}
     />
   );

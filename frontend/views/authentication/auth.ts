@@ -1,9 +1,8 @@
-import { configureAuth } from '@hilla/react-auth';
-import { UserInfoService } from 'Frontend/generated/endpoints';
+import { configureAuth } from "@hilla/react-auth";
 
 // Configure auth to use `UserInfoService.getUserInfo`
-const auth = configureAuth(UserInfoService.getUserInfo, {
-    getRoles: (userInfo) => userInfo.authorities,
+const auth = configureAuth(async () => ({}), {
+  getRoles: (userInfo) => [],
 });
 
 // Export auth provider and useAuth hook, which are automatically
