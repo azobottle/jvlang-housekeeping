@@ -1,7 +1,12 @@
 package com.jvlang.housekeeping.pojo.entity;
 
+import com.jvlang.housekeeping.Application;
 import com.jvlang.housekeeping.pojo.AbstractEntity;
 import com.jvlang.housekeeping.pojo.Picture;
+import com.jvlang.housekeeping.pojo.Role0;
+import com.jvlang.housekeeping.repo.RelationUserRoleRepository;
+import com.jvlang.housekeeping.repo.RoleRepository;
+import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Index;
@@ -26,16 +31,19 @@ import java.util.List;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(indexes = @Index(columnList = "wxOpenid"))
-public class User extends AbstractEntity implements UserDetails {
+@Table(indexes = {
+        @Index(columnList = "wxOpenid"),
+        @Index(columnList = "username"),
+})
+public class User extends AbstractEntity {
+    // it should not null , but who knows
+    String username;
+
     @Nullable
     String nickName;
 
     @Nullable
     String encodedPassword;
-
-    @Nullable
-    String salt;
 
     @Nullable
     String phoneNumber;
@@ -58,41 +66,5 @@ public class User extends AbstractEntity implements UserDetails {
     List<String> otherNames;
 
     @Transient
-    List<String> roles;
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles == null ? null : roles.stream().map(SimpleGrantedAuthority::new).toList();
-    }
-
-    @Override
-    public String getPassword() {
-        return encodedPassword;
-    }
-
-    @Override
-    public String getUsername() {
-        return nickName;
-    }
-    //  TODO: 还能进一步实现账号密码过期、开关等功能，，
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+    List<Role0> roles;
 }

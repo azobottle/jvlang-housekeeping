@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @Endpoint
 @AnonymousAllowed
-@AllowRole(value = {Role0.Shifu, Role0.Manager, Role0.SuperAdmin})
+@AllowRole(value = {Role0.Manager, Role0.SuperAdmin})
 public class RelationShifuServiceEndpoint extends CrudRepositoryService<RelationShifuService, Long, RelationShifuServiceRepository> {
     @Autowired
     UserRepository userRepository;
@@ -25,11 +25,13 @@ public class RelationShifuServiceEndpoint extends CrudRepositoryService<Relation
     @Autowired
     ServiceRepository serviceRepository;
 
+    @AllowRole(value = {Role0.Shifu})
     @Override
     public List<RelationShifuService> list(Pageable pageable, @Nullable Filter filter) {
         return super.list(pageable, filter).stream().map(this::toVo).toList();
     }
 
+    @AllowRole(value = {Role0.Shifu})
     @Override
     public Optional<RelationShifuService> get(Long aLong) {
         return super.get(aLong).map(this::toVo);
@@ -41,4 +43,6 @@ public class RelationShifuServiceEndpoint extends CrudRepositoryService<Relation
                 .service(serviceRepository.findById(dao.getServiceId()).orElse(null))
                 .build();
     }
+
+
 }

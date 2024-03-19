@@ -1,5 +1,6 @@
 package com.jvlang.housekeeping.repo;
 
+import com.jvlang.housekeeping.pojo.Role0;
 import com.jvlang.housekeeping.pojo.entity.RelationUserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -13,5 +14,5 @@ public interface RelationUserRoleRepository extends JpaRepository<RelationUserRo
             " relation.userId=u.id " +
             " and relation.roleId=r.id" +
             " and u.id=?1")
-    List<String> findRoleNamesByUserId(Long userId);//数据应有ROLE_前缀。其实是@RolesAllowed("ADMIN")的用法，
+    List<Role0> findRoleNamesByUserId(Long userId);
 }

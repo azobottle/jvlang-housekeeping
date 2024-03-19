@@ -2,13 +2,17 @@ package com.jvlang.housekeeping.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jvlang.housekeeping.pojo.AbstractEntity;
+import lombok.NonNull;
 import lombok.SneakyThrows;
+
+import java.io.InputStream;
+import java.util.Objects;
 
 public final class Utils {
     private Utils() {
     }
 
-    public static class Copy {
+    public static final class Copy {
         private Copy() {
         }
 
@@ -18,8 +22,23 @@ public final class Utils {
         }
     }
 
-    public static class Sync {
+    public static final class Sync {
         private Sync() {
+        }
+    }
+
+    public static final class ClassLoader {
+        private ClassLoader() {
+        }
+
+        public static InputStream getResourceAsStream(@NonNull String name) {
+            return Objects.requireNonNull(
+                    Objects.requireNonNull(
+                            Thread.currentThread().getContextClassLoader(),
+                            "Current thread context class loader is null ( when get resource " + name + " as stream) !"
+                    ).getResourceAsStream(name),
+                    "Get resource " + name + " as stream return null !"
+            );
         }
     }
 }
