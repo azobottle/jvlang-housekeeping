@@ -2,9 +2,9 @@ package com.jvlang.housekeeping.pojo.entity;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.jvlang.housekeeping.pojo.AbstractEntity;
+import com.jvlang.housekeeping.pojo.Role0;
 import jakarta.annotation.Nullable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -17,21 +17,20 @@ import lombok.experimental.SuperBuilder;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Entity
-public class RelationUserRole extends AbstractEntity {
+@Table(indexes = {
+        @Index(columnList = "userId"),
+})
+public class UserRole extends AbstractEntity {
     @ExcelProperty("用户id")
     @NotNull
     protected Long userId;
-    @ExcelProperty("角色id")
+
+    @ExcelProperty("角色")
     @NotNull
-    protected Long roleId;
+    protected Role0 role;
 
     @Transient
-    @Setter(value = AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     @Nullable
     protected User user;
-
-    @Transient
-    @Setter(value = AccessLevel.NONE)
-    @Nullable
-    protected Role role;
 }

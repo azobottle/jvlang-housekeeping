@@ -20,7 +20,9 @@ const auth = configureAuth<User>(
   },
   {
     getRoles: (userInfo) =>
-      userInfo.roles?.filter((it): it is Role0 => it != undefined) ?? [],
+      userInfo.roles
+        ?.map((it) => it?.role)
+        ?.filter((it): it is Role0 => it != undefined) ?? [],
   }
 );
 

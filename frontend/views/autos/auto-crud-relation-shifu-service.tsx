@@ -21,21 +21,20 @@ export default function RelationShifuServiceEndpointCrud() {
             header="师傅名"
             autoWidth
           />,
-            <GridColumn<RelationShifuServiceModel>
-                key="serviceName"
-                renderer={(obj) => {
-                    return (
-                        <span>{String(obj.item.service?.name ?? "服务不存在")}</span>
-                    );
-                }}
-                header="服务名"
-                autoWidth
-            />,
+          <GridColumn<RelationShifuServiceModel>
+            key="serviceName"
+            renderer={(obj) => {
+              return (
+                <span>{String(obj.item.service?.name ?? "服务不存在")}</span>
+              );
+            }}
+            header="服务名"
+            autoWidth
+          />,
         ],
-
       }}
       formProps={{
-          visibleFields:["shifuId", "serviceId"]
+        visibleFields: ["shifuId", "serviceId"],
       }}
     />
   );

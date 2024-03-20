@@ -6,7 +6,7 @@ import com.jvlang.housekeeping.Application;
 import com.jvlang.housekeeping.pojo.JwtUser;
 import com.jvlang.housekeeping.pojo.Role0;
 import com.jvlang.housekeeping.pojo.exceptions.BusinessFailed;
-import com.jvlang.housekeeping.repo.RelationUserRoleRepository;
+import com.jvlang.housekeeping.repo.UserRoleRepository;
 import com.jvlang.housekeeping.util.UserUtils;
 import dev.hilla.EndpointInvocationException;
 import io.jsonwebtoken.JwtException;
@@ -25,10 +25,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.*;
-import java.util.stream.Stream;
 
 import static com.jvlang.housekeeping.util.Utils.Http.createResponseErrorObject;
 
@@ -187,8 +185,8 @@ public class EndPointAspect {
                     );
         }
 
-        var repository = Application.getContext().getBean(RelationUserRoleRepository.class);
-        var roles = repository.findRoleNamesByUserId(jwtUser.getUserId());
+        var repository = Application.getContext().getBean(UserRoleRepository.class);
+        var roles = repository.findRolesByUserId(jwtUser.getUserId());
 
         log.debug("[{} {}] check permission : allowRoles = {} , roles = {}",
                 endpointName, methodName, allowRoles, roles);
