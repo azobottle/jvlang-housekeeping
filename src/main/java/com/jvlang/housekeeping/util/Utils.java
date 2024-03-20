@@ -1,7 +1,9 @@
 package com.jvlang.housekeeping.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.jvlang.housekeeping.pojo.AbstractEntity;
+import dev.hilla.exception.EndpointException;
 import lombok.NonNull;
 import lombok.SneakyThrows;
 
@@ -39,6 +41,17 @@ public final class Utils {
                     ).getResourceAsStream(name),
                     "Get resource " + name + " as stream return null !"
             );
+        }
+    }
+
+    public static final class Http {
+        private Http() {
+        }
+
+        public static String createResponseErrorObject(ObjectMapper om, String errorMessage) {
+            ObjectNode objectNode = om.createObjectNode();
+            objectNode.put(EndpointException.ERROR_MESSAGE_FIELD, errorMessage);
+            return objectNode.toString();
         }
     }
 }

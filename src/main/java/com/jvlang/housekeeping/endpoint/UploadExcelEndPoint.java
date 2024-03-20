@@ -19,7 +19,6 @@ import java.io.IOException;
 
 @BrowserCallable
 @AnonymousAllowed
-//@RolesAllowed("ADMIN")
 public class UploadExcelEndPoint {
     private final String SCHEDULE = "schedule";
     private final String RELA_USER_ROLE = "rela_user_role";

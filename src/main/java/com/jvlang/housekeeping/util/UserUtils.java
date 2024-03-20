@@ -6,6 +6,7 @@ import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import jakarta.annotation.Nullable;
 import lombok.Lombok;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -64,7 +65,11 @@ public class UserUtils {
         }
     }
 
-    public static String assignJwt(@Nullable Long user_id, SecretKey key) {
+    public static String encodedPassword(@NonNull String password) {
+        return password;
+    }
+
+    public static String assignJwt(@NonNull Long user_id, @NonNull SecretKey key) {
         log.debug("Assign Jwt for user {}", user_id);
         return Jwts.builder()
                 .subject("auth")

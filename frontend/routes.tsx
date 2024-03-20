@@ -43,7 +43,7 @@ export const routes = protectRoutes([
     handle: { title: "Hilla CRM" },
     children: level1_pages,
   },
-  { path: "/login", element: <LoginView /> },
+  { path: "/jvlang/login", element: <LoginView /> },
 ] as RouteObject[]);
 
 export default createBrowserRouter(routes);

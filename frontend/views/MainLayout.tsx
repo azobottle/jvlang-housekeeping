@@ -22,7 +22,7 @@ export default function MainLayout() {
   // 一级页面
   const nav_links = level1_pages.map((it) => {
     return (
-      <NavLink className={navLinkClasses} to={it.path}>
+      <NavLink className={navLinkClasses} to={it.path} key={it.path}>
         {it.handle.title}
       </NavLink>
     );

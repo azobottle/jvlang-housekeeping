@@ -9,7 +9,6 @@ import com.jvlang.housekeeping.pojo.exceptions.BusinessFailed;
 import com.jvlang.housekeeping.repo.RelationUserRoleRepository;
 import com.jvlang.housekeeping.util.UserUtils;
 import dev.hilla.EndpointInvocationException;
-import dev.hilla.exception.EndpointException;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,9 +25,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.*;
 import java.util.stream.Stream;
+
+import static com.jvlang.housekeeping.util.Utils.Http.createResponseErrorObject;
 
 @Aspect
 @Component
@@ -91,21 +93,23 @@ public class EndPointAspect {
         }
     }
 
-    private static String createResponseErrorObject(ObjectMapper om, String errorMessage) {
-        ObjectNode objectNode = om.createObjectNode();
-        objectNode.put(EndpointException.ERROR_MESSAGE_FIELD, errorMessage);
-        return objectNode.toString();
-    }
 
     @Nullable
     private JwtUser readUser() throws EndpointInvocationException.EndpointAccessDeniedException {
         var ha = request.getHeader("Authorization");
+        log.debug("Authorization header : {}", ha);
         if (ha == null) {
             return null;
         }
+        String token;
+        if (ha.startsWith("Bearer ")) {
+            token = ha.substring("Bearer ".length());
+        } else {
+            throw new EndpointInvocationException.EndpointAccessDeniedException("格式不支持的token，认证失败");
+        }
         try {
             var payload = UserUtils.jwtParser(userUtils.getPrivateKey())
-                    .parseSignedClaims(ha)
+                    .parseSignedClaims(token)
                     .getPayload();
             return JwtUser.Impl.builder()
                     .userId(Objects.requireNonNull(payload.get("user_id", Long.class)))
@@ -136,23 +140,38 @@ public class EndPointAspect {
                 .filter(m -> methodName.equals(m.getName()))
                 .toList();
         if (methods.size() >= 2) {
-            log.error("Multi methods {} in endpoint {} named {} !", methods, endpointName, methodName);
-            return ResponseEntity
-                    .internalServerError()
-                    .body(createResponseErrorObject(objectMapper, "服务器发生错误(获取接口方法重复)"));
+            methods = methods.stream().sorted((a, b) -> {
+                var ca = a.getDeclaringClass();
+                var cb = b.getDeclaringClass();
+                if (ca == cb) return 0;
+                return ca.isAssignableFrom(cb) ? 1 : -1;
+            }).toList();
+            log.debug("Sorted methods : {}", methods
+                    .stream()
+                    .map(it -> "%s (declaring class is %s)"
+                            .formatted(
+                                    it,
+                                    it.getDeclaringClass()
+                            ))
+                    .toList());
+            var subClass = methods.get(0).getDeclaringClass();
+            methods = methods.stream().filter(it -> it.getDeclaringClass() == subClass).toList();
+            log.debug("Filtered methods : {}", methods);
         }
-        var method = methods.isEmpty() ? null : methods.get(0);
-        var annoList = Stream.concat(
-                Arrays.stream(endpointClz.getAnnotations()),
-                method != null ? Arrays.stream(method.getAnnotations()) : Stream.empty()
-        ).toList();
 
         var allowRoles = new HashSet<Role0>();
-        for (Annotation anno : annoList) {
-            if (anno instanceof AllowRole a) {
-                allowRoles.addAll(Arrays.stream(a.value()).toList());
+
+        for (var anno : endpointClz.getAnnotations()) {
+            checkAnnotation(anno, allowRoles);
+        }
+        for (var method : methods) {
+            var annoList = method.getAnnotations();
+
+            for (var anno : annoList) {
+                checkAnnotation(anno, allowRoles);
             }
         }
+
         if (allowRoles.isEmpty()) {
             log.warn("[{} {}] 未对此接口设置权限！", endpointName, methodName);
             return null;
@@ -175,19 +194,28 @@ public class EndPointAspect {
                 endpointName, methodName, allowRoles, roles);
 
         // 取交集
-        var allowedRoles = new HashSet<>(allowRoles);
-        allowedRoles.retainAll(roles);
+        var rolesWereAllowed = new HashSet<>(allowRoles);
+        rolesWereAllowed.retainAll(roles);
 
-        if (allowedRoles.isEmpty()) {
+        if (rolesWereAllowed.isEmpty()) {
             return ResponseEntity
                     .status(403)
                     .body(createResponseErrorObject(
                             objectMapper,
-                            "您没有权限进行操作 - " + endpointName + " " + methodName +
-                                    " , 您的角色是 " + roles + " , 但是需要角色 " + allowedRoles + " .")
+                            "您没有权限进行操作 [" + endpointName + " " + methodName +
+                                    "] , 您的角色是 " + roles + " , 但是需要角色 " + allowRoles + " .")
                     );
         }
 
         return null;
+    }
+
+    private void checkAnnotation(Annotation anno, Set<Role0> allowRoles) {
+        if (anno instanceof AllowRole a) {
+            allowRoles.addAll(Arrays.asList(a.value()));
+        }
+        if (anno instanceof AllowRoleAll) {
+            allowRoles.addAll(Arrays.asList(Role0.values()));
+        }
     }
 }

@@ -10,7 +10,6 @@ import dev.hilla.crud.CrudRepositoryService;
 
 @Endpoint
 @AnonymousAllowed
-//@RolesAllowed("ADMIN")
 @AllowRole(Role0.SuperAdmin)
 public class RoleEndpoint extends CrudRepositoryService<Role, Long, RoleRepository> {
 }
