@@ -1,7 +1,5 @@
 package com.jvlang.housekeeping.endpoint;
 
-import com.jvlang.housekeeping.aop.AllowRole;
-import com.jvlang.housekeeping.pojo.Role0;
 import com.jvlang.housekeeping.pojo.entity.RelationShifuService;
 import com.jvlang.housekeeping.repo.*;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
@@ -17,7 +15,6 @@ import java.util.Optional;
 
 @Endpoint
 @AnonymousAllowed
-@AllowRole(value = {Role0.Shifu, Role0.Manager, Role0.SuperAdmin})
 public class RelationShifuServiceEndpoint extends CrudRepositoryService<RelationShifuService, Long, RelationShifuServiceRepository> {
     @Autowired
     UserRepository userRepository;

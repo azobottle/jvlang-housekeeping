@@ -9,6 +9,5 @@ import jakarta.annotation.security.RolesAllowed;
 
 @Endpoint
 @AnonymousAllowed
-//@RolesAllowed("ADMIN")
 public class ServiceEndpoint extends CrudRepositoryService<Service, Long, ServiceRepository> {
 }

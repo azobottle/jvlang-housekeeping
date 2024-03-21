@@ -1,14 +1,20 @@
 package com.jvlang.housekeeping.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.jvlang.housekeeping.pojo.AbstractEntity;
+import dev.hilla.exception.EndpointException;
+import lombok.NonNull;
 import lombok.SneakyThrows;
+
+import java.io.InputStream;
+import java.util.Objects;
 
 public final class Utils {
     private Utils() {
     }
 
-    public static class Copy {
+    public static final class Copy {
         private Copy() {
         }
 
@@ -18,8 +24,34 @@ public final class Utils {
         }
     }
 
-    public static class Sync {
+    public static final class Sync {
         private Sync() {
+        }
+    }
+
+    public static final class ClassLoader {
+        private ClassLoader() {
+        }
+
+        public static InputStream getResourceAsStream(@NonNull String name) {
+            return Objects.requireNonNull(
+                    Objects.requireNonNull(
+                            Thread.currentThread().getContextClassLoader(),
+                            "Current thread context class loader is null ( when get resource " + name + " as stream) !"
+                    ).getResourceAsStream(name),
+                    "Get resource " + name + " as stream return null !"
+            );
+        }
+    }
+
+    public static final class Http {
+        private Http() {
+        }
+
+        public static String createResponseErrorObject(ObjectMapper om, String errorMessage) {
+            ObjectNode objectNode = om.createObjectNode();
+            objectNode.put(EndpointException.ERROR_MESSAGE_FIELD, errorMessage);
+            return objectNode.toString();
         }
     }
 }

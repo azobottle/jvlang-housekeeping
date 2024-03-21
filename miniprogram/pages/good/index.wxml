@@ -5,13 +5,11 @@
 </page-meta>
 
 <sticky_footer>
-  <app_page_nav_bar slot="header" title="{{page_title}}">
-
-  </app_page_nav_bar>
+  <app_page_nav_bar slot="header" title="{{page_title}}" />
   <view slot="main">
-    <text>pages/good/index.wxml</text>
+    <view>
+      
+    </view>
   </view>
-  <view slot="footer">
-
-  </view>
+  <good_nav_bar slot="footer" />
 </sticky_footer>

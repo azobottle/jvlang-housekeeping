@@ -18,7 +18,6 @@ import java.util.Optional;
 
 @Endpoint
 @AnonymousAllowed
-//@RolesAllowed("ADMIN")
 public class ScheduleEndpoint extends CrudRepositoryService<Schedule, Long, ScheduleRepository> {
     @Autowired
     UserRepository userRepository;
