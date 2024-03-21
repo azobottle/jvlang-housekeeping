@@ -3,7 +3,6 @@ import {ScheduleEndpoint} from "Frontend/generated/endpoints";
 import ScheduleModel from "Frontend/generated/com/jvlang/housekeeping/pojo/entity/ScheduleModel";
 import {GridColumn} from "@hilla/react-components/GridColumn.js";
 import {Upload} from "@hilla/react-components/Upload";
-import {UploadExcelEndPoint} from 'Frontend/generated/endpoints';
 
 export default function ScheduleCrud() {
     return (
@@ -31,7 +30,7 @@ export default function ScheduleCrud() {
                 }}
             />
             <Upload
-                target="/connect/UploadExcelEndPoint/upload"
+                target="/api/file/upload"
                 headers='{"type":"schedule"}'
             />
         </div>

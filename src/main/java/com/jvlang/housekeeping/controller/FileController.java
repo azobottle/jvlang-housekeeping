@@ -1,4 +1,4 @@
-package com.jvlang.housekeeping.endpoint;
+package com.jvlang.housekeeping.controller;
 
 import com.alibaba.excel.EasyExcel;
 import com.jvlang.housekeeping.easyexcel.BaseExcelListener;
@@ -8,17 +8,20 @@ import com.jvlang.housekeeping.pojo.entity.Schedule;
 import com.jvlang.housekeeping.repo.RelationShifuServiceRepository;
 import com.jvlang.housekeeping.repo.UserRoleRepository;
 import com.jvlang.housekeeping.repo.ScheduleRepository;
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import dev.hilla.BrowserCallable;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
-@BrowserCallable
-@AnonymousAllowed
-public class UploadExcelEndPoint {
+@RestController()
+@RequestMapping("/api/file")
+@Slf4j
+public class FileController {
     private final String SCHEDULE = "schedule";
     private final String RELA_USER_ROLE = "rela_user_role";
     private final String RELA_SHIFU_SERVICE = "rela_shifu_service";
@@ -29,6 +32,7 @@ public class UploadExcelEndPoint {
     @Autowired
     private RelationShifuServiceRepository relationShifuServiceRepository;
 
+    @PostMapping("/upload")
     public String upload(MultipartFile file, @RequestHeader("type") String type) throws IOException {
         switch (type) {
             case SCHEDULE -> EasyExcel.read(file.getInputStream(), Schedule.class,
