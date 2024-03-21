@@ -28,12 +28,9 @@ public class LoginController {
     ObjectMapper objectMapper;
 
     @Autowired
-    HttpServletResponse response;
-
-    @Autowired
     UserUtils userUtils;
 
-    @PostMapping("/jvlang/login")
+    @PostMapping("/api/jvlang/login")
     public ResponseEntity<String> login(@RequestBody LoginBody body) {
         if (Strings.isEmpty(body.username)) {
             return ResponseEntity

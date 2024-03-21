@@ -18,7 +18,7 @@ client.middlewares = [
 
     if (response.status == 401) {
       window.location.assign("/jvlang/login");
-      // never return
+      throw "never return";
     }
 
     if (response.status >= 400) {

@@ -33,7 +33,7 @@ export default function LoginView() {
       }}
       noForgotPassword
       onLogin={async ({ detail: { username, password } }) => {
-        const response = await fetch("/login", {
+        const response = await fetch("/api/jvlang/login", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -45,8 +45,8 @@ export default function LoginView() {
         });
         const auth_token = response.headers.get("x-jvlang-set-auth");
         if (response.ok && auth_token) {
-          setUrl("/");
           localStorage.setItem("auth_token", auth_token);
+          window.location.pathname = "/";
         } else {
           setError(true);
           setErrorMessage((await response.json())["message"]);
