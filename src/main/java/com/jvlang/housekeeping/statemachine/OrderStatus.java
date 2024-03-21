@@ -3,12 +3,12 @@ package com.jvlang.housekeeping.statemachine;
 import com.jvlang.housekeeping.statemachine.event.*;
 
 public abstract class OrderStatus {
-    public Integer getId() {
-        return this.getClass().getAnnotation(OrderStatusInfo.class).id();
+    public static Integer getId(Class<? extends OrderStatus> orderStatus) {
+        return orderStatus.getAnnotation(OrderStatusInfo.class).id();
     }
 
-    public String getDescription() {
-        return this.getClass().getAnnotation(OrderStatusInfo.class).description();
+    public static String getDescription(Class<? extends OrderStatus> orderStatus) {
+        return orderStatus.getAnnotation(OrderStatusInfo.class).description();
     }
 
     public OrderStatus whenPayWithSpec(PayWithSpec event) {

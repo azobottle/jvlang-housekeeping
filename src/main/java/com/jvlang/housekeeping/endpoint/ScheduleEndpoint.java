@@ -20,6 +20,8 @@ import java.util.Optional;
 @AnonymousAllowed
 public class ScheduleEndpoint extends CrudRepositoryService<Schedule, Long, ScheduleRepository> {
     @Autowired
+    ScheduleRepository scheduleRepository;
+    @Autowired
     UserRepository userRepository;
 
     @Autowired
@@ -28,6 +30,14 @@ public class ScheduleEndpoint extends CrudRepositoryService<Schedule, Long, Sche
     @Override
     public List<Schedule> list(Pageable pageable, @Nullable Filter filter) {
         return super.list(pageable, filter).stream().map(this::toVo).toList();
+    }
+
+    public List<Schedule> selectAvailableSchedules_for_service_mouth(Long serviceId) {
+        return scheduleRepository.selectAvailableSchedules_for_service_mouth(serviceId);
+    }
+
+    public List<Schedule> selectAvailableSchedules_for_service_mouth(Long serviceId, Long shifuId) {
+        return scheduleRepository.selectAvailableSchedules_for_service_mouth(serviceId, shifuId);
     }
 
     @Override
