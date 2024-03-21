@@ -5,6 +5,7 @@ import {GridColumn} from "@hilla/react-components/GridColumn.js";
 import {Upload} from "@hilla/react-components/Upload";
 
 export default function ScheduleCrud() {
+    const uploadHeader = {type: "schedule", Authorization: localStorage.getItem("auth_token")};
     return (
         <div className="p-m">
             <AutoCrud<ScheduleModel>
@@ -31,7 +32,7 @@ export default function ScheduleCrud() {
             />
             <Upload
                 target="/api/file/upload"
-                headers='{"type":"schedule"}'
+                headers={uploadHeader}
             />
         </div>
     );

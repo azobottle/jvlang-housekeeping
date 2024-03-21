@@ -13,7 +13,7 @@ import java.lang.annotation.Annotation;
 import java.util.LinkedList;
 import java.util.List;
 
-public class AnnotationUtil {
+public class ReflectionUtil {
     public static List<Class<?>> getClassesWithAnnoUnderPackage(Class<? extends Annotation> annotationClass,
                                                                 String basePackage, String resourcePattern) {
         LinkedList<Class<?>> list = new LinkedList<>();

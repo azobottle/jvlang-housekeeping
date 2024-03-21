@@ -1,6 +1,6 @@
 package com.jvlang.housekeeping.statemachine;
 
-import com.jvlang.housekeeping.util.AnnotationUtil;
+import com.jvlang.housekeeping.util.ReflectionUtil;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ public class OrderStatusMapMaintainer {
     private static final Map<Integer, OrderStatus> map = new HashMap<>();
 
     static {
-        List<Class<?>> classList = AnnotationUtil
+        List<Class<?>> classList = ReflectionUtil
                 .getClassesWithAnnoUnderPackage
                         (OrderStatusInfo.class,
                                 "com/jvlang/housekeeping/statemachine/status",

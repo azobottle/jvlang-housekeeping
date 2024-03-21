@@ -8,9 +8,6 @@ import com.jvlang.housekeeping.pojo.Role0;
 import com.jvlang.housekeeping.pojo.exceptions.BusinessFailed;
 import com.jvlang.housekeeping.repo.UserRoleRepository;
 import com.jvlang.housekeeping.util.UserUtils;
-import dev.hilla.EndpointInvocationException;
-import io.jsonwebtoken.JwtException;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.Lombok;
 import lombok.NonNull;
@@ -34,8 +31,6 @@ import static com.jvlang.housekeeping.util.Utils.Http.createResponseErrorObject;
 @Component
 @Slf4j
 public class EndPointAspect {
-    @Autowired
-    HttpServletRequest request;
 
     @Autowired
     HttpServletResponse response;
@@ -59,7 +54,7 @@ public class EndPointAspect {
             @org.checkerframework.checker.nullness.qual.Nullable ObjectNode body = (ObjectNode) args[2];
             log.debug("[{} {}] >>> before endpoint , args is {}",
                     endpointName, methodName, Arrays.asList(args));
-            var u = readUser();
+            var u = userUtils.readUser();
             try {
                 UserUtils._set_current_user(u);
                 try {
@@ -92,30 +87,6 @@ public class EndPointAspect {
     }
 
 
-    @Nullable
-    private JwtUser readUser() throws EndpointInvocationException.EndpointAccessDeniedException {
-        var ha = request.getHeader("Authorization");
-        log.debug("Authorization header : {}", ha);
-        if (ha == null) {
-            return null;
-        }
-        String token;
-        if (ha.startsWith("Bearer ")) {
-            token = ha.substring("Bearer ".length());
-        } else {
-            throw new EndpointInvocationException.EndpointAccessDeniedException("格式不支持的token，认证失败");
-        }
-        try {
-            var payload = UserUtils.jwtParser(userUtils.getPrivateKey())
-                    .parseSignedClaims(token)
-                    .getPayload();
-            return JwtUser.Impl.builder()
-                    .userId(Objects.requireNonNull(payload.get("user_id", Long.class)))
-                    .build();
-        } catch (JwtException err) {
-            throw new EndpointInvocationException.EndpointAccessDeniedException("错误的token，认证失败");
-        }
-    }
 
     @Nullable
     private ResponseEntity<String> checkAuth(
