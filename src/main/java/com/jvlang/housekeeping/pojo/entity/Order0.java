@@ -10,6 +10,7 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Data
@@ -21,8 +22,10 @@ import java.util.List;
 @Entity
 public class Order0 extends AbstractEntity {
     private Long customerId;
+    private Long addressId;
     private Long shifuId;
     private Long serviceId;
+    private Timestamp startTime;
     private Integer orderStatusId;
     private Integer overEventId;
     @JdbcTypeCode(SqlTypes.JSON)
@@ -32,6 +35,11 @@ public class Order0 extends AbstractEntity {
     @Setter(value = AccessLevel.NONE)
     @Nullable
     protected User customer;
+
+    @Transient
+    @Setter(value = AccessLevel.NONE)
+    @Nullable
+    protected Address address;
 
     @Transient
     @Setter(value = AccessLevel.NONE)

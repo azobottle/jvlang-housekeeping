@@ -2,9 +2,12 @@ package com.jvlang.housekeeping.util;
 
 import com.jvlang.housekeeping.pojo.JwtUser;
 import com.jvlang.housekeeping.pojo.TODO;
+import dev.hilla.EndpointInvocationException;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import jakarta.annotation.Nullable;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.Lombok;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +21,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Objects;
 
 @Component
 @Slf4j
@@ -39,6 +43,9 @@ public class UserUtils {
 
     @Autowired
     Environment env;
+
+    @Autowired
+    HttpServletRequest request;
 
     private volatile SecretKey _key;
 
@@ -84,5 +91,30 @@ public class UserUtils {
         return Jwts.parser()
                 .verifyWith(key)
                 .build();
+    }
+
+    @Nullable
+    public JwtUser readUser() {
+        var ha = request.getHeader("Authorization");
+        log.debug("Authorization header : {}", ha);
+        if (ha == null) {
+            return null;
+        }
+        String token;
+        if (ha.startsWith("Bearer ")) {
+            token = ha.substring("Bearer ".length());
+        } else {
+            throw new RuntimeException("格式不支持的token，认证失败");
+        }
+        try {
+            var payload = UserUtils.jwtParser(getPrivateKey())
+                    .parseSignedClaims(token)
+                    .getPayload();
+            return JwtUser.Impl.builder()
+                    .userId(Objects.requireNonNull(payload.get("user_id", Long.class)))
+                    .build();
+        } catch (JwtException err) {
+            throw new RuntimeException("错误的token，认证失败");
+        }
     }
 }

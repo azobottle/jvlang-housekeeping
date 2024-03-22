@@ -1,16 +1,14 @@
 package com.jvlang.housekeeping.pojo.entity;
 
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.jvlang.housekeeping.easyexcel.converter.DateConverter;
 import com.jvlang.housekeeping.pojo.AbstractEntity;
 import jakarta.annotation.Nullable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Index;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 @Data
 @SuperBuilder(toBuilder = true)
@@ -19,12 +17,12 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(indexes = @Index(columnList = "date"))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"date", "shifuId"}))
 public class Schedule extends AbstractEntity {
     @ExcelProperty("师傅id")
     private Long shifuId;
-    @ExcelProperty("日期")
-    private LocalDate date;
+    @ExcelProperty(value = "日期", converter = DateConverter.class)
+    private Date date;
     @ExcelProperty("上午是否排班")
     private Boolean availableMor;
     @ExcelProperty("下午是否排班")

@@ -3,9 +3,9 @@ import {ScheduleEndpoint} from "Frontend/generated/endpoints";
 import ScheduleModel from "Frontend/generated/com/jvlang/housekeeping/pojo/entity/ScheduleModel";
 import {GridColumn} from "@hilla/react-components/GridColumn.js";
 import {Upload} from "@hilla/react-components/Upload";
-import {UploadExcelEndPoint} from 'Frontend/generated/endpoints';
 
 export default function ScheduleCrud() {
+    const uploadHeader = {type: "schedule", Authorization: localStorage.getItem("auth_token")};
     return (
         <div className="p-m">
             <AutoCrud<ScheduleModel>
@@ -31,8 +31,8 @@ export default function ScheduleCrud() {
                 }}
             />
             <Upload
-                target="/connect/UploadExcelEndPoint/upload"
-                headers='{"type":"schedule"}'
+                target="/api/file/upload"
+                headers={uploadHeader}
             />
         </div>
     );

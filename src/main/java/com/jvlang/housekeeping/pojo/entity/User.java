@@ -55,5 +55,6 @@ public class User extends AbstractEntity {
     List<String> otherNames;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "userId")
+    @Nullable
     List<UserRole> roles;
 }
