@@ -27,6 +27,7 @@ import org.springframework.stereotype.Component;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Modifier;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.jvlang.housekeeping.util.Utils.Http.createResponseErrorObject;
 
@@ -158,20 +159,33 @@ public class EndPointAspect {
         }
 
         var allowRoles = new HashSet<Role0>();
+        var allowNoLogin = new AtomicBoolean(false);
 
         for (var anno : endpointClz.getAnnotations()) {
-            checkAnnotation(anno, allowRoles);
+            checkAnnotation(anno, allowRoles, allowNoLogin);
         }
         for (var method : methods) {
             var annoList = method.getAnnotations();
 
             for (var anno : annoList) {
-                checkAnnotation(anno, allowRoles);
+                checkAnnotation(anno, allowRoles, allowNoLogin);
             }
         }
 
+        if (allowNoLogin.get()) {
+            return null;
+        }
+
         if (allowRoles.isEmpty()) {
-            log.warn("[{} {}] 未对此接口设置权限！", endpointName, methodName);
+            log.warn("\n" + """
+                    +------------------------------ WARNING ------------------------------+
+                    | 未对 [{} {}] 接口设置权限！
+                    |
+                    | 如果需要允许所有已登录的人访问，则应当使用 @AllowRoleAll 在Endpoint的类或方法上
+                    | 如果允许不登录即可访问，则应当使用 @AllowNoLogin 在Endpoint的类或方法上
+                    | 如果需要特定角色才能访问，则应当使用 @AllowRole
+                    +---------------------------------------------------------------------+
+                    """, endpointName, methodName);
             return null;
         }
 
@@ -208,12 +222,15 @@ public class EndPointAspect {
         return null;
     }
 
-    private void checkAnnotation(Annotation anno, Set<Role0> allowRoles) {
+    private void checkAnnotation(Annotation anno, Set<Role0> allowRoles, AtomicBoolean allowNoLogin) {
         if (anno instanceof AllowRole a) {
             allowRoles.addAll(Arrays.asList(a.value()));
         }
         if (anno instanceof AllowRoleAll) {
             allowRoles.addAll(Arrays.asList(Role0.values()));
+        }
+        if (anno instanceof AllowNoLogin) {
+            allowNoLogin.set(true);
         }
     }
 }
