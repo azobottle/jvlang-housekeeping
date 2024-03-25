@@ -1,5 +1,5 @@
 <!--components/app_page_nav_bar/index.wxml-->
-<view class="app_page_nav_bar rows" style="{{'height: '+height}}">
+<view class="app_page_nav_bar rows" style="{{'height: ' + height + 'px;'}}" class="{{transparent ? 'app_page_nav_bar_transparent' : 'app_page_nav_bar_not_transparent' }}">
   <sticky_footer>
     <view slot="header"></view>
     <view slot="main"></view>
@@ -7,8 +7,8 @@
     <view slot="footer" class="bar">
       <view class="overlapping_container">
         <view class="buttons">
-          <view bind:tap="page_back">
-            <image wx:if="{{show_back}}" class="btn_icon" src="/assets/mdi/arrow_back_ios_black_24dp.svg" />
+          <view bind:tap="page_back" class="button_item {{ transparent ? 'button_item_transparent' : '' }}">
+            <image wx:if="{{show_back}}" class="btn_icon" src="{{ transparent ? '/assets/mdi/arrow_back_ios_white_24dp.svg' : '/assets/mdi/arrow_back_ios_black_24dp.svg' }}" />
           </view>
         </view>
         <view wx:if="{{title}}" class="flex_center title">{{title}}</view>

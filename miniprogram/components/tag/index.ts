@@ -1,11 +1,14 @@
-// components/good_nav_bar/index.ts
+// components/tag/index.ts
 Component({
 
   /**
    * 组件的属性列表
    */
   properties: {
-
+    color: {
+      type: String,
+      value: 'orange'
+    }
   },
 
   /**

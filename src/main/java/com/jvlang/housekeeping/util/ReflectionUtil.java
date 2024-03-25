@@ -1,5 +1,7 @@
 package com.jvlang.housekeeping.util;
 
+import lombok.Lombok;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -13,7 +15,11 @@ import java.lang.annotation.Annotation;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ReflectionUtil {
+@Slf4j
+public final class ReflectionUtil {
+    private ReflectionUtil() {
+    }
+
     public static List<Class<?>> getClassesWithAnnoUnderPackage(Class<? extends Annotation> annotationClass,
                                                                 String basePackage, String resourcePattern) {
         LinkedList<Class<?>> list = new LinkedList<>();
@@ -39,7 +45,8 @@ public class ReflectionUtil {
             }
             return list;
         } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException("根据注解获取类时发生错误", e);
+            log.error("根据注解获取类时发生错误");
+            throw Lombok.sneakyThrow(e);
         }
     }
 }

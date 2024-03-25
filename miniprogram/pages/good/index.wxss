@@ -1,1 +1,60 @@
 /* pages/good/index.wxss */
+@import "../../styles/index.wxss";
+
+.box__price_at_first_see {
+  flex-grow: 1;
+}
+
+.price_at_first_see {
+  color: rgb(255, 72, 0);
+  font-weight: bolder;
+  font-size: 1.4rem;
+}
+
+.price_at_first_see__mini_text {
+  color: rgb(255, 72, 0);
+  font-weight: bolder;
+  font-size: 0.75rem;
+}
+
+.good_title_long_text {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.two_buy_btn {
+  display: flex;
+  flex-direction: row;
+  margin: 0 10px 0 auto;
+  color: white;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.two_buy_btn_common {
+  padding: 8.5px 21px;
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  align-items: center;
+}
+
+.two_buy_btn_common>image {
+  width: 22px;
+  height: 22px;
+}
+
+.buy_other_btns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buy_other_btns>image {
+  width: 25px;
+  height: 25px;
+}
+
+.buy_other_btns>text {
+  font-size: 0.75rem;
+}

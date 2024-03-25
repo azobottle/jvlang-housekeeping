@@ -9,6 +9,14 @@ Component({
     disable_back: {
       type: Boolean,
       value: false
+    },
+    no_height: {
+      type: Boolean,
+      value: false
+    },
+    transparent: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -16,8 +24,16 @@ Component({
    * 组件的初始数据
    */
   data: {
-    height: '100px',
+    height: 100,
     show_back: false
+  },
+
+  observers: {
+    height(height) {
+      this.triggerEvent('app_page_nav_bar__height_calc', { height }, {
+        bubbles: true
+      })
+    }
   },
 
   /**
@@ -34,7 +50,7 @@ Component({
     created: function () {
       wx.getSystemInfo()
         .then(si => this.setData({
-          height: (si.statusBarHeight + 44) + "px"
+          height: si.statusBarHeight + 44
         }))
     },
     ready() {

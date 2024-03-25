@@ -1,23 +1,3 @@
-export const formatTime = (date: Date) => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
-
-  return (
-    [year, month, day].map(formatNumber).join('/') +
-    ' ' +
-    [hour, minute, second].map(formatNumber).join(':')
-  )
-}
-
-const formatNumber = (n: number) => {
-  const s = n.toString()
-  return s[1] ? s : '0' + s
-}
-
 export function remove_item<T extends any>(arr: Array<T>, value: T): boolean {
   const index = arr.indexOf(value);
   if (index > -1) {
@@ -26,3 +6,21 @@ export function remove_item<T extends any>(arr: Array<T>, value: T): boolean {
   }
   return false;
 }
+
+export const throttle = (that: any, callback: Function, time: number) => {
+  let timer: null | number = null;
+  return function () {
+    if (timer) {
+      return
+    }
+    let args = arguments;
+    timer = setTimeout(() => {
+      callback.apply(that, args);
+      timer = null;
+    }, time)
+  }
+}
+
+export default {
+
+};

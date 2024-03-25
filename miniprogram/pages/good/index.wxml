@@ -4,12 +4,65 @@
   </navigation-bar>
 </page-meta>
 
+
 <sticky_footer>
-  <app_page_nav_bar slot="header" title="{{page_title}}" />
+  <app_page_nav_bar slot="header" title="{{page_title}}" transparent="{{app_page_nav_bar__transparent}}" bind:app_page_nav_bar__height_calc="on__app_page_nav_bar__height_calc" />
   <view slot="main">
-    <view>
-      
+    <scroll-view id="shop_scroll_view" style="height: 100%;" scroll-y type="list">
+      <swiper autoplay indicator-dots interval="{{10000}}" style="height: 45vh;">
+        <swiper-item wx:for="{{ [1, 2, 3, 4, 5] }}" wx:key="i" wx:for-item="i">
+          <image style="width: 100%;height: 45vh;" src="https://picsum.photos/600/600?random={{i}}"></image>
+        </swiper-item>
+      </swiper>
+      <view class="rows" style="gap: 10px;">
+        <card>
+          <view class="rows" style="gap: 10px;">
+            <view class="columns" style="align-items: baseline;">
+              <view class="box__price_at_first_see">
+                <text class="price_at_first_see__mini_text" style="margin-right: 5px;">¥</text>
+                <text class="price_at_first_see">114</text>
+                <text class="price_at_first_see__mini_text">.514 起</text>
+              </view>
+              <view style="color: gray;font-size: 0.8rem;">
+                <text>已售 600 +</text>
+              </view>
+            </view>
+            <view class="rows" style="gap: 5px;">
+              <view><text class="good_title_long_text">{{ good_title_long }}</text></view>
+              <view class="columns" style="gap: 10px;flex-wrap: wrap;">
+                <tag>需要预约</tag>
+                <tag color="mediumaquamarine">可改价</tag>
+                <tag color="mediumturquoise">多人评价“很干净”</tag>
+              </view>
+            </view>
+          </view>
+        </card>
+        <card>
+          <view class="columns">
+            <view style="flex-grow: 1;font-weight: bolder;">评价(100+)</view>
+            <view style="flex-grow: auto;color: gray;font-size: 0.8rem;">全部 →</view>
+          </view>
+        </card>
+      </view>
+    </scroll-view>
+  </view>
+  <view slot="footer">
+    <view class="columns" style="align-items: center;padding: 6px 0;gap: 10px;background-color: white;">
+      <view style="margin-left: 10px;"></view>
+      <view class="buy_other_btns">
+        <image src="/assets/mdi/person_search_black_24dp.svg"></image>
+        <text>师傅</text>
+      </view>
+      <view class="two_buy_btn">
+        <view class="two_buy_btn_common" style="border-radius: 30px 0 0 30px;background-color: orange;">
+          <image src="/assets/mdi/grade_white_24dp.svg"></image>
+          <text>收藏</text>
+        </view>
+        <view class="two_buy_btn_common" style="border-radius: 0 30px 30px 0;background-color: rgb(255, 75, 0);">
+          <image src="/assets/mdi/support_agent_white_24dp.svg"></image>
+          <text>立即预约</text>
+        </view>
+      </view>
     </view>
   </view>
-  <good_nav_bar slot="footer" />
 </sticky_footer>
