@@ -1,46 +1,35 @@
-# 橘浪家政系统后端
+# 介绍
 
-#### 介绍
+本仓库包括橘浪家政系统后端 小程序端 管理端
 
-采用hilla框架
+# 软件架构
 
-#### 软件架构
+管理端+后端采用hilla框架 数据库采用mysql
 
-软件架构说明
+# 安装教程
 
-#### 安装教程
+需要先安装node18 jdk17 mysql8.3 maven（若IDE为IntellJ有编辑器自带的maven）
 
-1. xxxx
-2. xxxx
-3. xxxx
+# 使用说明
 
-#### 使用说明
+1. 默认连接到本地3306端口的mysq数据库
 
-1. xxxx
-2. xxxx
-3. xxxx
+2. 启动要先在环境变量中设置好DEV_MYSQL_USERNAME 、DEV_MYSQL_PASSWORD，详见src/main/resources/application-dev.yml；并调用src/init.sql建库，（jpa会自动建表）
 
-#### 参与贡献
+3. 另外由于还没做注册功能，要现在user库中插入用户名和密码才能登录
 
-1. Fork 本仓库
-2. 新建 Feat_xxx 分支
+# 参与贡献
+
+1. 查看中[橘浪家政系统 (qq.com)](https://docs.qq.com/sheet/DQlFVR1haaEVZZW1E?tab=r14pmh)的进展sheet了解进展情况，确定目标
+2. 新建 dev_by_xxx 分支
 3. 提交代码
-4. 新建 Pull Request
+4. 新建 Pull Request到dev_backend
 
-#### 特技
-
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5. Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
-
-#### 关于 Hilla 工程
+# 关于 Hilla 工程
 
 该项目是用 Spring Boot 创建您的 Hilla 应用程序。
 
-##### Running the application
+## Running the application
 
 运行 Hilla 应用程序
 运行应用程序有两种方法：您可以使用 IDE 来运行Application.java - 推荐这样做，因为它支持调试；或者您可以从命令行运行默认的
@@ -48,7 +37,7 @@ Maven 目标（即mvn）。
 
 Hilla 会在保存时自动重新加载对前端和后端代码的更改。IntelliJ 要求您在更改 Java 代码后手动构建项目，而 VS Code 将在保存时自动构建项目。
 
-##### 部署到生产环境
+## 部署到生产环境
 
 To create a production build, call `mvnw clean package -Pproduction` (Windows),
 or `./mvnw clean package -Pproduction` (Mac & Linux).
@@ -59,7 +48,7 @@ Once the JAR file is built, you can run it using
 `java -jar target/myapp-1.0-SNAPSHOT.jar` (NOTE, replace
 `myapp-1.0-SNAPSHOT.jar` with the name of your jar).
 
-##### 工程目录结构
+## 工程目录结构
 
 <table style="width:100%; text-align: left;">
   <tr><th>目录</th><th>描述</th></tr>
