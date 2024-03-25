@@ -8,7 +8,7 @@
 
 # 安装教程
 
-需要先安装node mysql8.3 maven（若IDE为IntellJ有编辑器自带的maven）
+需要先安装node18 jdk17 mysql8.3 maven（若IDE为IntellJ有编辑器自带的maven）
 
 # 使用说明
 
