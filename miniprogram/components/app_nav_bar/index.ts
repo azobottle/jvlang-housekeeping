@@ -18,10 +18,10 @@ const list = [
     icon_checked: '/assets/mdi/favorite_two_tone.svg'
   },
   {
-    vroute: "order",
-    text: "订单",
-    icon: '/assets/mdi/event_note_outlined.svg',
-    icon_checked: '/assets/mdi/event_note_two_tone.svg'
+    vroute: "message",
+    text: "消息",
+    icon: '/assets/mdi/textsms_black_24dp.svg',
+    icon_checked: '/assets/mdi/textsms_black_24dp_two_tone.svg'
   },
   {
     vroute: "mine",

@@ -1,0 +1,2 @@
+<!--components/need_login/index.wxml-->
+<btn bind:tap="login">需要登录</btn>

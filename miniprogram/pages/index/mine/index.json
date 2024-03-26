@@ -4,6 +4,7 @@
     "card": "../../../components/card",
     "btn": "../../../components/btn",
     "tag": "../../../components/tag",
-    "icon_btn": "../../../components/icon_btn"
+    "icon_btn": "../../../components/icon_btn",
+    "need_login": "../../../components/need_login"
   }
 }

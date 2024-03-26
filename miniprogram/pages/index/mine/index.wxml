@@ -1,6 +1,6 @@
 <!--pages/index/mine/index.wxml-->
 <view style="padding: 15px;">
-  <view wx:if="{{true}}" class="rows" style="gap: 15px;">
+  <view wx:if="{{store.user}}" class="rows" style="gap: 15px;">
     <card>
       <view style="padding-bottom: 20px;">
         <view class="rows" style="gap: 25px;">
@@ -45,20 +45,14 @@
         </view>
       </view>
     </card>
-
     <card>
       <view class="card_box">
         <view class="card_box_header">其他</view>
-
       </view>
     </card>
     <card>
-      <btn>退出登陆</btn>
+      <btn bind:tap="logout">退出登陆</btn>
     </card>
   </view>
-  <card wx:else>
-    <view class="flex_center" style="height: 40vh;">
-      <btn style="min-width: 60vw;background-color: wheat;">登陆</btn>
-    </view>
-  </card>
+  <need_login wx:else />
 </view>
