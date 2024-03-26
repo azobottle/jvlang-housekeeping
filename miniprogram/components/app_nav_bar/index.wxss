@@ -9,29 +9,11 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px -10px 10px;
   transition: all 3s;
   z-index: 1000;
+  align-items: center;
 }
 
 .app_nav_bar_item {
-  display: flex;
-  align-self: center;
-  flex-direction: column;
-  text-align: center;
   flex-grow: 1;
-  flex-basis: auto;
   padding: 0.25rem 0.5rem 0.5rem 0rem;
   z-index: 2000;
-}
-
-.app_nav_bar_icon {
-  height: 24px;
-  width: 24px;
-  align-self: center;
-  flex-grow: 1;
-  flex-basis: auto;
-}
-
-.app_nav_bar_text {
-  text-align: center;
-  font-size: 0.68rem;
-  flex-grow: 0.5;
 }

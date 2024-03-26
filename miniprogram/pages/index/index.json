@@ -5,6 +5,7 @@
     "sticky_footer": "../../components/sticky_footer",
     "home": "./home",
     "shop": "./shop",
+    "mine": "./mine",
     "why_choose_us": "./why_choose_us"
   }
 }

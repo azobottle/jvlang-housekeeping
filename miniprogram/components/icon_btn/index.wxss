@@ -1,0 +1,17 @@
+/* components/btn2/index.wxss */
+.btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn_icon {
+  flex-grow: 1;
+  flex-basis: auto;
+}
+
+.btn_text {
+  text-align: center;
+  /* font-size: 0.68rem; */
+  flex-grow: 0.5;
+}

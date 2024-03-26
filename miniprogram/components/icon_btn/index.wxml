@@ -1,0 +1,5 @@
+<!--components/btn2/index.wxml-->
+<view class="btn">
+  <image src="{{icon_src}}" class="btn_icon" style="width: {{icon_size}};height: {{icon_size}};" />
+  <text class="btn_text" style="font-size: {{font_size}};">{{text}}</text>
+</view>

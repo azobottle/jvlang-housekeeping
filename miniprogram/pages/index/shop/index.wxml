@@ -2,29 +2,6 @@
 
 <view class="rows" style="gap: 40px;padding: 20px;">
   <card border_color="#ffd43b" tag_top="专业保洁">
-    <!-- <view class="two_column_grid">
-      <introduce_p>
-        <view slot="title">开荒保洁</view>
-        <view slot="text_content">
-          10元/1平
-        </view>
-      </introduce_p>
-      <introduce_p>
-        <view slot="title">日常保洁</view>
-        <view slot="text_content">
-          160元(40元/小时)
-        </view>
-      </introduce_p>
-      <introduce_p>
-        <view slot="title">深度保洁</view>
-        <view slot="text_content">
-          200元(50元/小时)
-        </view>
-      </introduce_p>
-    </view>
-    <view class="columns" style="gap: 20px;">
-      <btn style="background-color: #ffd43b;flex-grow: 1;">了解更多</btn>
-    </view> -->
     <view class="two_column_grid">
       <btn>开荒保洁</btn>
       <btn>日常保洁4h</btn>

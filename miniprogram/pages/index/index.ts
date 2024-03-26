@@ -11,21 +11,26 @@ Component({
   data: {
     current_vroute: 'home',
     lazy_loading_not_home: false,
-    show_header: false,
+    header_title: '',
+    user_info: { a: 1 },
   },
   observers: {
     current_vroute(current_vroute: string) {
+      let header_title: string;
       switch (current_vroute) {
         case "shop":
-          this.setData({
-            show_header: true
-          })
+          header_title = "商店"
           break
+        case "mine":
+          header_title = "我的"
+          break;
         default:
-          this.setData({
-            show_header: false
-          })
+          header_title = '';
+          break;
       }
+      this.setData({
+        header_title
+      })
       if (!current_vroute.startsWith('home') && !this.data.lazy_loading_not_home) {
         this.setData({
           lazy_loading_not_home: true

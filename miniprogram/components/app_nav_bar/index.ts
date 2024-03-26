@@ -7,13 +7,13 @@ const list = [
   },
   {
     vroute: "shop",
-    text: "价目",
+    text: "分类",
     icon: '/assets/mdi/space_dashboard_outlined.svg',
     icon_checked: '/assets/mdi/space_dashboard_two_tone.svg'
   },
   {
     vroute: "eventstream",
-    text: "活跃",
+    text: "动态",
     icon: '/assets/mdi/favorite_border_outlined.svg',
     icon_checked: '/assets/mdi/favorite_two_tone.svg'
   },

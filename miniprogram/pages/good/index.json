@@ -3,6 +3,7 @@
     "app_page_nav_bar": "../../components/app_page_nav_bar",
     "sticky_footer": "../../components/sticky_footer",
     "card": "../../components/card",
-    "tag": "../../components/tag"
+    "tag": "../../components/tag",
+    "icon_btn": "../../components/icon_btn"
   }
 }
