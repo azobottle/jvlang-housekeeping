@@ -1,5 +1,6 @@
 package com.jvlang.housekeeping;
 
+import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
@@ -19,6 +20,10 @@ import org.springframework.lang.NonNull;
  */
 @SpringBootApplication
 @Theme(value = "jvlang-housekeeping")
+//@NpmPackage(
+//        value = "@jvlang-housekeeping/miniprogram_generator_plugin",
+//        version = "1.0.0"
+//)
 @Slf4j
 public class Application implements AppShellConfigurator {
     @Nullable

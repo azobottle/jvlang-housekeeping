@@ -112,7 +112,6 @@
             <scope>runtime</scope>
         </dependency>
 
-
     </dependencies>
 
     <build>
@@ -134,6 +133,17 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <generator>
+                        <plugins>
+                            <use>
+                                <plugin>
+                                    <path>@jvlang-housekeeping/miniprogram_generator_plugin</path>
+                                </plugin>
+                            </use>
+                        </plugins>
+                    </generator>
+                </configuration>
             </plugin>
         </plugins>
     </build>

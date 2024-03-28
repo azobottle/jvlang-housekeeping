@@ -5,7 +5,7 @@
       <view style="padding-bottom: 20px;">
         <view class="rows" style="gap: 25px;">
           <view style="display: flex;flex-direction: row;gap: 20px;margin-top: 20px">
-            <image style="width: 20vw;height: 20vw;border-radius: 10vw;" src="https://picsum.photos/200/200?random=1" />
+            <image style="width: 20vw;height: 20vw;border-radius: 50%;" src="https://picsum.photos/200/200?random=1" />
             <view style="display: flex;flex-direction: column;gap: 6px;">
               <view style="font-size: 1rem;font-weight: 600;letter-spacing: 1px;">张三</view>
               <tag>星级客户</tag>
@@ -54,5 +54,8 @@
       <btn bind:tap="logout">退出登陆</btn>
     </card>
   </view>
-  <need_login wx:else />
+  <view wx:else style="height: 80vh;" class="flex_center">
+    <need_login style="width: 80vw;" />
+  </view>
+
 </view>

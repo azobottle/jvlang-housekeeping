@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import static com.jvlang.housekeeping.util.Utils.Http.createResponseErrorObject;
 
+import com.jvlang.housekeeping.pojo.TODO;
+
 @RestController
 @Slf4j
 public class LoginController {
@@ -75,5 +77,17 @@ public class LoginController {
     public static class LoginBody {
         String username;
         String password;
+    }
+
+    @PostMapping("/api/jvlang/wx_login")
+    public ResponseEntity<String> wxLogin(@RequestBody WxLoginBody body) {
+        return ResponseEntity
+                .internalServerError()
+                .body(createResponseErrorObject(objectMapper, "TODO"));
+    }
+
+    @Data
+    public static class WxLoginBody {
+        String code;
     }
 }

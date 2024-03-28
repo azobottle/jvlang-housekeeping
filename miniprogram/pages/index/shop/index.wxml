@@ -1,7 +1,7 @@
 <!--pages/index/shop/index.wxml-->
 
 <view class="rows" style="gap: 40px;padding: 20px;">
-  <card border_color="#ffd43b" tag_top="专业保洁">
+  <!-- <card border_color="#ffd43b" tag_top="专业保洁">
     <view class="two_column_grid">
       <btn>开荒保洁</btn>
       <btn>日常保洁4h</btn>
@@ -29,5 +29,5 @@
       <view>没有找到你想要的服务吗？</view>
       <btn>请联系客服</btn>
     </view>
-  </card>
+  </card> -->
 </view>

@@ -9,6 +9,8 @@ import { remove_item } from "../utils/util";
 
 export interface StoreBinder<D extends Record<string, any>> {
   set<K extends keyof D>(key: K, value: D[K]): Promise<void>
+
+  read<K extends keyof D>(key: K): Readonly<D[K]>
 }
 
 export type Comp<D, D2 = { store: D }> = {
@@ -16,21 +18,11 @@ export type Comp<D, D2 = { store: D }> = {
   setData: (data: D2, callback?: () => void) => void
 };
 
-/**
- * 应用全局属性定义于此。
- */
-export const _app_store_default_data = () => ({
-  user: null as null | {
-    auth_token: string,
-  }
-});
-
-export type AppStore = ReturnType<typeof _app_store_default_data>;
-
-export const _app_store_listeners = () => getApp<AppOption>().globalData._app_store_listeners
-
 export function _bind_store<D>(listeners: readonly Comp<D>[]): StoreBinder<D> {
   return {
+    read(k) {
+      return listeners[0].data.store[k]
+    },
     async set(k, v) {
       console.debug('[store] set store from binder : ', { k, v, listeners })
       await Promise.all(
@@ -54,6 +46,19 @@ export function _bind_store<D>(listeners: readonly Comp<D>[]): StoreBinder<D> {
     }
   }
 }
+
+/**
+ * 应用全局属性定义于此。
+ */
+export const _app_store_default_data = () => ({
+  user: null as null | {
+    auth_token: string,
+  }
+});
+
+export type AppStore = ReturnType<typeof _app_store_default_data>;
+
+export const _app_store_listeners = () => getApp<AppOption>().globalData._app_store_listeners
 
 export const _store_mixin = Behavior({
   properties: {

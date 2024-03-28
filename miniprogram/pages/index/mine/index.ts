@@ -22,7 +22,9 @@ Component({
    */
   methods: {
     logout() {
-      get_store_in_mixined(this).set('user', null)
+      const s = get_store_in_mixined(this);
+      console.debug('User logout : ', s.read('user'))
+      s.set('user', null)
     }
   }
 })

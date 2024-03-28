@@ -1,4 +1,6 @@
-import { IEvent, IEventTrigged } from "../../../utils/event"
+import { IEvent } from "../../../utils/event"
+
+import { UserEndpoint } from "../../../links/hilla/generated/endpoints";
 
 // pages/index/shop/index.ts
 Component({
@@ -28,5 +30,11 @@ Component({
         url: `/pages/good/index?goodid=${goodid}`
       })
     },
+  },
+
+  lifetimes: {
+    ready: async function () {
+      console.debug('user endpoint get', await UserEndpoint.get(1))
+    }
   }
 })

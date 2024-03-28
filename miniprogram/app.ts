@@ -1,6 +1,8 @@
+import { init_hilla_client } from "./utils/query"
 import { AppStore, Comp } from "./utils/store"
 
-// app.ts
+init_hilla_client()
+
 export interface AppOption extends IAppOption {
   globalData: {
     userInfo?: WechatMiniprogram.UserInfo,
@@ -18,21 +20,5 @@ App<AppOption>({
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
-    // wx.loadFontFace({
-    //   family: "HanZiZhiMeiFangSongGBK",
-    //   source: "/miniprogram/font/HanZiZhiMeiFangSongGBK-MianFei(God-FangSongGBK-free)-2.ttf",
-    //   global: true
-    // })
-    //   .then(() => console.debug("Success load font ."))
-    //   .catch(err => console.error("Error on load font !", err))
-
-    // // 登录
-    // wx.login({
-    //   success: res => {
-    //     console.log(res.code)
-    //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
-    //   },
-    // })
   },
 })
