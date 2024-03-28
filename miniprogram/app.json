@@ -10,5 +10,12 @@
     "backgroundColor": "#eeeeee"
   },
   "style": "v2",
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "networkTimeout": {
+    "request": 5000,
+    "connectSocket": 5000
+  },
+  "resolveAlias": {
+    
+  }
 }

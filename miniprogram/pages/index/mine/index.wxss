@@ -1,0 +1,27 @@
+/* pages/index/mine/index.wxss */
+@import "../../../styles/index.wxss";
+
+.g4c {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.card_box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.columns>.card_box_header {
+  flex: 1;
+}
+
+.card_box_header {
+  font-weight: bold;
+}
+
+.card_box_header_link {
+  font-size: 0.75rem;
+  color: gray;
+}

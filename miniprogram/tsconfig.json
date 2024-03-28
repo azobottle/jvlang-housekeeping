@@ -1,11 +1,9 @@
 {
-  "paths": {
-    "tdesign-miniprogram/*": ["../node_modules/tdesign-miniprogram/miniprogram_dist/*"]
-  },
+  "paths": {},
   "compilerOptions": {
     "strictNullChecks": true,
     "noImplicitAny": true,
-    "module": "CommonJS",
+    "module": "UMD",
     "target": "ES2020",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,

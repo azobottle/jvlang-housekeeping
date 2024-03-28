@@ -4,7 +4,8 @@
   "type": "module",
   "workspaces": [
     "frontend",
-    "miniprogram"
+    "miniprogram",
+    "miniprogram_hiila_integrated/miniprogram_generator_plugin"
   ],
   "dependencies": {
     "@hilla/form": "2.5.6",

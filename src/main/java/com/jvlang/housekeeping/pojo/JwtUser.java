@@ -13,14 +13,6 @@ import org.springframework.lang.NonNull;
 public interface JwtUser {
     long getUserId();
 
-    @NonNull
-    User readUserCached();
-
-    @NonNull
-    User readUserNoCache();
-
-    void clearUserCache();
-
     @SuperBuilder
     @RequiredArgsConstructor
     @AllArgsConstructor
@@ -29,40 +21,5 @@ public interface JwtUser {
         @Getter
         @Setter
         long userId;
-
-        @Transient
-        private transient volatile User _cachedUser;
-
-        /**
-         * 通过 userId 读取用户。
-         *
-         * @return 返回值不会为空，如果为空会抛出异常。
-         */
-        @NonNull
-        @Override
-        public User readUserCached() {
-            if (_cachedUser == null) synchronized (this) {
-                if (_cachedUser == null) _cachedUser = readUserNoCache();
-            }
-            return _cachedUser;
-        }
-
-        @Override
-        public void clearUserCache() {
-            if (_cachedUser != null) synchronized (this) {
-                if (_cachedUser != null) _cachedUser = null;
-            }
-        }
-
-        @NonNull
-        @Override
-        public User readUserNoCache() {
-            var userRepository = Application.getContext().getBean(UserRepository.class);
-            try {
-                return userRepository.getReferenceById(userId);
-            } catch (EntityNotFoundException err) {
-                throw new AuthFailed("用户不存在，没有找到userId为" + userId + "的用户！", err);
-            }
-        }
     }
 }

@@ -9,8 +9,6 @@ Page({
   data: {
     page_title: "商品详情",
     good_title_long: "洗衣机洗啊洗啊洗半天没我们洗的干净",
-    app_page_nav_bar__height: 100,
-    app_page_nav_bar__transparent: true,
   },
 
   /**
@@ -24,7 +22,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    
+
   },
 
   /**

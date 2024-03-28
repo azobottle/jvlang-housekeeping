@@ -2,7 +2,6 @@ package com.jvlang.housekeeping.pojo.entity;
 
 import com.jvlang.housekeeping.pojo.AbstractEntity;
 import com.jvlang.housekeeping.pojo.Picture;
-import com.jvlang.housekeeping.pojo.Role0;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;

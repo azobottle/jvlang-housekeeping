@@ -1,3 +1,4 @@
+
 export function remove_item<T extends any>(arr: Array<T>, value: T): boolean {
   const index = arr.indexOf(value);
   if (index > -1) {
@@ -20,7 +21,3 @@ export const throttle = (that: any, callback: Function, time: number) => {
     }, time)
   }
 }
-
-export default {
-
-};

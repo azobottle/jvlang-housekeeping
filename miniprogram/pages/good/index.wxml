@@ -6,7 +6,7 @@
 
 
 <sticky_footer>
-  <app_page_nav_bar slot="header" title="{{page_title}}" transparent="{{app_page_nav_bar__transparent}}" bind:app_page_nav_bar__height_calc="on__app_page_nav_bar__height_calc" />
+  <app_page_nav_bar slot="header" title="{{page_title}}" transparent />
   <view slot="main">
     <scroll-view id="shop_scroll_view" style="height: 100%;" scroll-y type="list">
       <swiper autoplay indicator-dots interval="{{10000}}" style="height: 45vh;">
@@ -49,10 +49,14 @@
   <view slot="footer">
     <view class="columns" style="align-items: center;padding: 6px 0;gap: 10px;background-color: white;">
       <view style="margin-left: 10px;"></view>
-      <view class="buy_other_btns">
+      <icon_btn 
+        icon_src="/assets/mdi/person_search_black_24dp.svg"
+        text="师傅"
+      />
+      <!-- <view class="buy_other_btns">
         <image src="/assets/mdi/person_search_black_24dp.svg"></image>
         <text>师傅</text>
-      </view>
+      </view> -->
       <view class="two_buy_btn">
         <view class="two_buy_btn_common" style="border-radius: 30px 0 0 30px;background-color: orange;">
           <image src="/assets/mdi/grade_white_24dp.svg"></image>

@@ -1,6 +1,7 @@
 package com.jvlang.housekeeping.config;
 
 import com.fasterxml.jackson.databind.*;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,9 +27,11 @@ public class JsonConfig {
         }
     }
 
-    @Bean("setupObjectMapper")
-    Object setupObjectMapper(@Autowired
-                             ObjectMapper objectMapper) {
+    @Autowired
+    ObjectMapper objectMapper;
+
+    @PostConstruct
+    void postConstruct() {
         objectMapper.enable(
                 FAIL_ON_NULL_FOR_PRIMITIVES,
                 FAIL_ON_NUMBERS_FOR_ENUMS,
@@ -41,6 +44,5 @@ public class JsonConfig {
         );
         globalObjectMapper.set(objectMapper);
         log.debug("init ObjectMapper --- {}", objectMapper);
-        return new Object();
     }
 }

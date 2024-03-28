@@ -1,0 +1,19 @@
+<!--components/toast_scope/index.wxml-->
+<overlapping_two id="toast_scope">
+  <slot slot="fr"></slot>
+  <view slot="bk" class="toast_box">
+    <view wx:for="{{store.toasts}}" wx:for-item="toast" wx:key="id" class="toast">
+      <!-- style="{{'bottom: ' + (index+1)*75 + 'px;'}}" -->
+      <view>
+        <view style="text-align: center;">{{toast.summary}}</view>
+        <view wx:if="{{toast.detail}}" data-toastid="{{toast.id}}" class="top_btn" style="left: 8px;" bind:tap="tap_detail">
+          <image src="{{'/assets/mdi/'+ (toast.openDetail? 'expand_more_white_18dp.svg' : 'chevron_right_white_18dp.svg' )}}" />
+        </view>
+        <view data-toastid="{{toast.id}}" wx:if="{{toast.close_manully}}" class="top_btn" style="right: 8px;" bind:tap="remove_toast">
+          <image src="/assets/mdi/close_white_18dp.svg" />
+        </view>
+      </view>
+      <view wx:if="{{toast.openDetail}}">{{toast.detail}}</view>
+    </view>
+  </view>
+</overlapping_two>

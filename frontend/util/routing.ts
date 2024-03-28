@@ -1,7 +1,7 @@
 import { useMatches } from 'react-router-dom';
 
 type RouteMetadata = {
-  [key: string]: any;
+  [key: string]: any; 
 };
 
 /**

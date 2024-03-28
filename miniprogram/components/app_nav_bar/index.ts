@@ -7,21 +7,21 @@ const list = [
   },
   {
     vroute: "shop",
-    text: "价目",
+    text: "分类",
     icon: '/assets/mdi/space_dashboard_outlined.svg',
     icon_checked: '/assets/mdi/space_dashboard_two_tone.svg'
   },
   {
     vroute: "eventstream",
-    text: "活跃",
+    text: "动态",
     icon: '/assets/mdi/favorite_border_outlined.svg',
     icon_checked: '/assets/mdi/favorite_two_tone.svg'
   },
   {
-    vroute: "order",
-    text: "订单",
-    icon: '/assets/mdi/event_note_outlined.svg',
-    icon_checked: '/assets/mdi/event_note_two_tone.svg'
+    vroute: "message",
+    text: "消息",
+    icon: '/assets/mdi/textsms_black_24dp.svg',
+    icon_checked: '/assets/mdi/textsms_black_24dp_two_tone.svg'
   },
   {
     vroute: "mine",
