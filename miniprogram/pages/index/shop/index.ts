@@ -34,7 +34,7 @@ Component({
 
   lifetimes: {
     ready: async function () {
-      console.debug('user endpoint get', await UserEndpoint.get(1))
+      console.debug('user endpoint get', await UserEndpoint.me())
     }
   }
 })

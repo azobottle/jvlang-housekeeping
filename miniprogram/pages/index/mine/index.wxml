@@ -11,11 +11,7 @@
               <tag>星级客户</tag>
             </view>
           </view>
-          <btn>邀请有奖</btn>
-          <!-- <view class="columns" style="gap: 25px;">
-          <btn style="flex:1">我的订单</btn>
-          <btn style="flex:1">收藏</btn>
-        </view> -->
+          <btn bind:tap="toast_ui" data-toastoption="{{ {summary:'🚀 敬请期待（程序员正在开发中）...'} }}">邀请有奖</btn>
         </view>
       </view>
     </card>
@@ -55,7 +51,7 @@
     </card>
   </view>
   <view wx:else style="height: 80vh;" class="flex_center">
-    <need_login style="width: 80vw;" />
+    <need_login_btn style="width: 80vw;" />
   </view>
 
 </view>

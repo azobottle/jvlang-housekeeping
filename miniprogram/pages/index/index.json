@@ -3,6 +3,7 @@
     "app_nav_bar": "../../components/app_nav_bar",
     "app_page_nav_bar": "../../components/app_page_nav_bar",
     "sticky_footer": "../../components/sticky_footer",
+    "toast_scope": "../../components/toast_scope",
     "home": "./home",
     "shop": "./shop",
     "mine": "./mine",

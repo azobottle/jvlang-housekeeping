@@ -1,4 +1,5 @@
 import { get_store_in_mixined } from "../../../utils/store"
+import { toast_ui } from "../../../utils/toast";
 
 // pages/index/mine/index.ts
 Component({
@@ -25,6 +26,7 @@ Component({
       const s = get_store_in_mixined(this);
       console.debug('User logout : ', s.read('user'))
       s.set('user', null)
-    }
+    },
+    toast_ui,
   }
 })

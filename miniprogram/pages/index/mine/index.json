@@ -5,6 +5,6 @@
     "btn": "../../../components/btn",
     "tag": "../../../components/tag",
     "icon_btn": "../../../components/icon_btn",
-    "need_login": "../../../components/need_login"
+    "need_login_btn": "../../../components/need_login_btn"
   }
 }

@@ -88,7 +88,6 @@ public class EndPointAspect {
     }
 
 
-
     @Nullable
     private ResponseEntity<String> checkAuth(
             @NonNull String endpointName,
@@ -116,7 +115,7 @@ public class EndPointAspect {
                 if (ca == cb) return 0;
                 return ca.isAssignableFrom(cb) ? 1 : -1;
             }).toList();
-            log.debug("Sorted methods : {}", methods
+            log.trace("Sorted methods : {}", methods
                     .stream()
                     .map(it -> "%s (declaring class is %s)"
                             .formatted(
@@ -126,24 +125,25 @@ public class EndPointAspect {
                     .toList());
             var subClass = methods.get(0).getDeclaringClass();
             methods = methods.stream().filter(it -> it.getDeclaringClass() == subClass).toList();
-            log.debug("Filtered methods : {}", methods);
+            log.trace("Filtered methods : {}", methods);
         }
 
         var allowRoles = new HashSet<Role0>();
         var allowNoLogin = new AtomicBoolean(false);
 
         for (var anno : endpointClz.getAnnotations()) {
-            checkAnnotation(anno, allowRoles, allowNoLogin);
+            prepareAllowRoles(anno, allowRoles, allowNoLogin);
         }
         for (var method : methods) {
             var annoList = method.getAnnotations();
 
             for (var anno : annoList) {
-                checkAnnotation(anno, allowRoles, allowNoLogin);
+                prepareAllowRoles(anno, allowRoles, allowNoLogin);
             }
         }
 
         if (allowNoLogin.get()) {
+            log.debug("[{} {}] Allow no login", endpointName, methodName);
             return null;
         }
 
@@ -193,7 +193,7 @@ public class EndPointAspect {
         return null;
     }
 
-    private void checkAnnotation(Annotation anno, Set<Role0> allowRoles, AtomicBoolean allowNoLogin) {
+    private void prepareAllowRoles(Annotation anno, Set<Role0> allowRoles, AtomicBoolean allowNoLogin) {
         if (anno instanceof AllowRole a) {
             allowRoles.addAll(Arrays.asList(a.value()));
         }

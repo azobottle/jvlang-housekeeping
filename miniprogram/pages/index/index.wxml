@@ -28,21 +28,23 @@
 </wxs>
 <page-meta>
 </page-meta>
-<scroll-view style="height: 100%;" scroll-y type="list" bind:switch_vroute="on_switch_vroute">
-  <sticky_footer>
-    <view slot="header">
-      <app_page_nav_bar wx:if="{{header_title}}" title="{{header_title}}" />
-    </view>
-    <view slot="main" style="overflow-y: scroll;">
-      <!-- 抽象节点传不了render，真你妈抽象 -->
-      <home style="{{m1.style_is_show('home', current_vroute)}}" />
-      <view wx:if="{{lazy_loading_not_home}}">
-        <shop style="{{m1.style_is_show('shop', current_vroute)}}" />
-        <mine style="{{m1.style_is_show('mine', current_vroute)}}" />
-        <why_choose_us style="{{m1.style_is_show('why_choose_us', current_vroute)}}" />
+<toast_scope style="height: 100%;">
+  <scroll-view style="height: 100%;" scroll-y type="list" bind:switch_vroute="on_switch_vroute">
+    <sticky_footer>
+      <view slot="header">
+        <app_page_nav_bar wx:if="{{header_title}}" title="{{header_title}}" />
       </view>
-    </view>
-    <app_nav_bar slot="footer" current_vroute="{{current_vroute}}">
-    </app_nav_bar>
-  </sticky_footer>
-</scroll-view>
+      <view slot="main" style="overflow-y: scroll;">
+        <!-- 抽象节点传不了render，真你妈抽象 -->
+        <home style="{{m1.style_is_show('home', current_vroute)}}" />
+        <view wx:if="{{lazy_loading_not_home}}">
+          <shop style="{{m1.style_is_show('shop', current_vroute)}}" />
+          <mine style="{{m1.style_is_show('mine', current_vroute)}}" />
+          <why_choose_us style="{{m1.style_is_show('why_choose_us', current_vroute)}}" />
+        </view>
+      </view>
+      <app_nav_bar slot="footer" current_vroute="{{current_vroute}}">
+      </app_nav_bar>
+    </sticky_footer>
+  </scroll-view>
+</toast_scope>

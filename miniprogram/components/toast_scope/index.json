@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "overlapping_two": "../overlapping_two"
+  }
+}

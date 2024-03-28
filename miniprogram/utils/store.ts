@@ -5,7 +5,8 @@
  * 总共就100行不到的事情为啥要引入一个答辩依赖呢。
  */
 import { AppOption } from "../app";
-import { remove_item } from "../utils/util";
+import { remove_item } from "./util";
+import { ToastState } from "./toast"
 
 export interface StoreBinder<D extends Record<string, any>> {
   set<K extends keyof D>(key: K, value: D[K]): Promise<void>
@@ -53,7 +54,8 @@ export function _bind_store<D>(listeners: readonly Comp<D>[]): StoreBinder<D> {
 export const _app_store_default_data = () => ({
   user: null as null | {
     auth_token: string,
-  }
+  },
+  toasts: [] as ToastState[]
 });
 
 export type AppStore = ReturnType<typeof _app_store_default_data>;

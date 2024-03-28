@@ -1,0 +1,45 @@
+/* components/toast_scope/index.wxss */
+@import "../../styles/index.wxss";
+
+#toast_scope {
+  height: 100%;
+  width: 100%;
+}
+
+.toast_box {
+  bottom: 75px;
+  position: fixed;
+  z-index: 114514;
+  left: calc(50vw - 37.5vw);
+  width: 75vw;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+}
+
+.toast {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: aliceblue;
+  font-size: 0.9rem;
+  z-index: 114514;
+  width: 75vw;
+  border-radius: 10px;
+  padding: 7px;
+  overflow: scroll;
+}
+
+.top_btn {
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  width: 18px;
+  height: 18px;
+}
+
+.top_btn>image {
+  width: 18px;
+  height: 18px;
+}

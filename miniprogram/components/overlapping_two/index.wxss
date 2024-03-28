@@ -13,12 +13,12 @@
   position: relative;
 }
 
-.a {
+.bk {
   /* border: 1px solid aqua; */
   flex: 1;
 }
 
-.b {
+.fr {
   position: absolute;
   /* border: 1px dashed blue; */
   top: 0;
