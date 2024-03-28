@@ -1,6 +1,6 @@
 import { IEvent } from "../../../utils/event"
 
-import { UserEndpoint } from "../../../links/hilla/generated/endpoints";
+import { UserEndpoint } from "../../../generated/endpoints";
 
 // pages/index/shop/index.ts
 Component({

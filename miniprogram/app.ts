@@ -1,7 +1,4 @@
-import { init_hilla_client } from "./utils/query"
 import { AppStore, Comp } from "./utils/store"
-
-init_hilla_client()
 
 export interface AppOption extends IAppOption {
   globalData: {
