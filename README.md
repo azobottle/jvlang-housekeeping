@@ -37,7 +37,7 @@
 
 4. 可以使用 Intellij 启动主类，也可以 `mvnw org.springframework.boot:spring-boot-maven-plugin:3.2.2:run` 来启动。
 
-5. 启动后 hilla 会运行代码生成。然后 管理端和小程序 的 ts 类型定义 和 ts 接口定义会被生成到其 `./generated` 目录下。然后你就可以开发前端了。
+5. 启动后 hilla 会运行代码生成。然后 管理端和小程序 的 ts 类型定义 和 ts 接口定义会被生成到其 `frontend/generated` 和 `miniprogram/generated` 目录下。然后你就可以开发前端了。
 
 ## 参与贡献
 
