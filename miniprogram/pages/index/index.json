@@ -6,7 +6,6 @@
     "toast_scope": "../../components/toast_scope",
     "home": "./home",
     "shop": "./shop",
-    "mine": "./mine",
-    "why_choose_us": "./why_choose_us"
+    "mine": "./mine"
   }
 }

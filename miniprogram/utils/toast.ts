@@ -4,7 +4,7 @@ import { _bind_store, _app_store_listeners } from "./store";
 export type ToastOption = {
   summary: string
   detail?: string
-  icon?: 'error',
+  type?: 'error',
   timeout?: number,
 };
 

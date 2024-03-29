@@ -4,9 +4,9 @@ import { toast } from "../utils/toast";
 
 export default {
   async call(endpoint: string, method: string, params: any, init: EndpointRequestInit): Promise<any> {
-    const request = new Promise((resolve, reject) => {
+    const request = new Promise(async (resolve, reject) => {
       wx.request({
-        url: `${backend_server_host}/connect/${endpoint}/${method}`,
+        url: `${await backend_server_host()}/connect/${endpoint}/${method}`,
         header: {
           "Accept": "application/json",
           "Content-Type": "application/json",

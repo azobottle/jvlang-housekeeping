@@ -6,6 +6,8 @@
 
   module.exports.start_with = start_with;
 </wxs>
-<view class="columns app_nav_bar">
-  <icon_btn wx:for="{{list}}" wx:key="id" wx:for-item="item" data-vroute="{{item.vroute}}" bind:tap="switch_vroute" class="app_nav_bar_item" icon_src="{{current_vroute && m1.start_with(item.vroute,current_vroute)?item.icon_checked:item.icon}}" text="{{item.text}}" />
+<view class="app_nav_bar_outter">
+  <view class="columns app_nav_bar">
+    <icon_btn wx:for="{{list}}" wx:key="id" wx:for-item="item" data-vroute="{{item.vroute}}" bind:tap="switch_vroute" class="app_nav_bar_item" icon_src="{{current_vroute && m1.start_with(item.vroute,current_vroute)?item.icon_checked:item.icon}}" text="{{item.text}}" />
+  </view>
 </view>

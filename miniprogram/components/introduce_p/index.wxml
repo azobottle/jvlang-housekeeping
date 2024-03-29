@@ -1,6 +1,6 @@
 <!--components/introduce_p/index.wxml-->
 <view class="rows">
-  <view style="font-size: 1.25rem; font-weight: bolder; letter-spacing: 3px;line-height: 2;">
+  <view style="font-size: 1.25rem; font-weight: bolder; letter-spacing: 1px;line-height: 2;">
     <slot name="title"></slot>
   </view>
   <view style="font-weight: lighter; line-height: 1.2;">

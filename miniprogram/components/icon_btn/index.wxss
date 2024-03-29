@@ -8,10 +8,47 @@
 .btn_icon {
   flex-grow: 1;
   flex-basis: auto;
+  transition-duration: 0.2s;
 }
 
 .btn_text {
   text-align: center;
   /* font-size: 0.68rem; */
   flex-grow: 0.5;
+}
+
+.btn:hover .btn_icon {
+  animation: left-edge 0.3s linear 1;
+}
+
+@keyframes dot-anim {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes left-edge {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  35% {
+    transform: rotate(-16deg);
+  }
+
+  75% {
+    transform: rotate(16deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
 }
