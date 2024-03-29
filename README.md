@@ -30,6 +30,8 @@
 
 3. 另外由于还没做注册功能，要现在user库中插入用户名和密码才能登录管理端。
 
+4. 启动后 hilla 会运行代码生成。然后 管理端和小程序 的 ts 类型定义 和 ts 接口定义会被生成到其 `./generated` 目录下。然后你就可以开发前端了。
+
 ## 参与贡献
 
 1. 查看中[橘浪家政系统 (qq.com)](https://docs.qq.com/sheet/DQlFVR1haaEVZZW1E?tab=r14pmh)的进展sheet了解进展情况，确定目标
