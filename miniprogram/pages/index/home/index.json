@@ -3,6 +3,7 @@
   "usingComponents": {
     "introduce_p": "../../../components/introduce_p",
     "btn": "../../../components/btn",
-    "hr": "../../../components/hr"
+    "hr": "../../../components/hr",
+    "card": "../../../components/card"
   }
 }

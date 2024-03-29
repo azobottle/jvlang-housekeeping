@@ -2,7 +2,6 @@
 @import "../../styles/index.wxss";
 
 .app_page_nav_bar {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 10px;
   flex-direction: column-reverse;
 }
 

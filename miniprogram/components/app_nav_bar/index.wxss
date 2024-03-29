@@ -1,19 +1,27 @@
 /* components/appnavbar/index.wxss */
 @import "../../styles/index.wxss";
 
+.app_nav_bar_outter {
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  width: calc(100vw - 16px);
+}
+
 .app_nav_bar {
   background-color: rgba(255, 255, 255, 0.8);
   /* 在 app.wxss 中将 page 的下间距设置为导航栏相同。 */
-  min-height: 70px;
-  max-height: 70px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px -10px 10px;
-  transition: all 3s;
+  min-height: 62px;
+  max-height: 62px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
+  transition: all;
   z-index: 1000;
   align-items: center;
+  border-radius: 25px;
 }
 
 .app_nav_bar_item {
   flex-grow: 1;
-  padding: 0.25rem 0.5rem 0.5rem 0rem;
+  padding: 0.25rem 0rem;
   z-index: 2000;
 }
