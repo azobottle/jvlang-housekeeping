@@ -6,16 +6,18 @@
 
 - `src` 目录和 maven的那些乱七八糟 是橘浪家政系统后端。
 - `miniprogram` 和 `project.conf.json` 是小程序端。
-  - `miniprogram_hiila_integrated` 是一个用于小程序代码生成的 `hilla` 插件。
+    - `miniprogram_hiila_integrated` 是一个用于小程序代码生成的 `hilla` 插件。
 - `frontend` 是 react 管理端。
 
 ## 软件架构
 
 数据库采用mysql。
 
-管理端+后端是由 hilla 框架所实现的，hilla 提供了从 java 接口到 ts 类型定义的生成方案，还提供了大量的 react crud 组件（前端表单组件 和 后端多条件查询传输层对象）。
+管理端+后端是由 hilla 框架所实现的，hilla 提供了从 java 接口到 ts 类型定义的生成方案，还提供了大量的 react crud 组件（前端表单组件
+和 后端多条件查询传输层对象）。
 
-小程序大量的组件是手糊的，没有依赖任何 npm 模块（因为我tm实在是被微信开发者工具的npm构建恶心坏了）。小程序与java后端交互的 ts 类型定义是由 hilla 生成的。
+小程序大量的组件是手糊的，没有依赖任何 npm 模块（因为我tm实在是被微信开发者工具的npm构建恶心坏了）。小程序与java后端交互的
+ts 类型定义是由 hilla 生成的。
 
 ## 环境
 
@@ -25,19 +27,21 @@
 - node18
 - jdk17
 
->（工程中自带了maven）
+> （工程中自带了maven）
 
 ### 启动
 
 1. 默认连接到本地3306端口的mysq数据库
 
-2. 启动要先在环境变量中设置好 `DEV_MYSQL_USERNAME` 、`DEV_MYSQL_PASSWORD` ，详见src/main/resources/application-dev.yml；并调用src/init.sql建库，（jpa会自动建表）
+2. 启动要先在环境变量中设置好 `DEV_MYSQL_USERNAME` 、`DEV_MYSQL_PASSWORD`
+   ，详见src/main/resources/application-dev.yml；并调用src/init.sql建库，（jpa会自动建表）
 
-3. 另外由于还没做注册功能，要现在user库中插入用户名和密码才能登录管理端。
+3. 可以使用 Intellij 启动主类，也可以 `mvnw org.springframework.boot:spring-boot-maven-plugin:3.2.2:run` 来启动。
 
-4. 可以使用 Intellij 启动主类，也可以 `mvnw org.springframework.boot:spring-boot-maven-plugin:3.2.2:run` 来启动。
+4. 启动后 hilla 会运行代码生成。然后 管理端和小程序 的 ts 类型定义 和 ts 接口定义会被生成到其 `frontend/generated`
+   和 `miniprogram/generated` 目录下。然后你就可以开发前端了。
 
-5. 启动后 hilla 会运行代码生成。然后 管理端和小程序 的 ts 类型定义 和 ts 接口定义会被生成到其 `frontend/generated` 和 `miniprogram/generated` 目录下。然后你就可以开发前端了。
+5. 使用 `devadmin` `devadmin1145141919810` 作为开发模式下的账号密码登陆到管理员界面。
 
 ## 参与贡献
 
