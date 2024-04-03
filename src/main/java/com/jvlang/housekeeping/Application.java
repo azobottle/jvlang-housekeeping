@@ -7,9 +7,11 @@ import com.vaadin.flow.theme.Theme;
 import jakarta.annotation.Nullable;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.lang.NonNull;
 
 /**
@@ -24,6 +26,27 @@ import org.springframework.lang.NonNull;
 public class Application implements AppShellConfigurator {
     @Nullable
     private static volatile ConfigurableApplicationContext ctx;
+
+    @Value("${spring.datasource.url}")
+    String datasourceUrl;
+
+    @Value("${server.port}")
+    String serverPort;
+
+    @Bean
+    Object showConfigInfo() {
+        log.info('\n' + """
+                        +---------------------------------------------------------------------+
+                        | Show Config Info
+                        | ---
+                        |
+                        | spring.datasource.url : {}
+                        | server.port           : {}
+                        +---------------------------------------------------------------------+
+                        """,
+                datasourceUrl, serverPort);
+        return new Object();
+    }
 
     @SneakyThrows
     @NonNull
