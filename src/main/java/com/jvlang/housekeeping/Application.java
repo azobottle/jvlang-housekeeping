@@ -1,17 +1,15 @@
 package com.jvlang.housekeeping;
 
-import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.page.AppShellConfigurator;
-import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 import jakarta.annotation.Nullable;
+import jakarta.annotation.PostConstruct;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.lang.NonNull;
 
 /**
@@ -27,27 +25,6 @@ public class Application implements AppShellConfigurator {
     @Nullable
     private static volatile ConfigurableApplicationContext ctx;
 
-    @Value("${spring.datasource.url}")
-    String datasourceUrl;
-
-    @Value("${server.port}")
-    String serverPort;
-
-    @Bean
-    Object showConfigInfo() {
-        log.info('\n' + """
-                        +---------------------------------------------------------------------+
-                        | Show Config Info
-                        | ---
-                        |
-                        | spring.datasource.url : {}
-                        | server.port           : {}
-                        +---------------------------------------------------------------------+
-                        """,
-                datasourceUrl, serverPort);
-        return new Object();
-    }
-
     @SneakyThrows
     @NonNull
     public static ConfigurableApplicationContext getContext() {
@@ -60,6 +37,41 @@ public class Application implements AppShellConfigurator {
     }
 
     public static void main(String[] args) {
+        log.info("\n" + """
+                        +----------------------------------------------------
+                        | Environments :
+                        | {}
+                        | DEV_MYSQL_ADDR={}
+                        |
+                        | Properties :
+                        | {}
+                        +----------------------------------------------------
+                        """,
+                System.getenv(),
+                System.getenv("DEV_MYSQL_ADDR"),
+                System.getProperties()
+        );
         ctx = SpringApplication.run(Application.class, args);
+    }
+
+
+    @Value("${spring.datasource.url}")
+    String datasourceUrl;
+
+    @Value("${server.port}")
+    String serverPort;
+
+    @PostConstruct
+    void postConstruct() {
+        log.info('\n' + """
+                        +---------------------------------------------------------------------+
+                        | Show Config Info
+                        | ---
+                        |
+                        | spring.datasource.url : {}
+                        | server.port           : {}
+                        +---------------------------------------------------------------------+
+                        """,
+                datasourceUrl, serverPort);
     }
 }
