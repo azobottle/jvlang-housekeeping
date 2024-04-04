@@ -18,3 +18,7 @@ logging:
     com.jvlang: DEBUG
     dev.hilla: DEBUG
     com.vaadin: INFO
+
+miniprogram:
+  app-id: "wxecb95d7036f3c899"
+  app-secret: ""

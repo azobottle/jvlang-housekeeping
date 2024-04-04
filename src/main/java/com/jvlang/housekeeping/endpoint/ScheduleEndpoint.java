@@ -1,5 +1,6 @@
 package com.jvlang.housekeeping.endpoint;
 
+import com.jvlang.housekeeping.aop.AllowRole;
 import com.jvlang.housekeeping.pojo.entity.Schedule;
 import com.jvlang.housekeeping.repo.ScheduleRepository;
 import com.jvlang.housekeeping.repo.ServiceRepository;
@@ -16,8 +17,12 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
+import static com.jvlang.housekeeping.pojo.Role0.Manager;
+import static com.jvlang.housekeeping.pojo.Role0.SuperAdmin;
+
 @Endpoint
 @AnonymousAllowed
+@AllowRole({SuperAdmin, Manager})
 public class ScheduleEndpoint extends CrudRepositoryService<Schedule, Long, ScheduleRepository> {
     @Autowired
     ScheduleRepository scheduleRepository;

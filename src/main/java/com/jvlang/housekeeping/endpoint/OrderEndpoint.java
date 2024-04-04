@@ -1,5 +1,6 @@
 package com.jvlang.housekeeping.endpoint;
 
+import com.jvlang.housekeeping.aop.AllowRole;
 import com.jvlang.housekeeping.pojo.entity.Order0;
 import com.jvlang.housekeeping.pojo.exceptions.ScheduleFailed;
 import com.jvlang.housekeeping.repo.OrderRepository;
@@ -20,9 +21,13 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
+import static com.jvlang.housekeeping.pojo.Role0.Manager;
+import static com.jvlang.housekeeping.pojo.Role0.SuperAdmin;
+
 @Endpoint
 @AnonymousAllowed
 @Slf4j
+@AllowRole({SuperAdmin, Manager})
 public class OrderEndpoint extends CrudRepositoryService<Order0, Long, OrderRepository> {
     @Autowired
     UserRepository userRepository;
