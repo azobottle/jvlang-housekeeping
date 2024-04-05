@@ -39,7 +39,7 @@ export function MyAutoCrud<TModel extends AbstractModel>(options: {
   }[];
 }) {
   let columns = [] as string[];
-  let p = UserModel.prototype;
+  let p = options.model.prototype;
   while (p != null) {
     columns = [...Object.getOwnPropertyNames(p), ...columns];
     p = Object.getPrototypeOf(p);
@@ -56,6 +56,7 @@ export function MyAutoCrud<TModel extends AbstractModel>(options: {
         ...(options.notDisplayColumns ?? []),
       ].includes(it)
   );
+  console.log("columns", columns);
   return (
     <AutoCrud
       service={options.endpoint}
