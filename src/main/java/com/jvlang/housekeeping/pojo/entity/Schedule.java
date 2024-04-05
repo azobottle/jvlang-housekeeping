@@ -9,6 +9,8 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 @Data
 @SuperBuilder(toBuilder = true)
@@ -23,7 +25,7 @@ public class Schedule extends AbstractEntity {
     @ExcelProperty("师傅id")
     private Long shifuId;
     @ExcelProperty(value = "日期", converter = DateConverter.class)
-    private Date date;
+    private LocalDate date;
     @ExcelProperty("上午是否排班")
     private Boolean availableMor;
     @ExcelProperty("下午是否排班")

@@ -12,6 +12,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Map;
 import java.util.Optional;
 
@@ -24,21 +26,21 @@ import java.util.Optional;
 @MappedSuperclass
 public abstract class AbstractEntity implements Computed {
     @Id
-    @Nullable
+    @Nonnull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     @Version
-    @Nullable
+    @Nonnull
     protected Long optimisticLocking;
 
-    @Nullable
+    @Nonnull
     @CreationTimestamp
-    protected Timestamp createTime;
+    protected LocalDateTime createTime;
 
-    @Nullable
+    @Nonnull
     @UpdateTimestamp
-    protected Timestamp modifyTime;
+    protected LocalDateTime modifyTime;
 
     @Nullable
     @UserId

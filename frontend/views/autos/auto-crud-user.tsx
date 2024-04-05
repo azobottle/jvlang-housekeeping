@@ -12,6 +12,8 @@ export default function UserCrud() {
       gridProps={{
         visibleColumns: [
           "id",
+          "createTime",
+          "modifyTime",
           "username",
           "nickName",
           "description",

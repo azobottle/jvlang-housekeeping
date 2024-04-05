@@ -23,7 +23,7 @@ import static com.jvlang.housekeeping.pojo.Role0.SuperAdmin;
 @Endpoint
 @AnonymousAllowed
 @AllowRole({SuperAdmin, Manager})
-public class GoodCatalogEndpoint extends CrudRepositoryService<GoodCatalog, Long, GoodCatalogRepository> {
+public class GoodCatalogEndpoint extends AbstractCrudEndpoint<GoodCatalog,Long, GoodCatalogRepository> {
     @AllowNoLogin
     @Override
     public List<GoodCatalog> list(Pageable pageable, @Nullable Filter filter) {

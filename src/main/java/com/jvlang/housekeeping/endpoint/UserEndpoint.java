@@ -22,7 +22,7 @@ import static com.jvlang.housekeeping.pojo.Role0.SuperAdmin;
 @Endpoint
 @AnonymousAllowed
 @AllowRole({SuperAdmin, Manager}) // 默认的那些接口都得是管理者权限才能改和看，但是可以给一些特殊的VO接口。
-public class UserEndpoint extends CrudRepositoryService<User, Long, UserRepository> {
+public class UserEndpoint extends AbstractCrudEndpoint<User, Long, UserRepository> {
     @Override
     public @Nullable User save(User value) {
         return super.save(value);

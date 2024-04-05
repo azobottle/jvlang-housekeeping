@@ -11,6 +11,8 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Data
@@ -27,7 +29,7 @@ public class Comment extends AbstractEntity {
     @UserId
     private Long userId;
     private Long replyId;
-    private Timestamp commentTime;
+    private LocalDateTime commentTime;
     @JdbcTypeCode(SqlTypes.JSON)
     private List<Picture> pictures;
     private String status;

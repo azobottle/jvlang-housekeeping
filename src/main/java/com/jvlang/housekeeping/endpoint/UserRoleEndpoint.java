@@ -21,7 +21,7 @@ import static com.jvlang.housekeeping.pojo.Role0.SuperAdmin;
 @Endpoint
 @AnonymousAllowed
 @AllowRole({SuperAdmin, Manager})
-public class UserRoleEndpoint extends CrudRepositoryService<UserRole, Long, UserRoleRepository> {
+public class UserRoleEndpoint extends AbstractCrudEndpoint<UserRole, Long, UserRoleRepository> {
     @Autowired
     UserRepository userRepository;
 

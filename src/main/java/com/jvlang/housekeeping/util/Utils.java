@@ -6,6 +6,7 @@ import dev.hilla.exception.EndpointException;
 import lombok.NonNull;
 import lombok.SneakyThrows;
 import org.springframework.core.env.Environment;
+import org.springframework.lang.Nullable;
 
 import java.io.InputStream;
 import java.util.*;
@@ -85,5 +86,21 @@ public final class Utils {
             var profiles = Arrays.asList(env.getActiveProfiles());
             return Arrays.stream(names).anyMatch(profiles::contains);
         }
+    }
+
+    @SuppressWarnings("SpellCheckingInspection")
+    public static final class Throwables {
+        private Throwables() {
+        }
+
+        public static <T> @Nullable T findAnyCauseInstanceOf(@Nullable Throwable err, Class<T> type) {
+            if (err == null) return null;
+            var clz = err.getClass();
+            if (Objects.equals(type, clz) || type.isAssignableFrom(clz)) {
+                return type.cast(err);
+            }
+            return findAnyCauseInstanceOf(err.getCause(), type);
+        }
+
     }
 }
