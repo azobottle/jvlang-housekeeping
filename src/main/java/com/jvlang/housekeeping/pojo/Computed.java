@@ -78,9 +78,9 @@ public interface Computed {
                             throw Lombok.sneakyThrow(e);
                         }
                     })
-                    .filter(it -> it.getA() != null)
-                    .collect(Collectors.toMap(Tuple2::getA, Tuple2::getB, (v1, v2) -> {
-                        v1.getB().addAll(v2.getB());
+                    .filter(it -> it.getV1() != null)
+                    .collect(Collectors.toMap(Tuple2::getV1, Tuple2::getV2, (v1, v2) -> {
+                        v1.getV2().addAll(v2.getV2());
                         return v1;
                     }, Utils.Coll.mapSupByKeyCmp(keyCmp, keyCanCmpWithoutComparator)))
                     .entrySet()
@@ -90,18 +90,18 @@ public interface Computed {
                         return new Tuple3<>(id, cache.getOrDefault(id, null), e.getValue());
                     })
                     .toList();
-            var need_query_ids = list.stream().filter(it -> it.getB() == null).map(Tuple3::getA).toList();
+            var need_query_ids = list.stream().filter(it -> it.getV2() == null).map(Tuple3::getV1).toList();
 
             var queried = needQueryOnCacheMissing.apply(need_query_ids);
             return list.stream().map(it -> {
-                var k = it.getA();
-                var v = it.getB();
+                var k = it.getV1();
+                var v = it.getV2();
                 if (v == null) {
                     var queried_model = queried.get(k);
                     cache.put(k, queried_model);
                     v = queried_model;
                 }
-                return Map.entry(it.getA(), v);
+                return Map.entry(it.getV1(), v);
             }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (v1, v2) -> {
                 throw new IllegalStateException(String.format(
                         "Duplicate key (attempted merging values %s and %s) , list is %s",
@@ -110,8 +110,9 @@ public interface Computed {
         }
 
         public static @Nonnull Map<@Nonnull Long, @Nonnull UserPubInfo> getUserPubInfo(Object that) {
+            ThreadLocalUtils.BusinessThreadScope.assertEnteredBusinessThreadScope();
             return getModelFromId(
-                    ThreadLocalUtils.userPubInfoRejectCache,
+                    ThreadLocalUtils.BusinessThreadScope.userPubInfoCache,
                     Arrays.stream(that.getClass().getDeclaredFields())
                             .filter(f -> !Modifier.isStatic(f.getModifiers()))
                             .filter(f -> f.getAnnotation(UserId.class) != null),

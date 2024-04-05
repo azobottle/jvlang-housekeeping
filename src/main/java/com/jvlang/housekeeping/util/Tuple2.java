@@ -8,16 +8,17 @@ import lombok.experimental.SuperBuilder;
 
 /**
  * 类似于 Map.entry ，但是可空。
- * @param <A>
- * @param <B>
+ *
+ * @param <V1>
+ * @param <V2>
  */
 @Data
 @SuperBuilder
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class Tuple2<A, B> {
+public class Tuple2<V1, V2> {
     @Nullable
-    protected A a;
+    protected V1 v1;
     @Nullable
-    protected B b;
+    protected V2 v2;
 }

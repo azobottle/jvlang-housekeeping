@@ -25,6 +25,7 @@ import org.springframework.stereotype.Component;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Modifier;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.jvlang.housekeeping.util.Utils.Http.createResponseErrorObject;
@@ -57,8 +58,9 @@ public class EndPointAspect {
             log.debug("[{} {}] >>> before endpoint , args is {}",
                     endpointName, methodName, Arrays.asList(args));
             var u = userUtils.readUser();
+            ThreadLocalUtils.BusinessThreadScope.enter(u, new ConcurrentHashMap<>());
             try {
-                ThreadLocalUtils.BusinessThreadScope.enter(u);
+                ThreadLocalUtils.BusinessThreadScope.assertEnteredBusinessThreadScope();
                 try {
                     var checkAuthRes = checkAuth(endpointName, methodName, u);
                     if (checkAuthRes != null) {

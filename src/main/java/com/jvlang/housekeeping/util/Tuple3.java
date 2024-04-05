@@ -10,11 +10,11 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class Tuple3<A, B, C> {
+public class Tuple3<V1, V2, V3> {
     @Nullable
-    protected A a;
+    protected V1 v1;
     @Nullable
-    protected B b;
+    protected V2 v2;
     @Nullable
-    protected C c;
+    protected V3 v3;
 }

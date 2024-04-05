@@ -26,7 +26,7 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.Objects;
 
-import static com.jvlang.housekeeping.util.ThreadLocalUtils.currentUser;
+import static com.jvlang.housekeeping.util.ThreadLocalUtils.BusinessThreadScope.*;
 
 @Component
 @Slf4j
@@ -39,6 +39,7 @@ public class UserUtils {
 
     @Nullable
     public static JwtUser getCurrentUser() {
+        assertEnteredBusinessThreadScope();
         return currentUser.get();
     }
 
