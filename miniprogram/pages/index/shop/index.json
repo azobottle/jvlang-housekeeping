@@ -1,8 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "card": "../../../components/card",
-    "btn": "../../../components/btn",
-    "introduce_p": "../../../components/introduce_p"
+    "overlapping_two": "../../../components/overlapping_two"
   }
 }

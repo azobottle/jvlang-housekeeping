@@ -7,6 +7,7 @@ import com.jvlang.housekeeping.pojo.JwtUser;
 import com.jvlang.housekeeping.pojo.Role0;
 import com.jvlang.housekeeping.pojo.exceptions.BusinessFailed;
 import com.jvlang.housekeeping.repo.UserRoleRepository;
+import com.jvlang.housekeeping.util.ThreadLocalUtils;
 import com.jvlang.housekeeping.util.UserUtils;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.Lombok;
@@ -57,7 +58,7 @@ public class EndPointAspect {
                     endpointName, methodName, Arrays.asList(args));
             var u = userUtils.readUser();
             try {
-                UserUtils._set_current_user(u);
+                ThreadLocalUtils.BusinessThreadScope.enter(u);
                 try {
                     var checkAuthRes = checkAuth(endpointName, methodName, u);
                     if (checkAuthRes != null) {
@@ -77,7 +78,7 @@ public class EndPointAspect {
                             endpointName, methodName);
                 }
             } finally {
-                UserUtils._remove_current_user();
+                ThreadLocalUtils.BusinessThreadScope.exit();
             }
         } catch (Throwable err) {
             if (err instanceof BusinessFailed) {

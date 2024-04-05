@@ -2,14 +2,17 @@ package com.jvlang.housekeeping.pojo.vo;
 
 import com.jvlang.housekeeping.pojo.Picture;
 import com.jvlang.housekeeping.pojo.entity.User;
+import dev.hilla.Nonnull;
 import jakarta.annotation.Nullable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.Optional;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.util.*;
 
 /**
  * 用户公开的信息。
@@ -20,7 +23,9 @@ import java.util.Optional;
 @SuperBuilder
 @RequiredArgsConstructor
 @AllArgsConstructor
+@Slf4j
 public class UserPubInfo {
+    @Nonnull
     Long id;
 
     @Nullable
@@ -32,6 +37,18 @@ public class UserPubInfo {
     @Nullable
     Picture avatarUrl;
 
+    @Nullable
+    public static String displayNameFrom(@Nullable String nickName, @Nullable String username) {
+        return Optional
+                .ofNullable(nickName)
+                .map(it -> it.isBlank() ? null : it)
+                .or(() -> Optional
+                        .ofNullable(username)
+                        .map(it -> it.isBlank() ? null : it)
+                )
+                .orElse(null);
+    }
+
     public static UserPubInfo from(@NonNull User user) {
         var id = user.getId();
         if (id == null) {
@@ -40,15 +57,7 @@ public class UserPubInfo {
         return builder()
                 .id(id)
                 .description(user.getDescription())
-                .displayName(Optional
-                        .ofNullable(user.getNickName())
-                        .map(it -> it.isBlank() ? null : it)
-                        .or(() -> Optional
-                                .ofNullable(user.getUsername())
-                                .map(it -> it.isBlank() ? null : it)
-                        )
-                        .orElse(null)
-                )
+                .displayName(displayNameFrom(user.getNickName(), user.getUsername()))
                 .avatarUrl(user.getAvatarUrl())
                 .build();
     }

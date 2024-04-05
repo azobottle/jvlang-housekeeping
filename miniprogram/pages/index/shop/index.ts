@@ -33,6 +33,9 @@ Component({
   },
 
   lifetimes: {
+    created(){
+      
+    },
     ready: async function () {
       console.debug('user endpoint get', await UserEndpoint.me())
     }

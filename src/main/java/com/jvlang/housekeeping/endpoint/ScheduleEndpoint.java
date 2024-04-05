@@ -52,7 +52,7 @@ public class ScheduleEndpoint extends CrudRepositoryService<Schedule, Long, Sche
 
     private Schedule toVo(Schedule dao) {
         return dao.toBuilder()
-                .shifu(userRepository.findById(dao.getShifuId()).orElse(null))
+//                .shifu(userRepository.findById(dao.getShifuId()).orElse(null))
                 .build();
     }
 }

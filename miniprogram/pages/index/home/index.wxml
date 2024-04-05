@@ -1,5 +1,16 @@
 <!--pages/index/home/index.wxml-->
-<view class="rows" style="gap: 20px;">
+
+
+
+
+
+
+
+
+
+
+
+<!-- <view class="rows" style="gap: 20px;">
   <view class="first_see_box">
     <view>
       <view style="display: flex;flex-direction: column;">
@@ -26,4 +37,4 @@
       </view>
     </view>
   </view>
-</view>
+</view> -->

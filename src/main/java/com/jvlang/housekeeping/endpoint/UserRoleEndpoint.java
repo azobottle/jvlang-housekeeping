@@ -27,17 +27,11 @@ public class UserRoleEndpoint extends CrudRepositoryService<UserRole, Long, User
 
     @Override
     public List<UserRole> list(Pageable pageable, @Nullable Filter filter) {
-        return super.list(pageable, filter).stream().map(this::toVo).toList();
+        return super.list(pageable, filter);
     }
 
     @Override
     public Optional<UserRole> get(Long aLong) {
-        return super.get(aLong).map(this::toVo);
-    }
-
-    protected UserRole toVo(UserRole dao) {
-        return dao.toBuilder()
-                .user(userRepository.findById(dao.getUserId()).orElse(null))
-                .build();
+        return super.get(aLong);
     }
 }

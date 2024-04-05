@@ -1,13 +1,15 @@
 <!--components/appnavbar/index.wxml-->
 <wxs module="m1">
   var start_with = function (a, b) {
-    return a.toString().indexOf(b.toString()) == 0
+    a = a.toString()
+    b = b.toString()
+    return a == b || a.indexOf(b) == 0 && a.toString()[b.toString().length() - 1] == "/"
   }
 
   module.exports.start_with = start_with;
 </wxs>
 <view class="app_nav_bar_outter">
   <view class="columns app_nav_bar">
-    <icon_btn wx:for="{{list}}" wx:key="id" wx:for-item="item" data-vroute="{{item.vroute}}" bind:tap="switch_vroute" class="app_nav_bar_item" icon_src="{{current_vroute && m1.start_with(item.vroute,current_vroute)?item.icon_checked:item.icon}}" text="{{item.text}}" />
+    <icon_btn wx:for="{{list}}" wx:key="id" wx:for-item="item" data-vroute="{{item.vroute}}" bind:tap="switch_vroute" class="app_nav_bar_item" icon_src="{{current_vroute && m1.start_with(current_vroute,item.vroute)?item.icon_checked:item.icon}}" text="{{item.text}}" />
   </view>
 </view>

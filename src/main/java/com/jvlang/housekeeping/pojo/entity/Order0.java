@@ -21,8 +21,11 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 public class Order0 extends AbstractEntity {
+    @UserId
     private Long customerId;
     private Long addressId;
+
+    @UserId
     private Long shifuId;
     private Long serviceId;
     private Timestamp startTime;
@@ -34,17 +37,7 @@ public class Order0 extends AbstractEntity {
     @Transient
     @Setter(value = AccessLevel.NONE)
     @Nullable
-    protected User customer;
-
-    @Transient
-    @Setter(value = AccessLevel.NONE)
-    @Nullable
     protected Address address;
-
-    @Transient
-    @Setter(value = AccessLevel.NONE)
-    @Nullable
-    protected User shifu;
 
     @Transient
     @Setter(value = AccessLevel.NONE)

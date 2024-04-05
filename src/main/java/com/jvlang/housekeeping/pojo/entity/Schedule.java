@@ -19,6 +19,7 @@ import java.sql.Date;
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"date", "shifuId"}))
 public class Schedule extends AbstractEntity {
+    @UserId
     @ExcelProperty("师傅id")
     private Long shifuId;
     @ExcelProperty(value = "日期", converter = DateConverter.class)
@@ -27,8 +28,4 @@ public class Schedule extends AbstractEntity {
     private Boolean availableMor;
     @ExcelProperty("下午是否排班")
     private Boolean availableAft;
-    @Transient
-    @Setter(value = AccessLevel.NONE)
-    @Nullable
-    protected User shifu;
 }

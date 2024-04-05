@@ -50,8 +50,8 @@ public class OrderEndpoint extends CrudRepositoryService<Order0, Long, OrderRepo
 
     private Order0 toVo(Order0 dao) {
         return dao.toBuilder()
-                .shifu(userRepository.findById(dao.getShifuId()).orElse(null))
-                .customer(userRepository.findById(dao.getCustomerId()).orElse(null))
+//                .shifu(userRepository.findById(dao.getShifuId()).orElse(null))
+//                .customer(userRepository.findById(dao.getCustomerId()).orElse(null))
                 .service(serviceRepository.findById(dao.getServiceId()).orElse(null))
 //                .orderStatusDesc(OrderStatusEnum.getEnumById(dao.getOrderStatusId()).description)
 //                .overEventDesc(OrderEventEnum.getEnumById(dao.getOverEventId()).description)

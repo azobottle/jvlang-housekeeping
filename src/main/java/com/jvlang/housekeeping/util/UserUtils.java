@@ -26,21 +26,16 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.Objects;
 
+import static com.jvlang.housekeeping.util.ThreadLocalUtils.currentUser;
+
 @Component
 @Slf4j
 public class UserUtils {
+    @SuppressWarnings("SpellCheckingInspection")
     public static final String DEV_ADMIN_USERNAME = "devadmin";
+
+    @SuppressWarnings("SpellCheckingInspection")
     public static final String DEV_ADMIN_PLAIN_PASSWORD = "devadmin1145141919810";
-
-    private static final ThreadLocal<JwtUser> currentUser = new ThreadLocal<>();
-
-    public static void _set_current_user(JwtUser u) {
-        currentUser.set(u);
-    }
-
-    public static void _remove_current_user() {
-        currentUser.remove();
-    }
 
     @Nullable
     public static JwtUser getCurrentUser() {

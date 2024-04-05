@@ -14,12 +14,8 @@ import lombok.experimental.SuperBuilder;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(indexes = @Index(columnList = "userId"))
-public class Address extends AbstractEntity {
-    @UserId
-    private Long userId;
-    private String province;
-    private String city;
-    private String country;
-    private String detail;
+public class Good extends AbstractEntity {
+    String priceAtFirstSee;
+
+    String titleLongText;
 }

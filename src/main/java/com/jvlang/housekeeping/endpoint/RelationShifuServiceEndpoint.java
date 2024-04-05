@@ -38,8 +38,8 @@ public class RelationShifuServiceEndpoint extends CrudRepositoryService<Relation
 
     private RelationShifuService toVo(RelationShifuService dao) {
         return dao.toBuilder()
-                .shifu(userRepository.findById(dao.getShifuId()).orElse(null))
-                .service(serviceRepository.findById(dao.getServiceId()).orElse(null))
+//                .shifu(userRepository.findById(dao.getShifuId()).orElse(null))
+//                .service(serviceRepository.findById(dao.getServiceId()).orElse(null))
                 .build();
     }
 }

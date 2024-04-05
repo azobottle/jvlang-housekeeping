@@ -3,7 +3,6 @@ import { _app_store_listeners, _bind_store } from "./store";
 import { app } from "./util";
 
 export type AppEnv = {
-  is_dev: boolean
   backend_server_host: string
 }
 
@@ -53,7 +52,6 @@ async function __init_env(): Promise<AppEnv> {
     const backend_server_host = query_localhost ? 'http://localhost:8088' : 'http://localhost:8088'
     console.info(`[init_env] 后端服务器地址`, backend_server_host)
     const res = {
-      is_dev: query_localhost,
       backend_server_host
     }
     app().globalData._env = res;

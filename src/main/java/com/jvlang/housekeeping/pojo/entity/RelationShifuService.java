@@ -23,13 +23,4 @@ public class RelationShifuService extends AbstractEntity {
     private Long shifuId;
     @ExcelProperty("服务id")
     private Long serviceId;
-    @Transient
-    @Setter(value = AccessLevel.NONE)
-    @Nullable
-    protected User shifu;
-
-    @Transient
-    @Setter(value = AccessLevel.NONE)
-    @Nullable
-    protected Service service;
 }

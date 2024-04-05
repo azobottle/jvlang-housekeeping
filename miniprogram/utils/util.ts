@@ -1,4 +1,5 @@
 import { AppOption } from "../app";
+import { _app_store_listeners, _bind_store } from "./store";
 
 export type Awaited<T> = T extends null | undefined ? T : // special case for `null | undefined` 
   // when not in `--strictNullChecks` mode
@@ -37,4 +38,20 @@ export const throttle = (that: any, callback: Function, time: number) => {
       timer = null;
     }, time)
   }
+}
+
+export async function read_system_info(): Promise<WechatMiniprogram.SystemInfo> {
+  return await new Promise<WechatMiniprogram.SystemInfo>((resolve, reject) => {
+    wx.getSystemInfoAsync({
+      success(res) {
+        resolve(res)
+      },
+      fail(err) {
+        reject(err)
+      }
+    })
+  }).then(res => {
+    _bind_store(_app_store_listeners()).set("system_info", res)
+    return res;
+  })
 }

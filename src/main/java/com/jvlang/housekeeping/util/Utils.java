@@ -8,11 +8,25 @@ import lombok.NonNull;
 import lombok.SneakyThrows;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public final class Utils {
     private Utils() {
     }
+
+    public static final class Coll {
+        private Coll() {
+        }
+
+        @SafeVarargs
+        public static <T> ArrayList<T> arrayList(T... items) {
+            return new ArrayList<>(Arrays.stream(items).toList());
+        }
+    }
+
 
     public static final class Copy {
         private Copy() {
