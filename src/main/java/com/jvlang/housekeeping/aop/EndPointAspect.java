@@ -59,6 +59,7 @@ public class EndPointAspect {
         log.debug("[{} {}] >>> ------------------------- before endpoint , args is {}",
                 endpointName, methodName, Arrays.asList(args));
         var u = userUtils.readUser();
+        log.debug("JwtUser : {}", u);
         ThreadLocalUtils.BusinessThreadScope.enter(u, null);
         try {
             ThreadLocalUtils.BusinessThreadScope.assertEnteredBusinessThreadScope();

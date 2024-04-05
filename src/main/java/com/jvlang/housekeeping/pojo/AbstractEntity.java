@@ -26,7 +26,7 @@ import java.util.Optional;
 @MappedSuperclass
 public abstract class AbstractEntity implements Computed {
     @Id
-    @Nonnull
+    @Nullable
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
@@ -52,6 +52,7 @@ public abstract class AbstractEntity implements Computed {
 
     @PrePersist
     protected void onCreate() {
+        id = null;
         optimisticLocking = 0L;
         var uid = Optional.ofNullable(UserUtils.getCurrentUser())
                 .map(JwtUser::getUserId)

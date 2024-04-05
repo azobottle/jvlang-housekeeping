@@ -9,10 +9,8 @@ public interface JwtUser {
     @SuperBuilder
     @RequiredArgsConstructor
     @AllArgsConstructor
-    @ToString
+    @Data
     class Impl implements JwtUser {
-        @Getter
-        @Setter
         long userId;
     }
 }
