@@ -52,11 +52,10 @@ public class UserUtils {
     private volatile SecretKey _key;
 
     public SecretKey getPrivateKey() {
-        var profiles = Arrays.asList(env.getActiveProfiles());
-        if (profiles.contains("dev") || profiles.contains("test")) {
+        if (Utils.Env.profileIs(env, "dev", "test")) {
             if (_key == null) synchronized (UserUtils.class) {
                 if (_key == null) {
-                    log.info("Init key , profiles are {}", profiles);
+                    log.warn("Init dev key");
                     byte[] bytes;
                     try (var ins = Utils.ClassLoader.getResourceAsStream("jwt_dev.key")) {
                         var outs = new ByteArrayOutputStream();

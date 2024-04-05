@@ -16,7 +16,7 @@ import org.hibernate.type.SqlTypes;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Catalog extends AbstractEntity {
+public class GoodCatalog extends AbstractEntity {
     @Nullable
     private String text;
 

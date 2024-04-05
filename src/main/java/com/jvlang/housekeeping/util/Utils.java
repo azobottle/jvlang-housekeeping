@@ -5,11 +5,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import dev.hilla.exception.EndpointException;
 import lombok.NonNull;
 import lombok.SneakyThrows;
+import org.springframework.core.env.Environment;
 
 import java.io.InputStream;
 import java.util.*;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 public final class Utils {
@@ -36,7 +35,6 @@ public final class Utils {
                     : LinkedHashMap::new;
         }
     }
-
 
     public static final class Copy {
         private Copy() {
@@ -76,6 +74,16 @@ public final class Utils {
             ObjectNode objectNode = om.createObjectNode();
             objectNode.put(EndpointException.ERROR_MESSAGE_FIELD, errorMessage);
             return objectNode.toString();
+        }
+    }
+
+    public static final class Env {
+        private Env() {
+        }
+
+        public static boolean profileIs(Environment env, String... names) {
+            var profiles = Arrays.asList(env.getActiveProfiles());
+            return Arrays.stream(names).anyMatch(profiles::contains);
         }
     }
 }

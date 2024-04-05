@@ -7,6 +7,7 @@ import com.jvlang.housekeeping.pojo.entity.UserRole;
 import com.jvlang.housekeeping.repo.UserRepository;
 import com.jvlang.housekeeping.repo.UserRoleRepository;
 import com.jvlang.housekeeping.util.UserUtils;
+import com.jvlang.housekeeping.util.Utils;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
@@ -41,7 +42,7 @@ public class LoginController {
     UserUtils userUtils;
 
     @Autowired
-    Environment environment;
+    Environment env;
 
 
     @PostMapping("/api/jvlang/login")
@@ -56,9 +57,7 @@ public class LoginController {
                     .badRequest()
                     .body(createResponseErrorObject(objectMapper, "密码不能为空"));
         }
-        var isDev = Arrays.asList(environment.getActiveProfiles()).contains("dev");
-        log.debug("isDev : {}", isDev);
-        if (isDev
+        if (Utils.Env.profileIs(env, "dev")
                 && body.username.equals(DEV_ADMIN_USERNAME)
                 && body.password.equals(DEV_ADMIN_PLAIN_PASSWORD)
         ) {
