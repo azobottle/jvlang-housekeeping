@@ -34,12 +34,12 @@ public abstract class AbstractEntity implements Computed {
     @Nullable
     protected Long optimisticLocking;
 
-    @Nonnull
     @CreationTimestamp
+    @Nonnull
     protected LocalDateTime createTime;
 
-    @Nonnull
     @UpdateTimestamp
+    @Nonnull
     protected LocalDateTime modifyTime;
 
     @Nullable
@@ -52,9 +52,12 @@ public abstract class AbstractEntity implements Computed {
 
     @PrePersist
     protected void onCreate() {
-        createUserId = Optional.ofNullable(UserUtils.getCurrentUser())
+        optimisticLocking = 0L;
+        var uid = Optional.ofNullable(UserUtils.getCurrentUser())
                 .map(JwtUser::getUserId)
                 .orElse(null);
+        createUserId = uid;
+        modifyUserId = uid;
     }
 
     @PreUpdate
