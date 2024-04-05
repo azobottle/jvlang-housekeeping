@@ -1,6 +1,8 @@
 package com.jvlang.housekeeping.pojo;
 
+import com.jvlang.housekeeping.pojo.vo.UserPubInfo;
 import com.jvlang.housekeeping.util.UserUtils;
+import dev.hilla.Nonnull;
 import dev.hilla.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,6 +12,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -57,5 +60,11 @@ public abstract class AbstractEntity implements Computed {
         modifyUserId = Optional.ofNullable(UserUtils.getCurrentUser())
                 .map(JwtUser::getUserId)
                 .orElse(null);
+    }
+
+    @Transient
+    @Override
+    public @Nonnull Map<@Nonnull Long, @Nonnull UserPubInfo> getUserPubInfos() {
+        return Computed.super.getUserPubInfos();
     }
 }
