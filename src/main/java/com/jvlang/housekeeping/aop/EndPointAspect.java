@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.jvlang.housekeeping.Application;
 import com.jvlang.housekeeping.pojo.JwtUser;
 import com.jvlang.housekeeping.pojo.Role0;
+import com.jvlang.housekeeping.pojo.exceptions.AuthFailed;
 import com.jvlang.housekeeping.pojo.exceptions.BusinessFailed;
 import com.jvlang.housekeeping.repo.UserRoleRepository;
 import com.jvlang.housekeeping.util.ThreadLocalUtils;
@@ -150,7 +151,7 @@ public class EndPointAspect {
         }
 
         if (allowRoles.isEmpty()) {
-            log.warn("\n" + """
+            log.error("\n" + """
                     +------------------------------ WARNING ------------------------------+
                     | 未对 [{} {}] 接口设置权限！
                     |
@@ -159,7 +160,12 @@ public class EndPointAspect {
                     | 如果需要特定角色才能访问，则应当使用 @AllowRole
                     +---------------------------------------------------------------------+
                     """, endpointName, methodName);
-            return null;
+            return ResponseEntity
+                    .status(403)
+                    .body(createResponseErrorObject(
+                            objectMapper,
+                            "接口未设置授权")
+                    );
         }
 
         if (jwtUser == null) {
