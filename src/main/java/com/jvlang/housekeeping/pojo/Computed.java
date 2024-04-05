@@ -72,7 +72,7 @@ public interface Computed {
                         try {
                             return new Tuple2<>(
                                     idType.cast(f.get(that)),
-                                    new Tuple2<>(that, Utils.Coll.arrayList(f))
+                                    new Tuple2<>(that, Utils.Coll.arrayListOf(f))
                             );
                         } catch (IllegalAccessException e) {
                             throw Lombok.sneakyThrow(e);

@@ -1,6 +1,7 @@
 package com.jvlang.housekeeping.endpoint;
 
 import com.jvlang.housekeeping.pojo.exceptions.CrudFailed;
+import com.jvlang.housekeeping.util.Utils;
 import dev.hilla.EndpointExposed;
 import dev.hilla.Nullable;
 import dev.hilla.crud.CrudRepositoryService;
@@ -18,8 +19,16 @@ import static com.jvlang.housekeeping.util.Utils.Throwables.findAnyCauseInstance
 @EndpointExposed
 public abstract class AbstractCrudEndpoint<T, ID, R extends CrudRepository<T, ID> & JpaSpecificationExecutor<T>>
         extends CrudRepositoryService<T, ID, R> {
-    protected RuntimeException handleErrorDefault(Throwable err) {
+    private RuntimeException handleErrorDefault(Throwable err) {
         return Lombok.sneakyThrow(err);
+    }
+
+    protected List<T> listAll() {
+        try {
+            return Utils.Coll.arrayListFromIter(getRepository().findAll(), 80);
+        } catch (Throwable err) {
+            throw handleErrorDefault(err);
+        }
     }
 
     @Override

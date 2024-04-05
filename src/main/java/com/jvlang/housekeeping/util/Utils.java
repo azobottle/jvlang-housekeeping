@@ -21,8 +21,16 @@ public final class Utils {
         }
 
         @SafeVarargs
-        public static <T> ArrayList<T> arrayList(T... items) {
+        public static <T> ArrayList<T> arrayListOf(T... items) {
             return new ArrayList<>(Arrays.stream(items).toList());
+        }
+
+        public static <T> ArrayList<T> arrayListFromIter(Iterable<T> iter, int guessSize) {
+            var res = new ArrayList<T>(guessSize);
+            for (var it : iter) {
+                res.add(it);
+            }
+            return res;
         }
 
         public static <K, V> Supplier<Map<K, V>> mapSupByKeyCmp(

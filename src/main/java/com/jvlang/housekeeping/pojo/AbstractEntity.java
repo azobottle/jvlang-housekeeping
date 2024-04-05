@@ -31,7 +31,7 @@ public abstract class AbstractEntity implements Computed {
     protected Long id;
 
     @Version
-    @Nonnull
+    @Nullable
     protected Long optimisticLocking;
 
     @Nonnull

@@ -22,6 +22,12 @@ import static com.jvlang.housekeeping.pojo.Role0.SuperAdmin;
 public class GoodCatalogEndpoint extends AbstractCrudEndpoint<GoodCatalog, Long, GoodCatalogRepository> {
     @AllowNoLogin
     @Override
+    public List<GoodCatalog> listAll() {
+        return super.listAll();
+    }
+
+    @AllowNoLogin
+    @Override
     public List<GoodCatalog> list(Pageable pageable, @Nullable Filter filter) {
         return super.list(pageable, filter);
     }
