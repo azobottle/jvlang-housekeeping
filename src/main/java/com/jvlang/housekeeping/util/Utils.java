@@ -2,16 +2,15 @@ package com.jvlang.housekeeping.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.jvlang.housekeeping.pojo.AbstractEntity;
 import dev.hilla.exception.EndpointException;
 import lombok.NonNull;
 import lombok.SneakyThrows;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public final class Utils {
     private Utils() {
@@ -24,6 +23,17 @@ public final class Utils {
         @SafeVarargs
         public static <T> ArrayList<T> arrayList(T... items) {
             return new ArrayList<>(Arrays.stream(items).toList());
+        }
+
+        public static <K, V> Supplier<Map<K, V>> mapSupByKeyCmp(
+                @org.springframework.lang.Nullable Comparator<K> keyCmp,
+                boolean keyCanCmpWithoutComparator
+        ) {
+            return keyCanCmpWithoutComparator
+                    ? TreeMap::new
+                    : keyCmp != null
+                    ? () -> new TreeMap<>(keyCmp)
+                    : LinkedHashMap::new;
         }
     }
 

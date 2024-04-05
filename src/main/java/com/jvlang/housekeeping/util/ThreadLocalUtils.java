@@ -26,7 +26,7 @@ public final class ThreadLocalUtils {
         }
     }
 
-    public static final ThreadLocal<Map<Long, UserPubInfo>> userPubInfoRejectCache = new ThreadLocal<>();
+    public static final ThreadLocal<ConcurrentHashMap<Long, UserPubInfo>> userPubInfoRejectCache = new ThreadLocal<>();
 
     public static final ThreadLocal<JwtUser> currentUser = new ThreadLocal<>();
 }
