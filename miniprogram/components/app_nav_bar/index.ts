@@ -7,15 +7,15 @@ const list = [
   },
   {
     vroute: "shop",
-    text: "分类",
+    text: "发现",
     icon: '/assets/mdi/space_dashboard_outlined.svg',
     icon_checked: '/assets/mdi/space_dashboard_two_tone.svg'
   },
   {
-    vroute: "eventstream",
-    text: "动态",
-    icon: '/assets/mdi/favorite_border_outlined.svg',
-    icon_checked: '/assets/mdi/favorite_two_tone.svg'
+    vroute: "shopping_cart",
+    text: "购物袋",
+    icon: '/assets/mdi/shopping_bag_black_24dp_outline.svg',
+    icon_checked: '/assets/mdi/shopping_bag_black_24dp_two_tone.svg'
   },
   {
     vroute: "message",

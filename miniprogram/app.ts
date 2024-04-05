@@ -1,11 +1,12 @@
 import { AppEnv } from "./utils/query"
 import { AppStore, Comp } from "./utils/store"
+import { read_system_info } from "./utils/util"
 
 export interface AppOption extends IAppOption {
   globalData: {
     userInfo?: WechatMiniprogram.UserInfo,
     _app_store_listeners: Comp<AppStore>[]
-    _env: null | AppEnv
+    _env: null | AppEnv,
   }
   userInfoReadyCallback?: WechatMiniprogram.GetUserInfoSuccessCallback,
 }
@@ -23,7 +24,7 @@ App<AppOption>({
     wx.setStorageSync('logs', logs)
   },
   onShow() {
-
+    read_system_info()
   },
   onHide() {
 

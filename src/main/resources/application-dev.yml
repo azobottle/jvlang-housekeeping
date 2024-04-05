@@ -4,8 +4,8 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: Asia/Shanghai
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/jvlang-housekeeping?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT%2B8
-    username: ${DEV_MYSQL_USERNAME}
+    url: jdbc:mysql://${DEV_MYSQL_ADDR:127.0.0.1:3306}/jvlang-housekeeping?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT%2B8
+    username: ${DEV_MYSQL_USERNAME:root}
     password: ${DEV_MYSQL_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
@@ -17,4 +17,8 @@ logging:
     org.springframework.jdbc.core.StatementCreatorUtils: TRACE
     com.jvlang: DEBUG
     dev.hilla: DEBUG
-    com.vaadin: DEBUG
+    com.vaadin: INFO
+
+miniprogram:
+  app-id: "wxecb95d7036f3c899"
+  app-secret: ""

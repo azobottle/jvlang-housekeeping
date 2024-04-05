@@ -28,11 +28,9 @@ export function _bind_store<D>(listeners: readonly Comp<D>[]): StoreBinder<D> {
       console.debug('[store] set store from binder : ', { k, v, listeners })
       await Promise.all(
         listeners.map(listener => {
-          const d = JSON.parse(JSON.stringify(listener.data.store));
-          d[k] = v;
-          const d2 = {
-            store: d
-          };
+          const data_store = JSON.parse(JSON.stringify(listener.data.store));
+          data_store[k] = v;
+          const d2 = { store: data_store };
           return new Promise<void>((resolve, reject) => {
             try {
               listener.setData(d2, () => {
@@ -55,7 +53,9 @@ export const _app_store_default_data = () => ({
   user: null as null | {
     auth_token: string,
   },
-  toasts: [] as ToastState[]
+  toasts: [] as ToastState[],
+  open_debug: false,
+  system_info: null as null | WechatMiniprogram.SystemInfo
 });
 
 export type AppStore = ReturnType<typeof _app_store_default_data>;

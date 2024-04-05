@@ -7,6 +7,7 @@ import com.jvlang.housekeeping.pojo.JwtUser;
 import com.jvlang.housekeeping.pojo.Role0;
 import com.jvlang.housekeeping.pojo.exceptions.BusinessFailed;
 import com.jvlang.housekeeping.repo.UserRoleRepository;
+import com.jvlang.housekeeping.util.ThreadLocalUtils;
 import com.jvlang.housekeeping.util.UserUtils;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.Lombok;
@@ -24,6 +25,7 @@ import org.springframework.stereotype.Component;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Modifier;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.jvlang.housekeeping.util.Utils.Http.createResponseErrorObject;
@@ -56,8 +58,9 @@ public class EndPointAspect {
             log.debug("[{} {}] >>> before endpoint , args is {}",
                     endpointName, methodName, Arrays.asList(args));
             var u = userUtils.readUser();
+            ThreadLocalUtils.BusinessThreadScope.enter(u, new ConcurrentHashMap<>());
             try {
-                UserUtils._set_current_user(u);
+                ThreadLocalUtils.BusinessThreadScope.assertEnteredBusinessThreadScope();
                 try {
                     var checkAuthRes = checkAuth(endpointName, methodName, u);
                     if (checkAuthRes != null) {
@@ -77,7 +80,7 @@ public class EndPointAspect {
                             endpointName, methodName);
                 }
             } finally {
-                UserUtils._remove_current_user();
+                ThreadLocalUtils.BusinessThreadScope.exit();
             }
         } catch (Throwable err) {
             if (err instanceof BusinessFailed) {

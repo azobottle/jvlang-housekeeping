@@ -2,16 +2,12 @@ package com.jvlang.housekeeping.pojo.entity;
 
 import com.jvlang.housekeeping.pojo.AbstractEntity;
 import com.jvlang.housekeeping.pojo.Picture;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Index;
-import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
-
-import java.sql.Timestamp;
-import java.util.List;
 
 @Data
 @SuperBuilder(toBuilder = true)
@@ -20,15 +16,21 @@ import java.util.List;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(indexes = @Index(columnList = "topicId"))
-public class Comment extends AbstractEntity {
-    private String topicType;
-    private Long topicId;
-    @UserId
-    private Long userId;
-    private Long replyId;
-    private Timestamp commentTime;
+public class GoodCatalog extends AbstractEntity {
+    @Nullable
+    private String text;
+
+    @Nullable
+    private Long parentCatalogId;
+
+    @Nullable
     @JdbcTypeCode(SqlTypes.JSON)
-    private List<Picture> pictures;
-    private String status;
+    private Picture picture;
+
+    @Nullable
+    private DisplayStyle displayStyle;
+
+    public enum DisplayStyle {
+        Default, Cover
+    }
 }
