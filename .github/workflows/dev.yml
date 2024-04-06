@@ -11,6 +11,7 @@ jobs:
         node-version: [18.20.0]
 
     steps:
+    - run: git checkout dev_backend
     - uses: actions/checkout@v4
     
     - name: Use Node.js ${{ matrix.node-version }}
