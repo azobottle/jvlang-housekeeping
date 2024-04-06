@@ -8,14 +8,18 @@ export type AppEnv = {
 
 var __read_env_promise: Promise<AppEnv>
 
+const _preview_server = "https://jvlang-housekeeping.tong-ju.top:8443";
+const _product_server = "https://jvlang-housekeeping.tong-ju.top:8443";
+
 async function __init_env(): Promise<AppEnv> {
   try {
     console.debug('[init_env] Start')
-    const query_localhost = await (async () => {
+
+    const backend_server_host = await (async () => {
       switch (wx.getAccountInfoSync().miniProgram.envVersion) {
         // 审核的时候可能是 develop 也可能是 trial
         case "develop":
-          return await new Promise<boolean>((resolve) => {
+          return await new Promise<string>((resolve) => {
             wx.showModal({
               title: '[初始化] 向本地服务器localhost:8088发起请求？',
               confirmText: '是的',
@@ -25,31 +29,30 @@ async function __init_env(): Promise<AppEnv> {
                   console.debug('[init_env] ErrMsg in check env modal ! ', res.errMsg)
                 }
                 if (res.cancel) {
-                  resolve(false)
+                  resolve(_preview_server)
                   return
                 }
                 if (res.confirm) {
-                  resolve(true)
+                  resolve("http://localhost:8088")
                   return
                 }
                 console.error('[init_env] Illegal modal return value !', res)
-                resolve(false);
+                resolve(_preview_server);
               },
               fail(err) {
                 console.warn('[init_env] Failed in check env modal ! error is ', err)
-                resolve(false)
+                resolve(_preview_server)
               }
             })
           });
         case "trial":
-          return false;
+          return _preview_server;
         case "release":
-          return false;
+          return _product_server;
         default:
           throw new Error('Unknown miniprogram env');
       }
     })();
-    const backend_server_host = query_localhost ? 'http://localhost:8088' : 'http://localhost:8088'
     console.info(`[init_env] 后端服务器地址`, backend_server_host)
     const res = {
       backend_server_host

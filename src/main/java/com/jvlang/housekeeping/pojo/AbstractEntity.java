@@ -26,7 +26,7 @@ import java.util.Optional;
 @MappedSuperclass
 public abstract class AbstractEntity implements Computed {
     @Id
-    @Nullable
+    @Nullable // 作为前端传入参数时这个会为null，所以标注nullable。
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
