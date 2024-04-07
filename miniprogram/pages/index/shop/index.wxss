@@ -2,15 +2,20 @@
 @import "../../../styles/index.wxss";
 
 .tabs {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
 }
 
 .tab {
-  width: calc(25vw - 5px);
-  padding: 15px 0px;
+  max-width: calc(25vw);
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: fadeIn 0.6s;
+}
+
+.tab>text {
+  margin: 15px 15px;
 }
 
 .not_checked {
@@ -30,20 +35,10 @@
 .checked {
   background-color: white;
   border-bottom: 2px solid orange;
+  font-weight: bolder;
 }
 
 .goodlist {
   background-color: white;
   flex-grow: 1;
 }
-
-/* .h1 {
-  font-weight: bolder;
-  font-size: 1.5rem;
-}
-
-.two_column_grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-} */

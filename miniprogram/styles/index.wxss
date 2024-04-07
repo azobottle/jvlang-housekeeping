@@ -22,10 +22,16 @@
   justify-content: center;
 }
 
-/* .bg_color_1 {
-  background-color: #FFb638;
+.fade_in {
+  animation: fadeIn 0.6s;
 }
 
-.bg_color_2 {
-  background-color: rgb(158, 222, 241);
-} */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

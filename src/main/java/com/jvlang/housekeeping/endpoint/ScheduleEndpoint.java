@@ -23,7 +23,7 @@ import static com.jvlang.housekeeping.pojo.Role0.SuperAdmin;
 @Endpoint
 @AnonymousAllowed
 @AllowRole({SuperAdmin, Manager})
-public class ScheduleEndpoint extends CrudRepositoryService<Schedule, Long, ScheduleRepository> {
+public class ScheduleEndpoint extends AbstractCrudEndpoint<Schedule, Long, ScheduleRepository> {
     @Autowired
     ScheduleRepository scheduleRepository;
     @Autowired

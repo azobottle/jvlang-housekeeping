@@ -12,6 +12,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Map;
 import java.util.Optional;
 
@@ -24,7 +26,7 @@ import java.util.Optional;
 @MappedSuperclass
 public abstract class AbstractEntity implements Computed {
     @Id
-    @Nullable
+    @Nullable // 作为前端传入参数时这个会为null，所以标注nullable。
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
@@ -32,13 +34,13 @@ public abstract class AbstractEntity implements Computed {
     @Nullable
     protected Long optimisticLocking;
 
-    @Nullable
     @CreationTimestamp
-    protected Timestamp createTime;
+    @Nonnull
+    protected LocalDateTime createTime;
 
-    @Nullable
     @UpdateTimestamp
-    protected Timestamp modifyTime;
+    @Nonnull
+    protected LocalDateTime modifyTime;
 
     @Nullable
     @UserId
@@ -50,9 +52,13 @@ public abstract class AbstractEntity implements Computed {
 
     @PrePersist
     protected void onCreate() {
-        createUserId = Optional.ofNullable(UserUtils.getCurrentUser())
+        id = null;
+        optimisticLocking = 0L;
+        var uid = Optional.ofNullable(UserUtils.getCurrentUser())
                 .map(JwtUser::getUserId)
                 .orElse(null);
+        createUserId = uid;
+        modifyUserId = uid;
     }
 
     @PreUpdate

@@ -72,7 +72,7 @@ public interface Computed {
                         try {
                             return new Tuple2<>(
                                     idType.cast(f.get(that)),
-                                    new Tuple2<>(that, Utils.Coll.arrayList(f))
+                                    new Tuple2<>(that, Utils.Coll.arrayListOf(f))
                             );
                         } catch (IllegalAccessException e) {
                             throw Lombok.sneakyThrow(e);
@@ -86,27 +86,34 @@ public interface Computed {
                     .entrySet()
                     .stream()
                     .map(e -> {
-                        var id = idType.cast(e.getKey());
+                        K id = idType.cast(e.getKey());
                         return new Tuple3<>(id, cache.getOrDefault(id, null), e.getValue());
                     })
                     .toList();
             var need_query_ids = list.stream().filter(it -> it.getV2() == null).map(Tuple3::getV1).toList();
-
             var queried = needQueryOnCacheMissing.apply(need_query_ids);
-            return list.stream().map(it -> {
-                var k = it.getV1();
-                var v = it.getV2();
-                if (v == null) {
-                    var queried_model = queried.get(k);
-                    cache.put(k, queried_model);
-                    v = queried_model;
-                }
-                return Map.entry(it.getV1(), v);
-            }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (v1, v2) -> {
-                throw new IllegalStateException(String.format(
-                        "Duplicate key (attempted merging values %s and %s) , list is %s",
-                        v1, v2, list));
-            }, Utils.Coll.mapSupByKeyCmp(keyCmp, keyCanCmpWithoutComparator)));
+            log.debug("after computed user public info ids : need_query_ids={} , list={} queried={}",
+                    need_query_ids, list, queried);
+            return list
+                    .stream()
+                    .map(it -> {
+                        var k = Objects.requireNonNull(it.getV1(), "Why it null ?");
+                        var v = it.getV2();
+                        if (v == null) {
+                            var queried_model = queried.get(k);
+                            if (queried_model != null) {
+                                cache.put(k, queried_model);
+                                v = queried_model;
+                            }
+                        }
+                        return new Tuple2<>(it.getV1(), v);
+                    })
+                    .filter(it -> it.getV2() != null)
+                    .collect(Collectors.toMap(Tuple2::getV1, Tuple2::getV2, (v1, v2) -> {
+                        throw new IllegalStateException(String.format(
+                                "Duplicate key (attempted merging values %s and %s) , list is %s",
+                                v1, v2, list));
+                    }, Utils.Coll.mapSupByKeyCmp(keyCmp, keyCanCmpWithoutComparator)));
         }
 
         public static @Nonnull Map<@Nonnull Long, @Nonnull UserPubInfo> getUserPubInfo(Object that) {

@@ -19,7 +19,7 @@ import static com.jvlang.housekeeping.pojo.Role0.*;
 @Endpoint
 @AnonymousAllowed
 @AllowRole({SuperAdmin, Manager, Shifu})
-public class RelationShifuServiceEndpoint extends CrudRepositoryService<RelationShifuService, Long, RelationShifuServiceRepository> {
+public class RelationShifuServiceEndpoint extends AbstractCrudEndpoint<RelationShifuService, Long, RelationShifuServiceRepository> {
     @Autowired
     UserRepository userRepository;
 

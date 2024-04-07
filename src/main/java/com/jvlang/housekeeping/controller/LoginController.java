@@ -6,6 +6,7 @@ import com.jvlang.housekeeping.pojo.entity.User;
 import com.jvlang.housekeeping.pojo.entity.UserRole;
 import com.jvlang.housekeeping.repo.UserRepository;
 import com.jvlang.housekeeping.repo.UserRoleRepository;
+import com.jvlang.housekeeping.util.ThreadLocalUtils;
 import com.jvlang.housekeeping.util.UserUtils;
 import com.jvlang.housekeeping.util.Utils;
 import lombok.Data;
@@ -25,6 +26,7 @@ import static com.jvlang.housekeeping.util.Utils.Http.createResponseErrorObject;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 @Slf4j
@@ -62,29 +64,36 @@ public class LoginController {
                 && body.password.equals(DEV_ADMIN_PLAIN_PASSWORD)
         ) {
             synchronized (LoginController.class) {
-                var existed_dev = userRepository.findOne(
-                        Example.of(User.builder()
+                ThreadLocalUtils.BusinessThreadScope.enter(null, null);
+                try {
+                    var existed_dev = userRepository.findOne(
+                            Example.of(User.builder()
+                                    .username(DEV_ADMIN_USERNAME)
+                                    .build()
+                            ));
+                    if (existed_dev.isEmpty()) {
+                        log.warn("\n" + """
+                                +-------------------------------+
+                                |    Create Dev Admin user !    |
+                                +-------------------------------+
+                                """);
+
+                        var saved = userRepository.save(User.builder()
                                 .username(DEV_ADMIN_USERNAME)
+                                .encodedPassword(UserUtils.encodePassword(DEV_ADMIN_PLAIN_PASSWORD))
+                                .description("仅当在开发模式以正确的用户名和密码登陆时才会创建")
+                                .nickName("超管（开发模式）")
                                 .build()
-                        ));
-                if (existed_dev.isEmpty()) {
-                    log.warn("\n" + """
-                            +-------------------------------+
-                            |    Create Dev Admin user !    |
-                            +-------------------------------+
-                            """);
-                    var saved = userRepository.save(User.builder()
-                            .username(DEV_ADMIN_USERNAME)
-                            .encodedPassword(UserUtils.encodePassword(DEV_ADMIN_PLAIN_PASSWORD))
-                            .description("仅当在开发模式以正确的用户名和密码登陆时才会创建")
-                            .nickName("超管（开发模式）")
-                            .build()
-                    );
-                    userRoleRepository.save(UserRole.builder()
-                            .userId(Objects.requireNonNull(saved).getId())
-                            .role(Role0.SuperAdmin)
-                            .build()
-                    );
+                        );
+                        userRoleRepository.save(UserRole.builder()
+                                .userId(Objects.requireNonNull(saved).getId())
+                                .role(Role0.SuperAdmin)
+                                .build()
+                        );
+
+                    }
+                } finally {
+                    ThreadLocalUtils.BusinessThreadScope.exit();
                 }
             }
         }

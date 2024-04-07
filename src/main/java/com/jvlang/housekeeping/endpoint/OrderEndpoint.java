@@ -28,7 +28,7 @@ import static com.jvlang.housekeeping.pojo.Role0.SuperAdmin;
 @AnonymousAllowed
 @Slf4j
 @AllowRole({SuperAdmin, Manager})
-public class OrderEndpoint extends CrudRepositoryService<Order0, Long, OrderRepository> {
+public class OrderEndpoint extends AbstractCrudEndpoint<Order0, Long, OrderRepository> {
     @Autowired
     UserRepository userRepository;
 
@@ -52,22 +52,22 @@ public class OrderEndpoint extends CrudRepositoryService<Order0, Long, OrderRepo
         return dao.toBuilder()
 //                .shifu(userRepository.findById(dao.getShifuId()).orElse(null))
 //                .customer(userRepository.findById(dao.getCustomerId()).orElse(null))
-                .service(serviceRepository.findById(dao.getServiceId()).orElse(null))
+//                .service(serviceRepository.findById(dao.getServiceId()).orElse(null))
 //                .orderStatusDesc(OrderStatusEnum.getEnumById(dao.getOrderStatusId()).description)
 //                .overEventDesc(OrderEventEnum.getEnumById(dao.getOverEventId()).description)
                 .build();
     }
 
-    public String createOrderByCustomer(Order0 order0) {
-        try {
-            orderService.createOrderByCustomer(order0);
-            return "下单成功";
-        } catch (ScheduleFailed e) {
-            log.error(e.getMessage(), e);
-            throw new EndpointException(e.getMessage(), e);
-        } catch (OptimisticLockingFailureException e) {
-            log.error("并发冲突", e);
-            throw new EndpointException("并发冲突", e);
-        }
-    }
+//    public String createOrderByCustomer(Order0 order0) {
+//        try {
+//            orderService.createOrderByCustomer(order0);
+//            return "下单成功";
+//        } catch (ScheduleFailed e) {
+//            log.error(e.getMessage(), e);
+//            throw new EndpointException(e.getMessage(), e);
+//        } catch (OptimisticLockingFailureException e) {
+//            log.error("并发冲突", e);
+//            throw new EndpointException("并发冲突", e);
+//        }
+//    }
 }

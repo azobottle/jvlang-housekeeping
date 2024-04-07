@@ -11,6 +11,8 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Data
@@ -28,29 +30,9 @@ public class Order0 extends AbstractEntity {
     @UserId
     private Long shifuId;
     private Long serviceId;
-    private Timestamp startTime;
+    private LocalDateTime startTime;
     private Integer orderStatusId;
     private Integer overEventId;
     @JdbcTypeCode(SqlTypes.JSON)
     private List<Picture> pictures;
-
-    @Transient
-    @Setter(value = AccessLevel.NONE)
-    @Nullable
-    protected Address address;
-
-    @Transient
-    @Setter(value = AccessLevel.NONE)
-    @Nullable
-    protected Service service;
-
-    @Transient
-    @Setter(value = AccessLevel.NONE)
-    @Nullable
-    protected String overEventDesc;
-
-    @Transient
-    @Setter(value = AccessLevel.NONE)
-    @Nullable
-    protected String orderStatusDesc;
 }

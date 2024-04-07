@@ -14,5 +14,5 @@ import static com.jvlang.housekeeping.pojo.Role0.SuperAdmin;
 @Endpoint
 @AnonymousAllowed
 @AllowRole({SuperAdmin, Manager})
-public class ServiceEndpoint extends CrudRepositoryService<Service, Long, ServiceRepository> {
+public class ServiceEndpoint extends AbstractCrudEndpoint<Service, Long, ServiceRepository> {
 }

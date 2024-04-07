@@ -2,6 +2,7 @@ package com.jvlang.housekeeping.util;
 
 import com.jvlang.housekeeping.pojo.JwtUser;
 import com.jvlang.housekeeping.pojo.vo.UserPubInfo;
+import org.springframework.lang.Nullable;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -29,12 +30,12 @@ public final class ThreadLocalUtils {
 
         public static final ThreadLocal<ConcurrentHashMap<Long, UserPubInfo>> userPubInfoCache = new ThreadLocal<>();
 
-        public static final ThreadLocal<JwtUser> currentUser = new ThreadLocal<>();
+        public static final ThreadLocal<@org.checkerframework.checker.nullness.qual.Nullable JwtUser> currentUser = new ThreadLocal<>();
 
-        public static void enter(JwtUser u, ConcurrentHashMap<Long, UserPubInfo> m) {
+        public static void enter(@Nullable JwtUser u, @Nullable ConcurrentHashMap<Long, UserPubInfo> m) {
             isBusinessThreadScope.set(true);
             currentUser.set(u);
-            userPubInfoCache.set(m);
+            userPubInfoCache.set(m == null ? new ConcurrentHashMap<>() : m);
         }
 
         public static void exit() {

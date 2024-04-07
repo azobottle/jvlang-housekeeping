@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.jvlang.housekeeping.Application;
 import com.jvlang.housekeeping.pojo.JwtUser;
 import com.jvlang.housekeeping.pojo.Role0;
+import com.jvlang.housekeeping.pojo.exceptions.AuthFailed;
 import com.jvlang.housekeeping.pojo.exceptions.BusinessFailed;
 import com.jvlang.housekeeping.repo.UserRoleRepository;
 import com.jvlang.housekeeping.util.ThreadLocalUtils;
@@ -29,6 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.jvlang.housekeeping.util.Utils.Http.createResponseErrorObject;
+import static com.jvlang.housekeeping.util.Utils.Throwables.findAnyCauseInstanceOf;
 
 @Aspect
 @Component
@@ -50,43 +52,42 @@ public class EndPointAspect {
 
     @Around("onEndPoint()")
     public ResponseEntity<String> aroundEndPoint(ProceedingJoinPoint pjp) {
+        var args = pjp.getArgs();
+        String endpointName = (String) args[0];
+        String methodName = (String) args[1];
+        @org.checkerframework.checker.nullness.qual.Nullable ObjectNode body = (ObjectNode) args[2];
+        log.debug("[{} {}] >>> ------------------------- before endpoint , args is {}",
+                endpointName, methodName, Arrays.asList(args));
+        var u = userUtils.readUser();
+        log.debug("JwtUser : {}", u);
+        ThreadLocalUtils.BusinessThreadScope.enter(u, null);
         try {
-            var args = pjp.getArgs();
-            String endpointName = (String) args[0];
-            String methodName = (String) args[1];
-            @org.checkerframework.checker.nullness.qual.Nullable ObjectNode body = (ObjectNode) args[2];
-            log.debug("[{} {}] >>> before endpoint , args is {}",
-                    endpointName, methodName, Arrays.asList(args));
-            var u = userUtils.readUser();
-            ThreadLocalUtils.BusinessThreadScope.enter(u, new ConcurrentHashMap<>());
+            ThreadLocalUtils.BusinessThreadScope.assertEnteredBusinessThreadScope();
             try {
-                ThreadLocalUtils.BusinessThreadScope.assertEnteredBusinessThreadScope();
-                try {
-                    var checkAuthRes = checkAuth(endpointName, methodName, u);
-                    if (checkAuthRes != null) {
-                        return checkAuthRes;
-                    }
-                    var res = pjp.proceed(args);
-                    log.debug("[{} {}] after endpoint , result is {}",
-                            endpointName, methodName, res);
-                    //noinspection unchecked
-                    return (ResponseEntity<String>) res;
-                } catch (Throwable e) {
-                    log.debug("[{} {}] error on endpoint",
-                            endpointName, methodName);
-                    throw Lombok.sneakyThrow(e);
-                } finally {
-                    log.debug("[{} {}] <<< finally endpoint",
-                            endpointName, methodName);
+                var checkAuthRes = checkAuth(endpointName, methodName, u);
+                if (checkAuthRes != null) {
+                    return checkAuthRes;
                 }
+                //noinspection unchecked
+                var res = (ResponseEntity<String>) pjp.proceed(args);
+                log.debug("[{} {}] after endpoint , result is {}",
+                        endpointName, methodName, res);
+                if (res.getStatusCode().isError()) {
+                    log.debug("[{} {}] error on endpoint", endpointName, methodName);
+                }
+                return res;
+            } catch (Throwable e) {
+                log.error("[{} {}] error on endpoint not catched",
+                        endpointName, methodName);
+                return ResponseEntity
+                        .internalServerError()
+                        .body(createResponseErrorObject(objectMapper, "服务器未知错误: " + e.getMessage()));
             } finally {
-                ThreadLocalUtils.BusinessThreadScope.exit();
+                log.debug("[{} {}] <<< ------------------------- finally endpoint",
+                        endpointName, methodName);
             }
-        } catch (Throwable err) {
-            if (err instanceof BusinessFailed) {
-                response.setHeader("x-jvlang-business-failed", "1");
-            }
-            throw Lombok.sneakyThrow(err);
+        } finally {
+            ThreadLocalUtils.BusinessThreadScope.exit();
         }
     }
 
@@ -151,7 +152,7 @@ public class EndPointAspect {
         }
 
         if (allowRoles.isEmpty()) {
-            log.warn("\n" + """
+            log.error("\n" + """
                     +------------------------------ WARNING ------------------------------+
                     | 未对 [{} {}] 接口设置权限！
                     |
@@ -160,7 +161,12 @@ public class EndPointAspect {
                     | 如果需要特定角色才能访问，则应当使用 @AllowRole
                     +---------------------------------------------------------------------+
                     """, endpointName, methodName);
-            return null;
+            return ResponseEntity
+                    .status(403)
+                    .body(createResponseErrorObject(
+                            objectMapper,
+                            "接口未设置授权")
+                    );
         }
 
         if (jwtUser == null) {

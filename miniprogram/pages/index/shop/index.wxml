@@ -3,10 +3,13 @@
 <view>
   <view class="columns">
     <view class="tabs">
-      <view class="tab checked_parent"><text>热门之选</text></view>
+      <view wx:for="{{current_list}}" wx:key="id">
+        <view bind:tap="click_tab" data-item="{{item}}" class="tab {{item.id==parentCatalogId?'checked_parent':item.id==checked_id?'checked':'not_checked'}}"><text>{{item.text}}</text></view>
+      </view>
+      <!-- <view class="tab checked_parent"><text>热门之选</text></view>
       <view class="tab checked"><text>开荒保洁</text></view>
       <view class="tab not_checked"><text>家电清洗</text></view>
-      <view class="tab not_checked"><text>专业的蒸汽AAAAAA洗</text></view>
+      <view class="tab not_checked"><text>专业的蒸汽AAAAAA洗</text></view> -->
     </view>
     <view class="goodlist rows">
       <view>

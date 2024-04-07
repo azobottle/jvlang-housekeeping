@@ -2,15 +2,11 @@ package com.jvlang.housekeeping.endpoint;
 
 import com.jvlang.housekeeping.aop.AllowNoLogin;
 import com.jvlang.housekeeping.aop.AllowRole;
-import com.jvlang.housekeeping.aop.AllowRoleAll;
 import com.jvlang.housekeeping.pojo.entity.GoodCatalog;
-import com.jvlang.housekeeping.pojo.entity.RelationShifuService;
 import com.jvlang.housekeeping.repo.GoodCatalogRepository;
-import com.jvlang.housekeeping.repo.RelationShifuServiceRepository;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import dev.hilla.Endpoint;
 import dev.hilla.Nullable;
-import dev.hilla.crud.CrudRepositoryService;
 import dev.hilla.crud.filter.Filter;
 import org.springframework.data.domain.Pageable;
 
@@ -23,7 +19,13 @@ import static com.jvlang.housekeeping.pojo.Role0.SuperAdmin;
 @Endpoint
 @AnonymousAllowed
 @AllowRole({SuperAdmin, Manager})
-public class GoodCatalogEndpoint extends CrudRepositoryService<GoodCatalog, Long, GoodCatalogRepository> {
+public class GoodCatalogEndpoint extends AbstractCrudEndpoint<GoodCatalog, Long, GoodCatalogRepository> {
+    @AllowNoLogin
+    @Override
+    public List<GoodCatalog> listAll() {
+        return super.listAll();
+    }
+
     @AllowNoLogin
     @Override
     public List<GoodCatalog> list(Pageable pageable, @Nullable Filter filter) {
